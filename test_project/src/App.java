@@ -13,5 +13,7 @@ public class App {
         int func_name_s; // 関数名の始まり
         int func_name_e; // 関数名の終わり
 
+        s.close();
+
     }
 }
