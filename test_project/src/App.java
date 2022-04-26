@@ -65,7 +65,7 @@ public class App {
         Scanner s = new Scanner(System.in); // 入力用に定義
 
         // 判定結果の配列
-        String[] judge = { "対象外文字", "変数宣言", "計算式または代入", "関数" };
+        String[] judge = { "対象外文字列", "変数宣言", "計算式または代入", "関数" };
         int judge_res = 0;
 
         System.out.println("空白やタブ入りの文字列を入力してください！"); // 出力
@@ -120,8 +120,10 @@ public class App {
          * str.substring(latter_s, latter_e + 1);
          */
 
-        System.out.println("前半：" + first_str);
-        System.out.println("後半：" + latter_str);
+        if (judge_res != 0) {
+            System.out.println("前半：" + first_str);
+            System.out.println("後半：" + latter_str);
+        }
 
         s.close();
 
