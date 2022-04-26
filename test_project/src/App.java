@@ -9,42 +9,43 @@ public class App {
 
         System.out.println("処理前：" + str);
 
-        // 関数名とその中身に分割
-        int func_name_s = -1; // 関数名の始まり
-        int func_name_e = -1; // 関数名の終わり
+        // 前半部分
+        int first_s = -1; // 関数名の始まり
+        int first_e = -1; // 関数名の終わり
 
         // 関数名の位置を把握
         for (int str_idx = 0; str_idx < str.length(); str_idx++) {
             // 空白でなく、かつ最初の地点が決まっていない場合
-            if ((str.charAt(str_idx) != ' ') && func_name_s == -1) {
-                func_name_s = str_idx;
+            if ((str.charAt(str_idx) != ' ') && first_s == -1) {
+                first_s = str_idx;
             }
             // 関数の終わりの文字だったら
             if (str.charAt(str_idx + 1) == '(') {
-                func_name_e = str_idx;
+                first_e = str_idx;
                 break;
             }
         }
 
-        System.out.println("関数名の位置は、" + func_name_s + "~" + func_name_e);
+        System.out.println("関数名の位置は、" + first_s + "~" + first_e);
 
-        int inner_s = func_name_e + 2; // 関数の中身の始まり
-        int inner_e = -1; // 関数の中身の終わり
+        // 後半部分
+        int latter_s = first_e + 2; // 関数の中身の始まり
+        int latter_e = -1; // 関数の中身の終わり
 
         // 関数の中身の位置を把握
-        for (int str_idx = inner_s; str_idx < str.length(); str_idx++) {
+        for (int str_idx = latter_s; str_idx < str.length(); str_idx++) {
             if (str.charAt(str_idx + 1) == ')') { // 中身の最後の位置だったら
-                inner_e = str_idx;
+                latter_e = str_idx;
                 break;
             }
         }
 
-        System.out.println("関数の中身の位置は、" + inner_s + "~" + inner_e);
+        System.out.println("関数の中身の位置は、" + latter_s + "~" + latter_e);
 
         System.out.print("\n");
 
-        String func_name = str.substring(func_name_s, func_name_e + 1);
-        String inner = str.substring(inner_s, inner_e + 1);
+        String func_name = str.substring(first_s, first_e + 1);
+        String inner = str.substring(latter_s, latter_e + 1);
 
         System.out.println("関数名：" + func_name);
         System.out.println("関数の中身：" + inner);
