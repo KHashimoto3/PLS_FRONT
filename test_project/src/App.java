@@ -28,6 +28,19 @@ public class App {
 
         System.out.println("関数名の位置は、" + func_name_s + "~" + func_name_e);
 
+        int inner_s = func_name_e + 2; // 関数の中身の始まり
+        int inner_e = -1; // 関数の中身の終わり
+
+        // 関数の中身の位置を把握
+        for (int str_idx = inner_s; str_idx < str.length(); str_idx++) {
+            if (str.charAt(str_idx + 1) == ')') { // 中身の最後の位置だったら
+                inner_e = str_idx + 1;
+                break;
+            }
+        }
+
+        System.out.println("関数の中身の位置は、" + inner_s + "~" + inner_e);
+
         s.close();
 
     }
