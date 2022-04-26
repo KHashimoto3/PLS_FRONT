@@ -37,6 +37,10 @@ public class App {
 
         Scanner s = new Scanner(System.in); // 入力用に定義
 
+        // 判定結果の配列
+        String[] judge = { "変数", "計算式または代入", "関数" };
+        int judge_res = -1;
+
         System.out.println("空白やタブ入りの文字列を入力してください！"); // 出力
         String str = s.nextLine(); // 入力
 
@@ -61,12 +65,14 @@ public class App {
                 first_str = str.substring(first_s, first_e + 1);
                 // 関数の後半部分を調べる
                 latter_str = check_function_name(str, first_e + 2);
+                judge_res = 2;
                 break;
             }
         }
 
         System.out.print("\n");
 
+        System.out.println("これは、" + judge[judge_res] + "　です。");
         /*
          * String func_name = str.substring(first_s, first_e + 1); String inner =
          * str.substring(latter_s, latter_e + 1);
