@@ -34,12 +34,20 @@ public class App {
         // 関数の中身の位置を把握
         for (int str_idx = inner_s; str_idx < str.length(); str_idx++) {
             if (str.charAt(str_idx + 1) == ')') { // 中身の最後の位置だったら
-                inner_e = str_idx + 1;
+                inner_e = str_idx;
                 break;
             }
         }
 
         System.out.println("関数の中身の位置は、" + inner_s + "~" + inner_e);
+
+        System.out.print("\n");
+
+        String func_name = str.substring(func_name_s, func_name_e + 1);
+        String inner = str.substring(inner_s, inner_e + 1);
+
+        System.out.println("関数名：" + func_name);
+        System.out.println("関数の中身：" + inner);
 
         s.close();
 
