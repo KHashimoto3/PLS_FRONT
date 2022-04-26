@@ -65,8 +65,8 @@ public class App {
         Scanner s = new Scanner(System.in); // 入力用に定義
 
         // 判定結果の配列
-        String[] judge = { "変数宣言", "計算式または代入", "関数" };
-        int judge_res = -1;
+        String[] judge = { "対象外文字", "変数宣言", "計算式または代入", "関数" };
+        int judge_res = 0;
 
         System.out.println("空白やタブ入りの文字列を入力してください！"); // 出力
         String str = s.nextLine(); // 入力
@@ -81,22 +81,23 @@ public class App {
         String latter_str = "text"; // 後半の文字列
 
         // 前半の位置を把握
-        for (int str_idx = 0; str_idx < str.length(); str_idx++) {
+        for (int str_idx = 0; str_idx < str.length() - 1; str_idx++) {
+            System.out.println("判定します！");
             // 空白でなく、かつ最初の地点が決まっていない場合
             if ((str.charAt(str_idx) != ' ') && first_s == -1) {
                 first_s = str_idx;
             }
             // 関数の終わりの文字だったら
-            if (str.charAt(str_idx + 1) == '(') {
+            else if (str.charAt(str_idx + 1) == '(') {
                 first_e = str_idx;
                 first_str = str.substring(first_s, first_e + 1);
                 // 関数の後半部分を調べる
                 latter_str = check_function_name(str, first_e + 2);
-                judge_res = 2;
+                judge_res = 3;
                 break;
             }
             // 途中の空白を見つけたら
-            if ((str.charAt(str_idx + 1) == ' ') && (first_s != -1)) {
+            else if ((str.charAt(str_idx + 1) == ' ') && (first_s != -1)) {
                 // 変数宣言なのかを確認
                 int result;
                 first_e = str_idx;
@@ -104,7 +105,7 @@ public class App {
                 result = check_is_declaration(first_str);
                 if (result == 1) { // 変数宣言だったら
                     latter_str = check_variable(str, first_e + 2);
-                    judge_res = 0;
+                    judge_res = 1;
                     break;
                 }
                 // そうで無い場合は処理を継続
