@@ -10,10 +10,10 @@ public class App {
         System.out.println("処理前：" + str);
 
         // 前半部分
-        int first_s = -1; // 関数名の始まり
-        int first_e = -1; // 関数名の終わり
+        int first_s = -1; // 前半の始まり
+        int first_e = -1; // 前半の終わり
 
-        // 関数名の位置を把握
+        // 前半の位置を把握
         for (int str_idx = 0; str_idx < str.length(); str_idx++) {
             // 空白でなく、かつ最初の地点が決まっていない場合
             if ((str.charAt(str_idx) != ' ') && first_s == -1) {
@@ -26,13 +26,13 @@ public class App {
             }
         }
 
-        System.out.println("関数名の位置は、" + first_s + "~" + first_e);
+        System.out.println("前半の位置は、" + first_s + "~" + first_e);
 
         // 後半部分
-        int latter_s = first_e + 2; // 関数の中身の始まり
-        int latter_e = -1; // 関数の中身の終わり
+        int latter_s = first_e + 2; // 後半の始まり
+        int latter_e = -1; // 後半の終わり
 
-        // 関数の中身の位置を把握
+        // 後半の位置を把握
         for (int str_idx = latter_s; str_idx < str.length(); str_idx++) {
             if (str.charAt(str_idx + 1) == ')') { // 中身の最後の位置だったら
                 latter_e = str_idx;
@@ -40,15 +40,15 @@ public class App {
             }
         }
 
-        System.out.println("関数の中身の位置は、" + latter_s + "~" + latter_e);
+        System.out.println("後半の位置は、" + latter_s + "~" + latter_e);
 
         System.out.print("\n");
 
         String func_name = str.substring(first_s, first_e + 1);
         String inner = str.substring(latter_s, latter_e + 1);
 
-        System.out.println("関数名：" + func_name);
-        System.out.println("関数の中身：" + inner);
+        System.out.println("前半：" + func_name);
+        System.out.println("後半：" + inner);
 
         s.close();
 
