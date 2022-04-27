@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class App {
 
+    static String first_str = "text"; // 前半の文字列
+    static String latter_str = "text"; // 後半の文字列
+
     // 変数名を返す関数
     public static String check_variable(String str, int s) {
         String variable_str = "text";
@@ -90,9 +93,6 @@ public class App {
         int first_s = -1; // 前半の始まり
         int first_e = -1; // 前半の終わり
 
-        String first_str = "text"; // 前半の文字列
-        String latter_str = "text"; // 後半の文字列
-
         // 前半の位置を把握
         for (int str_idx = 0; str_idx < str.length() - 1; str_idx++) {
             System.out.println("判定します！");
@@ -138,10 +138,6 @@ public class App {
         System.out.print("\n");
 
         System.out.println("これは、" + judge[judge_res] + "　です。");
-        /*
-         * String func_name = str.substring(first_s, first_e + 1); String inner =
-         * str.substring(latter_s, latter_e + 1);
-         */
 
         if (judge_res != 0) {
             System.out.println("前半：" + first_str);
