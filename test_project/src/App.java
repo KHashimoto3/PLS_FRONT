@@ -43,25 +43,6 @@ public class App {
         return culc_str;
     }
 
-    // 関数名を返す
-    public static String check_function_name(String str, int s) {
-        String func_name_str;
-
-        int e = -1; // 後半の終わり
-
-        // 後半の位置を把握
-        for (int str_idx = s; str_idx < str.length(); str_idx++) {
-            if (str.charAt(str_idx + 1) == ')') { // 中身の最後の位置だったら
-                e = str_idx;
-                break;
-            }
-        }
-
-        func_name_str = str.substring(s, e + 1);
-
-        return func_name_str;
-    }
-
     // 変数宣言なのかを確認する関数
     public static int check_is_declaration(String str) {
         String[] type = { "int", "double", "float", "char" };
@@ -79,6 +60,9 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner s = new Scanner(System.in); // 入力用に定義
+
+        // 関数クラスのインスタンス
+        Func f = new Func();
 
         // 判定結果の配列
         String[] judge = { "対象外文字列", "変数宣言", "計算式または代入", "関数" };
@@ -105,7 +89,7 @@ public class App {
                 first_e = str_idx;
                 first_str = str.substring(first_s, first_e + 1);
                 // 関数の後半部分を調べる
-                latter_str = check_function_name(str, first_e + 2);
+                latter_str = f.check_function_name(str, first_e + 2);
                 judge_res = 3;
                 break;
             }
