@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class App {
 
+    static String first_str = "text"; // 前半の文字列
+    static String latter_str = "text"; // 後半の文字列
+
     // 変数名を返す関数
     public static String check_variable(String str, int s) {
         String variable_str = "text";
@@ -40,25 +43,6 @@ public class App {
         return culc_str;
     }
 
-    // 関数名を返す
-    public static String check_function_name(String str, int s) {
-        String func_name_str;
-
-        int e = -1; // 後半の終わり
-
-        // 後半の位置を把握
-        for (int str_idx = s; str_idx < str.length(); str_idx++) {
-            if (str.charAt(str_idx + 1) == ')') { // 中身の最後の位置だったら
-                e = str_idx;
-                break;
-            }
-        }
-
-        func_name_str = str.substring(s, e + 1);
-
-        return func_name_str;
-    }
-
     // 変数宣言なのかを確認する関数
     public static int check_is_declaration(String str) {
         String[] type = { "int", "double", "float", "char" };
@@ -77,6 +61,9 @@ public class App {
 
         Scanner s = new Scanner(System.in); // 入力用に定義
 
+        // 関数クラスのインスタンス
+        Func f = new Func();
+
         // 判定結果の配列
         String[] judge = { "対象外文字列", "変数宣言", "計算式または代入", "関数" };
         int judge_res = 0;
@@ -90,9 +77,6 @@ public class App {
         int first_s = -1; // 前半の始まり
         int first_e = -1; // 前半の終わり
 
-        String first_str = "text"; // 前半の文字列
-        String latter_str = "text"; // 後半の文字列
-
         // 前半の位置を把握
         for (int str_idx = 0; str_idx < str.length() - 1; str_idx++) {
             System.out.println("判定します！");
@@ -103,9 +87,9 @@ public class App {
             // 関数の終わりの文字だったら
             else if (str.charAt(str_idx + 1) == '(') {
                 first_e = str_idx;
-                first_str = str.substring(first_s, first_e + 1);
+                f.func_name = str.substring(first_s, first_e + 1);
                 // 関数の後半部分を調べる
-                latter_str = check_function_name(str, first_e + 2);
+                f.check_function_name(str, first_e + 2);
                 judge_res = 3;
                 break;
             }
@@ -137,15 +121,19 @@ public class App {
 
         System.out.print("\n");
 
-        System.out.println("これは、" + judge[judge_res] + "　です。");
-        /*
-         * String func_name = str.substring(first_s, first_e + 1); String inner =
-         * str.substring(latter_s, latter_e + 1);
-         */
+        switch (judge_res) {
+            case 3:
+                f.disp_result();
+                break;
+            case 0:
+                System.out.println("これは、" + judge[judge_res] + "　です。");
+                break;
+            default:
+                System.out.println("これは、" + judge[judge_res] + "　です。");
+                System.out.println("前半：" + first_str);
+                System.out.println("後半：" + latter_str);
+                break;
 
-        if (judge_res != 0) {
-            System.out.println("前半：" + first_str);
-            System.out.println("後半：" + latter_str);
         }
 
         s.close();
