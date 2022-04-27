@@ -87,9 +87,9 @@ public class App {
             // 関数の終わりの文字だったら
             else if (str.charAt(str_idx + 1) == '(') {
                 first_e = str_idx;
-                first_str = str.substring(first_s, first_e + 1);
+                f.func_name = str.substring(first_s, first_e + 1);
                 // 関数の後半部分を調べる
-                latter_str = f.check_function_name(str, first_e + 2);
+                f.check_function_name(str, first_e + 2);
                 judge_res = 3;
                 break;
             }
@@ -121,11 +121,19 @@ public class App {
 
         System.out.print("\n");
 
-        System.out.println("これは、" + judge[judge_res] + "　です。");
+        switch (judge_res) {
+            case 3:
+                f.disp_result();
+                break;
+            case 0:
+                System.out.println("これは、" + judge[judge_res] + "　です。");
+                break;
+            default:
+                System.out.println("これは、" + judge[judge_res] + "　です。");
+                System.out.println("前半：" + first_str);
+                System.out.println("後半：" + latter_str);
+                break;
 
-        if (judge_res != 0) {
-            System.out.println("前半：" + first_str);
-            System.out.println("後半：" + latter_str);
         }
 
         s.close();
