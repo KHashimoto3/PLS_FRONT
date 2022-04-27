@@ -24,6 +24,19 @@ public class App {
     // 代入か計算を表す
     public static String check_culc(String str, int s) {
         String culc_str = "text";
+
+        int e = -1; // 後半の終わり
+
+        // 後半の位置を把握
+        for (int str_idx = s; str_idx < str.length(); str_idx++) {
+            if (str.charAt(str_idx + 1) == ';') { // 中身の最後の位置だったら
+                e = str_idx;
+                break;
+            }
+        }
+
+        culc_str = str.substring(s, e + 1);
+
         return culc_str;
     }
 
@@ -94,6 +107,16 @@ public class App {
                 // 関数の後半部分を調べる
                 latter_str = check_function_name(str, first_e + 2);
                 judge_res = 3;
+                break;
+            }
+            // 演算子だったら
+            else if ((str.charAt(str_idx + 1) == '+') || (str.charAt(str_idx + 1) == '-')
+                    || (str.charAt(str_idx + 1) == '*') || (str.charAt(str_idx + 1) == '/')
+                    || (str.charAt(str_idx + 1) == '=')) {
+                first_e = str_idx;
+                first_str = str.substring(first_s, first_e + 1);
+                latter_str = check_culc(str, first_e + 1);
+                judge_res = 2;
                 break;
             }
             // 途中の空白を見つけたら
