@@ -7,6 +7,26 @@
    <link rel="stylesheet" href="css/bootstrap.css">
   </head>
   <body>
+    
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">ヒント</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>ここには、変数の型が入ります。</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-primary">サンプルを表示</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <h1>以下の規約に沿って、コードを完成させよ</h1>
     <div class="rule_list">
         <li>条件１：変数名には、iやxなど、意味のない名前を使用しないこと。</li>
@@ -15,20 +35,16 @@
     <pre>
         <code>
             int main(void){
-                <input type="text"></input><input type="button" value="？" onclick="view_hint();"></input> a=10;
+                <input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">？</button> a=10;
                 printf("こんにちは%d",a);
                 return 0;
             }
         </code>
     </pre>
-    <script>
-        function view_hint(){
-            alert("ヒント：変数の宣言");
-        }
-    </script>
     <!--jQueryの読み込み-->
     <script src="js/jquery-3.6.0.min"></script>
     <!-- Bootstrapのjs読み込み -->
     <script src="js/bootstrap.bundle.js"></script>
+
   </body>
 </html>
