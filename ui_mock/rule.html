@@ -21,7 +21,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-        <button type="button" class="btn btn-primary">サンプルを表示</button>
+        <button type="button" class="btn btn-primary" onclick="show_sample()">サンプルを表示</button>
       </div>
     </div>
   </div>
@@ -46,5 +46,10 @@
     <!-- Bootstrapのjs読み込み -->
     <script src="js/bootstrap.bundle.js"></script>
 
+    <script>
+      function show_sample(){
+        location.href="sample.html";
+      }
+    </script>
   </body>
 </html>
