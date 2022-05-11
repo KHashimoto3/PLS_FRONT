@@ -9,7 +9,7 @@
   <body>
     
     <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -21,30 +21,111 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-        <button type="button" class="btn btn-primary" onclick="show_sample()">サンプルを表示</button>
+        <button type="button" class="btn btn-primary" onclick="show_sample(1)">サンプルを表示</button>
       </div>
   </div>
   </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel">ヒント</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p>ここには、配列の宣言が入ります。</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+      <button type="button" class="btn btn-primary" onclick="show_sample(2)">サンプルを表示</button>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel">ヒント</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p>ここには、ループ条件が入ります。</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+      <button type="button" class="btn btn-primary" onclick="show_sample(3)">サンプルを表示</button>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="staticBackdropLabel">ヒント</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p>ここには、出力処理が入ります。</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+      <button type="button" class="btn btn-primary" onclick="show_sample(4)">サンプルを表示</button>
+    </div>
+</div>
+</div>
 </div>
 
     <h1>以下の空欄を完成させよ</h1>
     <pre>
         <code>
             int main(void){
-                <input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">？</button> a=10;
+                <input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">？</button> a=10;
                 printf("こんにちは%d",a);
                 return 0;
             }
         </code>
     </pre>
+    <hr>
+    <pre>
+      <code>
+          int main(void){
+            int <input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">？</button>[]={1,2,3,4,5,6,7,8,9,10};
+            int data_idx; //配列dataの添字
+            for(<input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">？</button>){
+              <input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop4">？</button>("%d ",data[data_idx]);
+            }
+            printf("¥n");
+            return 0;
+          }
+      </code>
+  </pre>
     <!--jQueryの読み込み-->
     <script src="js/jquery-3.6.0.min"></script>
     <!-- Bootstrapのjs読み込み -->
     <script src="js/bootstrap.bundle.js"></script>
 
     <script>
-      function show_sample(){
-        location.href="sample.html";
+      function show_sample(genre_id){
+        switch(genre_id){
+          case 1:
+            location.href="sample1.html";
+            break;
+          case 2:
+            location.href="sample2.html";
+            break;
+          case 3:
+            location.href="sample3.html";
+            break;
+          case 4:
+            location.href="sample4.html";
+            break;
+        }
       }
     </script>
   </body>
