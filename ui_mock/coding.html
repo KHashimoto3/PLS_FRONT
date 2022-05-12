@@ -88,12 +88,13 @@
     <pre>
         <code>
             int main(void){
-                <input type="text"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">？</button> a=10;
+                <input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_hint1"></input><button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">？</button> a=10;
                 printf("こんにちは%d",a);
                 return 0;
             }
         </code>
     </pre>
+    <p>{{box1}}</p>
     <hr>
     <pre>
       <code>
