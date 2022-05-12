@@ -12,50 +12,38 @@
     <a href="coding.html">＜＜戻る</a>
 
     <!--表示切り替えタグ-->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link active"
-          id="home-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#home"
-          type="button"
-          role="tab"
-          aria-controls="home"
-          aria-selected="true"
-        >
-          スタイル1
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="profile-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#profile"
-          type="button"
-          role="tab"
-          aria-controls="profile"
-          aria-selected="false"
-        >
-          スタイル2
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button
-          class="nav-link"
-          id="contact-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#contact"
-          type="button"
-          role="tab"
-          aria-controls="contact"
-          aria-selected="false"
-        >
-          スタイル3
-        </button>
-      </li>
-    </ul>
+    <div class="nav_aria">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#style1"
+            type="button"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+          >
+            スタイル1
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#style2"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            スタイル2
+          </button>
+        </li>
+      </ul>
+    </div>
 
     <!--タブごとのコンテンツ-->
     <div class="tab-content" id="myTabContent">
@@ -65,7 +53,20 @@
         role="tabpanel"
         aria-labelledby="home-tab"
       >
-        ...
+        <div class="sample_aria">
+          <h2>変数宣言後に初期化</h2>
+          <pre>
+            <code>
+                int main(void){
+                  int a,b;  //変数aとbを宣言
+                  a=10;
+                  b=20;
+                  printf("a：%d, b：%d¥n",a,b);
+                  return 0;
+                }
+            </code>
+        </pre>
+        </div>
       </div>
       <div
         class="tab-pane fade"
@@ -73,15 +74,19 @@
         role="tabpanel"
         aria-labelledby="profile-tab"
       >
-        ...
-      </div>
-      <div
-        class="tab-pane fade"
-        id="style3"
-        role="tabpanel"
-        aria-labelledby="contact-tab"
-      >
-        ...
+        <div class="sample_aria">
+          <h2>変数宣言時に初期化</h2>
+          <pre>
+            <code>
+                int main(void){
+                  int a=10;  //変数aを宣言
+                  int b=20;  //変数bを宣言
+                  printf("a：%d, b：%d¥n",a,b);
+                  return 0;
+                }
+            </code>
+        </pre>
+        </div>
       </div>
     </div>
 
