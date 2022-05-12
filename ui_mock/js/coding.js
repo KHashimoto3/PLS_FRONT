@@ -3,6 +3,8 @@ const App = {
     return {
       message: "読み込み完了！",
       box1: "",
+      //ヒント使用フラグ
+      hint1_showed: 0,
       //タイマー
       timer1: null,
 
@@ -24,15 +26,17 @@ const App = {
     box1_focus: function () {
       console.log("box1がフォーカスされました。");
       //タイマーを設定
-      this.timer1 = setTimeout(this.show_hint1, 10000);
+      if (this.hint1_showed == 0) {
+        this.timer1 = setTimeout(this.show_hint1, 10000);
+      }
     },
     show_hint1: function () {
       this.timer1_hint_style.display = "inline-block";
+      this.hint1_showed = 1;
     },
     cancel_hint1: function () {
       clearTimeout(this.timer1);
       console.log("ヒントの表示が取り消されました。");
-      this.timer1_hint_style.display = "none";
     },
   },
 };

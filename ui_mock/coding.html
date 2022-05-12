@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>コーディングスタイル学習</title>
+    <!--キャッシュの無効化-->
+    <meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
      <!-- BootstrapのCSS読み込み -->
    <link rel="stylesheet" href="css/bootstrap.css">
    <!--vue 3.0の使用-->
@@ -88,7 +91,7 @@
     <pre>
         <code>
             int main(void){
-                <input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_hint1"></input><div :style="timer1_hint_style">ここには変数の型が入ります。<a href="sanple1.html">＞</a></div> a=10;
+                <input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_hint1"></input><div :style="timer1_hint_style">ここには変数の型が入ります。<a href="sample1.html">＞</a></div> a=10;
                 printf("こんにちは%d",a);
                 return 0;
             }
