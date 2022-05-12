@@ -5,9 +5,11 @@
     <title>コーディングスタイル学習</title>
      <!-- BootstrapのCSS読み込み -->
    <link rel="stylesheet" href="css/bootstrap.css">
+   <!--vue 3.0の使用-->
+   <script src="https://unpkg.com/vue@next"></script>
   </head>
   <body>
-    
+    <div id="app">
     <!-- Modal -->
 <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -82,6 +84,7 @@
 </div>
 
     <h1>以下の空欄を完成させよ</h1>
+    <p>Vue.jsの{{message}}</p>
     <pre>
         <code>
             int main(void){
@@ -128,5 +131,7 @@
         }
       }
     </script>
+    <script src="js/coding.js"></script>
+    </div>
   </body>
 </html>
