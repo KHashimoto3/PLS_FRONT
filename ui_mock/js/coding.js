@@ -5,7 +5,9 @@ const App = {
       box1: "",
       //ヒント使用フラグ
       hint1_showed: 0,
-      //タイマー
+
+      //ヒント
+      hint1_txt: "",
       timer1: null,
 
       //吹き出しのstyle
@@ -31,6 +33,7 @@ const App = {
       }
     },
     show_hint1: function () {
+      this.hint1_txt = "変数の型 が入ります。";
       this.timer1_hint_style.display = "inline-block";
       this.hint1_showed = 1;
     },
