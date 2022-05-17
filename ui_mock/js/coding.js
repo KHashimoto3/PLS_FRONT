@@ -4,16 +4,16 @@ const App = {
       message: "読み込み完了！",
       box1: "",
       //ヒント使用フラグ
-      hint1_showed: 0,
+      box1_showed: 0,
 
       //ヒント
-      hint1_txt: "",
+      box1_hint_txt: "",
       timer1: null,
       timer2: null,
       timer3: null,
 
       //吹き出しのstyle
-      hint1_style: {
+      box1_style: {
         position: "absolute",
         background: "#6cb913d3",
         color: "white",
@@ -30,30 +30,30 @@ const App = {
     box1_focus: function () {
       console.log("box1がフォーカスされました。");
       //タイマー1を設定
-      if (this.hint1_showed == 0) {
-        this.timer1 = setTimeout(this.show_hint1, 10000);
+      if (this.box1_showed == 0) {
+        this.timer1 = setTimeout(this.show_box1_hint1, 10000);
       }
     },
-    show_hint1: function () {
-      this.hint1_txt = "この行は　変数を宣言します。";
-      this.hint1_style.display = "inline-block";
-      this.hint1_showed = 1;
+    show_box1_hint1: function () {
+      this.box1_hint_txt = "この行は　変数を宣言します。";
+      this.box1_style.display = "inline-block";
+      this.box1_showed = 1;
       //タイマー2を設定
-      this.timer2 = setTimeout(this.show_hint2, 10000);
+      this.timer2 = setTimeout(this.show_box1_hint2, 10000);
     },
-    show_hint2: function () {
-      this.hint1_txt = "ここには　変数の型 が入ります。";
-      this.hint1_style.display = "inline-block";
-      this.hint1_style.background = "#e67b34";
+    show_box1_hint2: function () {
+      this.box1_hint_txt = "ここには　変数の型 が入ります。";
+      this.box1_style.display = "inline-block";
+      this.box1_style.background = "#e67b34";
       //タイマー3を設定
-      this.timer3 = setTimeout(this.show_hint3, 10000);
+      this.timer3 = setTimeout(this.show_box1_hint3, 10000);
     },
-    show_hint3: function () {
-      this.hint1_txt = "変数宣言のサンプルはこちら。";
-      this.hint1_style.display = "inline-block";
-      this.hint1_style.background = "#b913a3d3";
+    show_box1_hint3: function () {
+      this.box1_hint_txt = "変数宣言のサンプルはこちら。";
+      this.box1_style.display = "inline-block";
+      this.box1_style.background = "#b913a3d3";
     },
-    cancel_hint1: function () {
+    cancel_box1: function () {
       clearTimeout(this.timer1);
       console.log("ヒントの表示が取り消されました。");
     },
