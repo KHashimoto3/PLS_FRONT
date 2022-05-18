@@ -101,10 +101,10 @@
     <pre>
       <code>
           int main(void){
-            int <input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_box1"></input>={1,2,3,4,5,6,7,8,9,10};<div class="drag-and-drop" :style=box1_style>{{box1_hint_txt}}<a href="sample1.html">＞</a></div>
+            int <input type="text" v-model="box2" @focus="box2_focus" @blur="cancel_box2"></input>={1,2,3,4,5,6,7,8,9,10};<div class="drag-and-drop" :style=box2_style>{{box2_hint_txt}}<a href="sample2.html">＞</a></div>
             int data_idx; //配列dataの添字
-            for(<input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_box1"></input>){<div class="drag-and-drop" :style=box1_style>{{box1_hint_txt}}<a href="sample1.html">＞</a></div>
-              <input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_box1"></input>("%d ",data[data_idx]);<div class="drag-and-drop" :style=box1_style>{{box1_hint_txt}}<a href="sample1.html">＞</a></div>
+            for(<input type="text" v-model="box3" @focus="box3_focus" @blur="cancel_box3"></input>){<div class="drag-and-drop" :style=box3_style>{{box3_hint_txt}}<a href="sample3.html">＞</a></div>
+              <input type="text" v-model="box4" @focus="box4_focus" @blur="cancel_box4"></input>("%d ",data[data_idx]);<div class="drag-and-drop" :style=box4_style>{{box4_hint_txt}}<a href="sample4.html">＞</a></div>
             }
             printf("¥n");
             return 0;
