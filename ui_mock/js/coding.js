@@ -107,28 +107,28 @@ const App = {
 
     //box2がフォーカスされる
     box2_focus: function () {
-      console.log("box1がフォーカスされました。");
+      console.log("box2がフォーカスされました。");
       //タイマー1を設定
       if (this.box2_showed == 0) {
         this.box2_t1 = setTimeout(this.show_box2_hint1, 10000);
       }
     },
     show_box2_hint1: function () {
-      this.box2_hint_txt = "この行は　変数を宣言します。";
+      this.box2_hint_txt = "この行は　配列を宣言します。";
       this.box2_style.display = "inline-block";
       this.box2_showed = 1;
       //タイマー2を設定
       this.box2_t2 = setTimeout(this.show_box2_hint2, 10000);
     },
     show_box2_hint2: function () {
-      this.box2_hint_txt = "ここには　変数の型 が入ります。";
+      this.box2_hint_txt = "ここには　配列名 が入ります。";
       this.box2_style.display = "inline-block";
       this.box2_style.background = "#e67b34";
       //タイマー3を設定
       this.box2_t3 = setTimeout(this.show_box2_hint3, 10000);
     },
     show_box2_hint3: function () {
-      this.box2_hint_txt = "変数宣言のサンプルはこちら。";
+      this.box2_hint_txt = "配列宣言のサンプルはこちら。";
       this.box2_style.display = "inline-block";
       this.box2_style.background = "#b913a3d3";
     },
@@ -139,28 +139,28 @@ const App = {
 
     //box3がフォーカスされる
     box3_focus: function () {
-      console.log("box1がフォーカスされました。");
+      console.log("box3がフォーカスされました。");
       //タイマー1を設定
       if (this.box3_showed == 0) {
         this.box3_t1 = setTimeout(this.show_box3_hint1, 10000);
       }
     },
     show_box3_hint1: function () {
-      this.box3_hint_txt = "この行は　変数を宣言します。";
+      this.box3_hint_txt = "この行は　繰り返しを設定します。";
       this.box3_style.display = "inline-block";
       this.box3_showed = 1;
       //タイマー2を設定
       this.box3_t2 = setTimeout(this.show_box3_hint2, 10000);
     },
     show_box3_hint2: function () {
-      this.box3_hint_txt = "ここには　変数の型 が入ります。";
+      this.box3_hint_txt = "ここには　繰り返し条件 が入ります。";
       this.box3_style.display = "inline-block";
       this.box3_style.background = "#e67b34";
       //タイマー3を設定
       this.box3_t3 = setTimeout(this.show_box3_hint3, 10000);
     },
     show_box3_hint3: function () {
-      this.box3_hint_txt = "変数宣言のサンプルはこちら。";
+      this.box3_hint_txt = "繰り返しのサンプルはこちら。";
       this.box3_style.display = "inline-block";
       this.box3_style.background = "#b913a3d3";
     },
@@ -171,28 +171,28 @@ const App = {
 
     //box4がフォーカスされる
     box4_focus: function () {
-      console.log("box1がフォーカスされました。");
+      console.log("box4がフォーカスされました。");
       //タイマー1を設定
       if (this.box4_showed == 0) {
         this.box4_t1 = setTimeout(this.show_box4_hint1, 10000);
       }
     },
     show_box4_hint1: function () {
-      this.box4_hint_txt = "この行は　変数を宣言します。";
+      this.box4_hint_txt = "この行は　要素を出力します。";
       this.box4_style.display = "inline-block";
       this.box4_showed = 1;
       //タイマー2を設定
       this.box4_t2 = setTimeout(this.show_box4_hint2, 10000);
     },
     show_box4_hint2: function () {
-      this.box4_hint_txt = "ここには　変数の型 が入ります。";
+      this.box4_hint_txt = "ここには　関数名 が入ります。";
       this.box4_style.display = "inline-block";
       this.box4_style.background = "#e67b34";
       //タイマー3を設定
       this.box4_t3 = setTimeout(this.show_box4_hint3, 10000);
     },
     show_box4_hint3: function () {
-      this.box4_hint_txt = "変数宣言のサンプルはこちら。";
+      this.box4_hint_txt = "入出力のサンプルはこちら。";
       this.box4_style.display = "inline-block";
       this.box4_style.background = "#b913a3d3";
     },
