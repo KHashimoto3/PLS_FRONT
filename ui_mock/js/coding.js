@@ -1,7 +1,6 @@
 const App = {
   data() {
     return {
-      message: "読み込み完了！",
       box1: "",
       //ヒント使用フラグ
       box1_showed: 0,
