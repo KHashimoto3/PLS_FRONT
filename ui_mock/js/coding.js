@@ -13,21 +13,25 @@ const App = {
       box1_t1: null,
       box1_t2: null,
       box1_t3: null,
+      box1_link: "sample1.html",
 
       box2_hint_txt: "",
       box2_t1: null,
       box2_t2: null,
       box2_t3: null,
+      box2_link: "sample2.html",
 
       box3_hint_txt: "",
       box3_t1: null,
       box3_t2: null,
       box3_t3: null,
+      box3_link: "sample3.html",
 
       box4_hint_txt: "",
       box4_t1: null,
       box4_t2: null,
       box4_t3: null,
+      box4_link: "sample4.html",
 
       //吹き出しのstyle
       box1_style: {
