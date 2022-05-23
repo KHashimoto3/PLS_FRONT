@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>コーディングスタイル学習</title>
+    <!--キャッシュの無効化-->
+    <meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+   <!--vue 3.0の使用-->
+   <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+
+    <h1>以下の空欄を完成させよ</h1>
+    <pre>
+        <code>
+            int main(void){
+                <input type="text" v-model="box1" @focus="box1_focus" @blur="cancel_box1"></input>a=10;<div class="drag-and-drop" :style=box1_style>{{box1_hint_txt}}<a :href="box1_link">＞</a></div>
+                printf("こんにちは%d",a);
+                return 0;
+            }
+        </code>
+    </pre>
+    <p>{{box1}}</p>
+    <hr>
+    <pre>
+      <code>
+          int main(void){
+            int <input type="text" v-model="box2" @focus="box2_focus" @blur="cancel_box2"></input>={1,2,3,4,5,6,7,8,9,10};<div class="drag-and-drop" :style=box2_style>{{box2_hint_txt}}<a :href="box2_link">＞</a></div>
+            int data_idx; //配列dataの添字
+            for(<input type="text" v-model="box3" @focus="box3_focus" @blur="cancel_box3"></input>){<div class="drag-and-drop" :style=box3_style>{{box3_hint_txt}}<a :href="box3_link">＞</a></div>
+              <input type="text" v-model="box4" @focus="box4_focus" @blur="cancel_box4"></input>("%d ",data[data_idx]);<div class="drag-and-drop" :style=box4_style>{{box4_hint_txt}}<a :href="box4_link">＞</a></div>
+            }
+            printf("¥n");
+            return 0;
+          }
+      </code>
+  </pre>
+
+    <script src="js/coding.js"></script>
+    </div>
+  </body>
+</html>
