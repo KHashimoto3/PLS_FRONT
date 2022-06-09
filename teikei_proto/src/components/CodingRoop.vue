@@ -52,14 +52,12 @@ div.cf_area {
 div.cf_left {
   width: 50%;
   height: 1000px;
-  background: #ffe4e4;
   float: left;
 }
 div.cf_right {
   width: 50%;
   height: 1000px;
   margin-left: 50%;
-  background: #ddfffc;
 }
 div.form_area {
   width: 80%;
