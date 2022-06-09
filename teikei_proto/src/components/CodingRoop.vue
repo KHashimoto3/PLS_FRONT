@@ -2,11 +2,11 @@
   <div class="cf_area">
     <div class="cf_left">
       <div class="form_area">
-        <textarea cols="70" rows="5"></textarea><br />
-        <textarea cols="70" rows="5"></textarea><br />
-        <textarea cols="70" rows="5"></textarea><br />
-        <textarea cols="70" rows="5"></textarea><br />
-        <textarea cols="70" rows="5"></textarea><br />
+        <textarea cols="82" rows="5"></textarea><br />
+        <textarea cols="82" rows="5"></textarea><br />
+        <textarea cols="82" rows="5"></textarea><br />
+        <textarea cols="82" rows="5"></textarea><br />
+        <textarea cols="82" rows="5"></textarea><br />
       </div>
     </div>
     <div class="cf_right">
