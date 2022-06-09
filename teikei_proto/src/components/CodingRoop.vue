@@ -1,7 +1,17 @@
 <template>
   <div class="cf_area">
-    <div class="cf_left"></div>
-    <div class="cf_right"></div>
+    <div class="cf_left">
+      <div class="form_area">
+        <textarea cols="70" rows="5"></textarea><br />
+        <textarea cols="70" rows="5"></textarea><br />
+        <textarea cols="70" rows="5"></textarea><br />
+        <textarea cols="70" rows="5"></textarea><br />
+        <textarea cols="70" rows="5"></textarea><br />
+      </div>
+    </div>
+    <div class="cf_right">
+      <div class="hint_area"></div>
+    </div>
   </div>
 </template>
 
@@ -27,5 +37,15 @@ div.cf_right {
   height: 1000px;
   margin-left: 50%;
   background: #ddfffc;
+}
+div.form_area {
+  width: 80%;
+  height: auto;
+  margin: auto;
+}
+div.hint_area {
+  width: 80%;
+  height: auto;
+  margin: auto;
 }
 </style>
