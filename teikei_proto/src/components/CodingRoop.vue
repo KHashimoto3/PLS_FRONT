@@ -21,16 +21,20 @@
             <td class="right">ボタン1</td>
           </tr>
           <tr>
-            <td class="left">ヒント1</td>
-            <td class="right">ボタン1</td>
+            <td class="left">ヒント2</td>
+            <td class="right">ボタン2</td>
           </tr>
           <tr>
-            <td class="left">ヒント1</td>
-            <td class="right">ボタン1</td>
+            <td class="left">ヒント3</td>
+            <td class="right">ボタン3</td>
           </tr>
           <tr>
-            <td class="left">ヒント1</td>
-            <td class="right">ボタン1</td>
+            <td class="left">ヒント4</td>
+            <td class="right">ボタン4</td>
+          </tr>
+          <tr>
+            <td class="left">ヒント5</td>
+            <td class="right">ボタン5</td>
           </tr>
         </table>
       </div>
