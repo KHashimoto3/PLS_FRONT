@@ -10,7 +10,30 @@
       </div>
     </div>
     <div class="cf_right">
-      <div class="hint_area"></div>
+      <div class="hint_area">
+        <table>
+          <tr>
+            <th class="left">ヒント</th>
+            <th class="right">操作</th>
+          </tr>
+          <tr>
+            <td class="left">ヒント1</td>
+            <td class="right">ボタン1</td>
+          </tr>
+          <tr>
+            <td class="left">ヒント1</td>
+            <td class="right">ボタン1</td>
+          </tr>
+          <tr>
+            <td class="left">ヒント1</td>
+            <td class="right">ボタン1</td>
+          </tr>
+          <tr>
+            <td class="left">ヒント1</td>
+            <td class="right">ボタン1</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -47,5 +70,22 @@ div.hint_area {
   width: 80%;
   height: auto;
   margin: auto;
+}
+
+/*テーブルの設定*/
+table {
+  border-collapse: collapse;
+}
+table th.left,
+table td.left {
+  border: solid 1px black;
+  padding: 10px;
+  width: 500px;
+}
+table th.right,
+table td.right {
+  border: solid 1px black;
+  padding: 10px;
+  width: 100px;
 }
 </style>
