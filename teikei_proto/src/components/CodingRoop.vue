@@ -81,11 +81,19 @@ export default {
       now_focus: null,
       //ヒントの表示オブジェクト
       hint_show_obj: {
-        hint1: "ヒント1",
-        hint2: "ヒント2",
-        hint3: "ヒント3",
-        hint4: "ヒント4",
-        hint5: "ヒント5",
+        hint1: "",
+        hint2: "",
+        hint3: "",
+        hint4: "",
+        hint5: "",
+      },
+      //ヒントオブジェクト
+      hint_obj: {
+        hint1: "インクルード、マクロ",
+        hint2: "変数, 配列の宣言",
+        hint3: "データの入力",
+        hint4: "ループによる処理",
+        hint5: "データの出力",
       },
       //各テキストエリアのスタイル設定
       textarea_style1: {
@@ -154,22 +162,27 @@ export default {
         case 0:
           this.textarea_style1.background = "#fffed7";
           this.hint_style1.background = "#fffed7";
+          this.hint_show_obj.hint1 = this.hint_obj.hint1;
           break;
         case 1:
           this.textarea_style2.background = "#fffed7";
           this.hint_style2.background = "#fffed7";
+          this.hint_show_obj.hint2 = this.hint_obj.hint2;
           break;
         case 2:
           this.textarea_style3.background = "#fffed7";
           this.hint_style3.background = "#fffed7";
+          this.hint_show_obj.hint3 = this.hint_obj.hint3;
           break;
         case 3:
           this.textarea_style4.background = "#fffed7";
           this.hint_style4.background = "#fffed7";
+          this.hint_show_obj.hint4 = this.hint_obj.hint4;
           break;
         case 4:
           this.textarea_style5.background = "#fffed7";
           this.hint_style5.background = "#fffed7";
+          this.hint_show_obj.hint5 = this.hint_obj.hint5;
           break;
       }
       this.now_focus = num;
