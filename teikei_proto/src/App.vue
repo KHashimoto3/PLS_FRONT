@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>こんにちは</h1>
+    <h1>繰り返し処理</h1>
     <CodingRoop />
   </section>
 </template>
