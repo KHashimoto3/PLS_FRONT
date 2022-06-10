@@ -2,15 +2,40 @@
   <div class="cf_area">
     <div class="cf_left">
       <div class="form_area">
-        <textarea cols="82" rows="5" :style="textarea_style_array[0]"></textarea
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style_array[0]"
+          @focus="textarea_focus(0)"
+        ></textarea
         ><br />
-        <textarea cols="82" rows="5" :style="textarea_style_array[1]"></textarea
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style_array[1]"
+          @focus="textarea_focus(1)"
+        ></textarea
         ><br />
-        <textarea cols="82" rows="5" :style="textarea_style_array[2]"></textarea
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style_array[2]"
+          @focus="textarea_focus(2)"
+        ></textarea
         ><br />
-        <textarea cols="82" rows="5" :style="textarea_style_array[3]"></textarea
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style_array[3]"
+          @focus="textarea_focus(3)"
+        ></textarea
         ><br />
-        <textarea cols="82" rows="5" :style="textarea_style_array[4]"></textarea
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style_array[4]"
+          @focus="textarea_focus(4)"
+        ></textarea
         ><br />
       </div>
     </div>
@@ -52,6 +77,9 @@ export default {
   name: "CodingRoop",
   data() {
     return {
+      //現在ハイライト中のテキストエリアを記録
+      now_focus: null,
+      //各テキストエリアのスタイル設定
       textarea_style_array: [
         [{ background: "#ffffff" }],
         [{ background: "#ffffff" }],
@@ -59,9 +87,34 @@ export default {
         [{ background: "#ffffff" }],
         [{ background: "#ffffff" }],
       ],
+      textarea_style1: {
+        background: "#ffffff",
+      },
+      textarea_style2: {
+        background: "#ffffff",
+      },
     };
   },
-  methods: {},
+  methods: {
+    //フォーカスされたテキストエリアの背景を変更する関数
+    textarea_focus: function (num) {
+      if (this.ow_focus != null) {
+        //this.textarea_style_array[this.now_focus].background = "#ffffff"; //背景を白に戻す
+        this.textarea_style_array.splice(this.now_focus, 1, "#ffffff");
+      }
+      /*switch (num) {
+        case 0:
+          this.textarea_style1.background = "#fffed7";
+          break;
+        case 1:
+          this.textarea_style2.background = "#fffed7";
+          break;
+      }*/
+      //this.textarea_style_array[num].background = "#fffed7"; //背景を薄い黄色に
+      this.textarea_style_array.$set(num, 1, "#fffed7");
+      this.now_focus = num;
+    },
+  },
 };
 </script>
 
