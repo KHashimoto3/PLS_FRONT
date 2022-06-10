@@ -121,18 +121,23 @@ export default {
         switch (this.now_focus) {
           case 0:
             this.textarea_style1.background = "#ffffff";
+            this.hint_style1.background = "#ffffff";
             break;
           case 1:
             this.textarea_style2.background = "#ffffff";
+            this.hint_style2.background = "#ffffff";
             break;
           case 2:
             this.textarea_style3.background = "#ffffff";
+            this.hint_style3.background = "#ffffff";
             break;
           case 3:
             this.textarea_style4.background = "#ffffff";
+            this.hint_style4.background = "#ffffff";
             break;
           case 4:
             this.textarea_style5.background = "#ffffff";
+            this.hint_style5.background = "#ffffff";
             break;
         }
       }
@@ -140,18 +145,23 @@ export default {
       switch (num) {
         case 0:
           this.textarea_style1.background = "#fffed7";
+          this.hint_style1.background = "#fffed7";
           break;
         case 1:
           this.textarea_style2.background = "#fffed7";
+          this.hint_style2.background = "#fffed7";
           break;
         case 2:
           this.textarea_style3.background = "#fffed7";
+          this.hint_style3.background = "#fffed7";
           break;
         case 3:
           this.textarea_style4.background = "#fffed7";
+          this.hint_style4.background = "#fffed7";
           break;
         case 4:
           this.textarea_style5.background = "#fffed7";
+          this.hint_style5.background = "#fffed7";
           break;
       }
       this.now_focus = num;
