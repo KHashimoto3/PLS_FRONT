@@ -59,22 +59,6 @@ export default {
         [{ background: "#ffffff" }],
         [{ background: "#ffffff" }],
       ],
-      /*textarea1_style_object: {
-        background: "#ffffff",
-      },
-      textarea2_style_object: {
-        background: "#ffffff",
-      },
-      textarea3_style_object: {
-        background: "#ffffff",
-      },
-      textarea4_style_object: {
-        background: "#ffffff",
-      },
-      textarea5_style_object: {
-        background: "#ffffff",
-      },
-      */
     };
   },
   methods: {},
@@ -122,6 +106,5 @@ table td.right {
   border: solid 1px black;
   padding: 10px;
   width: 100px;
-  background: #ff4343;
 }
 </style>
