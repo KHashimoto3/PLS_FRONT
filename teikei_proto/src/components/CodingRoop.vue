@@ -48,23 +48,23 @@
           </tr>
           <tr :style="hint_style1">
             <td class="left">{{ hint_show_obj.hint1 }}</td>
-            <td class="right">ボタン1</td>
+            <td class="right"><button>サンプル</button></td>
           </tr>
           <tr :style="hint_style2">
             <td class="left">{{ hint_show_obj.hint2 }}</td>
-            <td class="right">ボタン2</td>
+            <td class="right"><button>サンプル</button></td>
           </tr>
           <tr :style="hint_style3">
             <td class="left">{{ hint_show_obj.hint3 }}</td>
-            <td class="right">ボタン3</td>
+            <td class="right"><button>サンプル</button></td>
           </tr>
           <tr :style="hint_style4">
             <td class="left">{{ hint_show_obj.hint4 }}</td>
-            <td class="right">ボタン4</td>
+            <td class="right"><button>サンプル</button></td>
           </tr>
           <tr :style="hint_style5">
             <td class="left">{{ hint_show_obj.hint5 }}</td>
-            <td class="right">ボタン5</td>
+            <td class="right"><button>サンプル</button></td>
           </tr>
         </table>
       </div>
