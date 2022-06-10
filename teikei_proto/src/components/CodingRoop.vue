@@ -46,23 +46,23 @@
             <th class="left">ヒント</th>
             <th class="right">操作</th>
           </tr>
-          <tr>
+          <tr :style="hint_style1">
             <td class="left">ヒント1</td>
             <td class="right">ボタン1</td>
           </tr>
-          <tr>
+          <tr :style="hint_style2">
             <td class="left">ヒント2</td>
             <td class="right">ボタン2</td>
           </tr>
-          <tr>
+          <tr :style="hint_style3">
             <td class="left">ヒント3</td>
             <td class="right">ボタン3</td>
           </tr>
-          <tr>
+          <tr :style="hint_style4">
             <td class="left">ヒント4</td>
             <td class="right">ボタン4</td>
           </tr>
-          <tr>
+          <tr :style="hint_style5">
             <td class="left">ヒント5</td>
             <td class="right">ボタン5</td>
           </tr>
@@ -93,6 +93,22 @@ export default {
         background: "#ffffff",
       },
       textarea_style5: {
+        background: "#ffffff",
+      },
+      //ヒントリストの各trスタイル設定
+      hint_style1: {
+        background: "#ffffff",
+      },
+      hint_style2: {
+        background: "#ffffff",
+      },
+      hint_style3: {
+        background: "#ffffff",
+      },
+      hint_style4: {
+        background: "#ffffff",
+      },
+      hint_style5: {
         background: "#ffffff",
       },
     };
