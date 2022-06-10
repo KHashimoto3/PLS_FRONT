@@ -72,6 +72,7 @@
           </tr>
         </table>
       </div>
+      <button>実行！</button>
     </div>
     <CodeRun />
   </div>
