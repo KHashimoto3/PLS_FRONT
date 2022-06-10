@@ -100,7 +100,8 @@ export default {
     textarea_focus: function (num) {
       if (this.ow_focus != null) {
         //this.textarea_style_array[this.now_focus].background = "#ffffff"; //背景を白に戻す
-        this.textarea_style_array.splice(this.now_focus, 1, "#ffffff");
+        this.textarea_style_array.background = "#ffffff";
+        this.textarea_style_array.splice();
       }
       /*switch (num) {
         case 0:
@@ -111,7 +112,8 @@ export default {
           break;
       }*/
       //this.textarea_style_array[num].background = "#fffed7"; //背景を薄い黄色に
-      this.textarea_style_array.$set(num, 1, "#fffed7");
+      this.textarea_style_array.background = "#fffed7";
+      this.textarea_style_array.splice();
       this.now_focus = num;
     },
   },
