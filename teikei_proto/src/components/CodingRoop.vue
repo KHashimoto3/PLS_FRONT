@@ -73,12 +73,18 @@
         </table>
       </div>
     </div>
+    <CodeRun />
   </div>
 </template>
 
 <script>
+import CodeRun from "./CodeRun.vue";
+
 export default {
   name: "CodingRoop",
+  components: {
+    CodeRun,
+  },
   data() {
     return {
       //現在ハイライト中のテキストエリアを記録
