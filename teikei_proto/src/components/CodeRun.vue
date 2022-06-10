@@ -1,7 +1,89 @@
-<template></template>
+<template>
+  <div class="run_area">
+    <h1>APIを使ったソースコードの実行</h1>
+    <p>
+      次のテキストエリアに任意のプログラムを入力して、実行を押してください。
+    </p>
+    <textarea cols="100" rows="30" v-model="code"> </textarea><br />
+    <button @click="run">実行！</button>
+    <p>入力</p>
+    <textarea cols="100" rows="5" v-model="input"> </textarea><br />
+
+    <p>実行結果：</p>
+    <p>出力：<br />{{ output_txt }}</p>
+    <p>エラー：<br />{{ err_txt }}</p>
+  </div>
+</template>
 
 <script>
 export default {
   name: "CodeRun",
+  data() {
+    return {
+      code: "",
+      input: "",
+      output_txt: "",
+      err_txt: "",
+    };
+  },
+  methods: {
+    run: async function () {
+      if (this.code == "") {
+        alert("コードを入力してから押してください！");
+      } else {
+        let data_obj;
+        if (this.input != "") {
+          data_obj = {
+            code: this.code,
+            stdin: this.input,
+            options: "warning,gnu++1y",
+            compiler: "gcc-head",
+            "compiler-option-raw": "-Dx=hogefuga\n-O3",
+          };
+        } else {
+          data_obj = {
+            code: this.code,
+            options: "warning,gnu++1y",
+            compiler: "gcc-head",
+            "compiler-option-raw": "-Dx=hogefuga\n-O3",
+          };
+        }
+
+        /*
+        const data_obj = {
+          code:
+            '#include <iostream>\nint main() { int x = 0; std::cout << "hoge" << std::endl; }',
+          options: "warning,gnu++1y",
+          compiler: "gcc-head",
+          "compiler-option-raw": "-Dx=hogefuga\n-O3",
+        };*/
+
+        const url = "https://wandbox.org/api/compile.json";
+
+        let err_msg;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data_obj),
+          });
+          if (!response.ok) {
+            switch (response.status) {
+              default:
+                err_msg = "何らかの理由でエラーが発生しました。";
+                throw new Error(err_msg);
+            }
+          } else {
+            const response_data = await response.json();
+            this.output_txt = response_data.program_output;
+            this.err_txt = response_data.compiler_message;
+            console.log(response_data);
+          }
+        } catch (err_msg) {
+          alert(err_msg);
+        }
+      }
+    },
+  },
 };
 </script>
