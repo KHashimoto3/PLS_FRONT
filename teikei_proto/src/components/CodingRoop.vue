@@ -2,11 +2,16 @@
   <div class="cf_area">
     <div class="cf_left">
       <div class="form_area">
-        <textarea cols="82" rows="5"></textarea><br />
-        <textarea cols="82" rows="5"></textarea><br />
-        <textarea cols="82" rows="5"></textarea><br />
-        <textarea cols="82" rows="5"></textarea><br />
-        <textarea cols="82" rows="5"></textarea><br />
+        <textarea cols="82" rows="5" :style="textarea_style_array[0]"></textarea
+        ><br />
+        <textarea cols="82" rows="5" :style="textarea_style_array[1]"></textarea
+        ><br />
+        <textarea cols="82" rows="5" :style="textarea_style_array[2]"></textarea
+        ><br />
+        <textarea cols="82" rows="5" :style="textarea_style_array[3]"></textarea
+        ><br />
+        <textarea cols="82" rows="5" :style="textarea_style_array[4]"></textarea
+        ><br />
       </div>
     </div>
     <div class="cf_right">
@@ -45,6 +50,34 @@
 <script>
 export default {
   name: "CodingRoop",
+  data() {
+    return {
+      textarea_style_array: [
+        [{ background: "#ffffff" }],
+        [{ background: "#ffffff" }],
+        [{ background: "#ffffff" }],
+        [{ background: "#ffffff" }],
+        [{ background: "#ffffff" }],
+      ],
+      /*textarea1_style_object: {
+        background: "#ffffff",
+      },
+      textarea2_style_object: {
+        background: "#ffffff",
+      },
+      textarea3_style_object: {
+        background: "#ffffff",
+      },
+      textarea4_style_object: {
+        background: "#ffffff",
+      },
+      textarea5_style_object: {
+        background: "#ffffff",
+      },
+      */
+    };
+  },
+  methods: {},
 };
 </script>
 
@@ -89,5 +122,6 @@ table td.right {
   border: solid 1px black;
   padding: 10px;
   width: 100px;
+  background: #ff4343;
 }
 </style>
