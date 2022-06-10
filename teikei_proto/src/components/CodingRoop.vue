@@ -9,6 +9,7 @@
           @focus="textarea_focus(0)"
         ></textarea
         ><br />
+        <pre>int main(void){</pre>
         <textarea
           cols="82"
           rows="5"
@@ -37,6 +38,9 @@
           @focus="textarea_focus(4)"
         ></textarea
         ><br />
+        <pre>
+}
+        </pre>
       </div>
     </div>
     <div class="cf_right">
