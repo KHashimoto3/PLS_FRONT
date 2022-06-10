@@ -47,23 +47,23 @@
             <th class="right">操作</th>
           </tr>
           <tr :style="hint_style1">
-            <td class="left">ヒント1</td>
+            <td class="left">{{ hint_show_obj.hint1 }}</td>
             <td class="right">ボタン1</td>
           </tr>
           <tr :style="hint_style2">
-            <td class="left">ヒント2</td>
+            <td class="left">{{ hint_show_obj.hint2 }}</td>
             <td class="right">ボタン2</td>
           </tr>
           <tr :style="hint_style3">
-            <td class="left">ヒント3</td>
+            <td class="left">{{ hint_show_obj.hint3 }}</td>
             <td class="right">ボタン3</td>
           </tr>
           <tr :style="hint_style4">
-            <td class="left">ヒント4</td>
+            <td class="left">{{ hint_show_obj.hint4 }}</td>
             <td class="right">ボタン4</td>
           </tr>
           <tr :style="hint_style5">
-            <td class="left">ヒント5</td>
+            <td class="left">{{ hint_show_obj.hint5 }}</td>
             <td class="right">ボタン5</td>
           </tr>
         </table>
@@ -79,6 +79,14 @@ export default {
     return {
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
+      //ヒントの表示オブジェクト
+      hint_show_obj: {
+        hint1: "ヒント1",
+        hint2: "ヒント2",
+        hint3: "ヒント3",
+        hint4: "ヒント4",
+        hint5: "ヒント5",
+      },
       //各テキストエリアのスタイル設定
       textarea_style1: {
         background: "#ffffff",
