@@ -5,35 +5,35 @@
         <textarea
           cols="82"
           rows="5"
-          :style="textarea_style_array[0]"
+          :style="textarea_style1"
           @focus="textarea_focus(0)"
         ></textarea
         ><br />
         <textarea
           cols="82"
           rows="5"
-          :style="textarea_style_array[1]"
+          :style="textarea_style2"
           @focus="textarea_focus(1)"
         ></textarea
         ><br />
         <textarea
           cols="82"
           rows="5"
-          :style="textarea_style_array[2]"
+          :style="textarea_style3"
           @focus="textarea_focus(2)"
         ></textarea
         ><br />
         <textarea
           cols="82"
           rows="5"
-          :style="textarea_style_array[3]"
+          :style="textarea_style4"
           @focus="textarea_focus(3)"
         ></textarea
         ><br />
         <textarea
           cols="82"
           rows="5"
-          :style="textarea_style_array[4]"
+          :style="textarea_style5"
           @focus="textarea_focus(4)"
         ></textarea
         ><br />
@@ -80,17 +80,19 @@ export default {
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
       //各テキストエリアのスタイル設定
-      textarea_style_array: [
-        [{ background: "#ffffff" }],
-        [{ background: "#ffffff" }],
-        [{ background: "#ffffff" }],
-        [{ background: "#ffffff" }],
-        [{ background: "#ffffff" }],
-      ],
       textarea_style1: {
         background: "#ffffff",
       },
       textarea_style2: {
+        background: "#ffffff",
+      },
+      textarea_style3: {
+        background: "#ffffff",
+      },
+      textarea_style4: {
+        background: "#ffffff",
+      },
+      textarea_style5: {
         background: "#ffffff",
       },
     };
@@ -98,22 +100,44 @@ export default {
   methods: {
     //フォーカスされたテキストエリアの背景を変更する関数
     textarea_focus: function (num) {
-      if (this.ow_focus != null) {
-        //this.textarea_style_array[this.now_focus].background = "#ffffff"; //背景を白に戻す
-        this.textarea_style_array.background = "#ffffff";
-        this.textarea_style_array.splice();
+      //今、薄い黄色のテキストエリアがあったら、白に戻す
+      if (this.now_focus != null) {
+        switch (this.now_focus) {
+          case 0:
+            this.textarea_style1.background = "#ffffff";
+            break;
+          case 1:
+            this.textarea_style2.background = "#ffffff";
+            break;
+          case 2:
+            this.textarea_style3.background = "#ffffff";
+            break;
+          case 3:
+            this.textarea_style4.background = "#ffffff";
+            break;
+          case 4:
+            this.textarea_style5.background = "#ffffff";
+            break;
+        }
       }
-      /*switch (num) {
+      //フォーカスされたテキストエリアの背景を薄い黄色に変更
+      switch (num) {
         case 0:
           this.textarea_style1.background = "#fffed7";
           break;
         case 1:
           this.textarea_style2.background = "#fffed7";
           break;
-      }*/
-      //this.textarea_style_array[num].background = "#fffed7"; //背景を薄い黄色に
-      this.textarea_style_array.background = "#fffed7";
-      this.textarea_style_array.splice();
+        case 2:
+          this.textarea_style3.background = "#fffed7";
+          break;
+        case 3:
+          this.textarea_style4.background = "#fffed7";
+          break;
+        case 4:
+          this.textarea_style5.background = "#fffed7";
+          break;
+      }
       this.now_focus = num;
     },
   },
