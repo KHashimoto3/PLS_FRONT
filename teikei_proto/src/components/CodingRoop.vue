@@ -7,6 +7,7 @@
           rows="5"
           :style="textarea_style1"
           @focus="textarea_focus(0)"
+          v-model="textarea_obj.textarea1"
         ></textarea
         ><br />
         <pre>int main(void){</pre>
@@ -15,6 +16,7 @@
           rows="5"
           :style="textarea_style2"
           @focus="textarea_focus(1)"
+          v-model="textarea_obj.textarea2"
         ></textarea
         ><br />
         <textarea
@@ -22,6 +24,7 @@
           rows="5"
           :style="textarea_style3"
           @focus="textarea_focus(2)"
+          v-model="textarea_obj.textarea3"
         ></textarea
         ><br />
         <textarea
@@ -29,6 +32,7 @@
           rows="5"
           :style="textarea_style4"
           @focus="textarea_focus(3)"
+          v-model="textarea_obj.textarea4"
         ></textarea
         ><br />
         <textarea
@@ -36,6 +40,7 @@
           rows="5"
           :style="textarea_style5"
           @focus="textarea_focus(4)"
+          v-model="textarea_obj.textarea5"
         ></textarea
         ><br />
         <pre>
@@ -88,6 +93,14 @@ export default {
   },
   data() {
     return {
+      //各テキストエリアの保持
+      textarea_obj: {
+        textarea1: "",
+        textarea2: "",
+        textarea3: "",
+        textarea4: "",
+        textarea5: "",
+      },
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
       //ヒントの表示オブジェクト
