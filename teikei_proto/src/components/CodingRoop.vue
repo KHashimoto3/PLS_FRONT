@@ -168,6 +168,8 @@ export default {
         this.textarea_obj.textarea5 +
         "\n}\n";
       console.log(code);
+      //CodeRunコンポーネントに送信
+      this.$refs.codeInput.insertCode(code);
     },
     //フォーカスされたテキストエリアの背景を変更する関数
     textarea_focus: function (num) {
