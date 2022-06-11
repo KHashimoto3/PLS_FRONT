@@ -77,7 +77,7 @@
           </tr>
         </table>
       </div>
-      <button @click="SendCode()">実行！</button>
+      <button @click="send_code()">実行！</button>
     </div>
     <CodeRun ref="codeInput" />
   </div>
@@ -154,6 +154,21 @@ export default {
     };
   },
   methods: {
+    //入力したコードを取り出し、結合して実行フォームに送る
+    send_code: function () {
+      const code =
+        this.textarea_obj.textarea1 +
+        "\nint main(void){\n" +
+        this.textarea_obj.textarea2 +
+        "\n" +
+        this.textarea_obj.textarea3 +
+        "\n" +
+        this.textarea_obj.textarea4 +
+        "\n" +
+        this.textarea_obj.textarea5 +
+        "\n}\n";
+      console.log(code);
+    },
     //フォーカスされたテキストエリアの背景を変更する関数
     textarea_focus: function (num) {
       //今、薄い黄色のテキストエリアがあったら、白に戻す
