@@ -72,9 +72,9 @@
           </tr>
         </table>
       </div>
-      <button>実行！</button>
+      <button @click="SendCode()">実行！</button>
     </div>
-    <CodeRun />
+    <CodeRun ref="codeInput" />
   </div>
 </template>
 
