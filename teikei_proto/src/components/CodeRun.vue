@@ -28,6 +28,11 @@ export default {
     };
   },
   methods: {
+    insertCode: function (code) {
+      if (code != null) {
+        this.code = code;
+      }
+    },
     run: async function () {
       if (this.code == "") {
         alert("コードを入力してから押してください！");
