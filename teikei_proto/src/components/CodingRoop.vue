@@ -43,6 +43,22 @@
           v-model="textarea_obj.textarea5"
         ></textarea
         ><br />
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style6"
+          @focus="textarea_focus(5)"
+          v-model="textarea_obj.textarea6"
+        ></textarea
+        ><br />
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style7"
+          @focus="textarea_focus(6)"
+          v-model="textarea_obj.textarea7"
+        ></textarea
+        ><br />
         <pre>
 }
         </pre>
@@ -75,6 +91,14 @@
             <td class="left">{{ hint_show_obj.hint5 }}</td>
             <td class="right"><button>サンプル</button></td>
           </tr>
+          <tr :style="hint_style6">
+            <td class="left">{{ hint_show_obj.hint6 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
+          <tr :style="hint_style7">
+            <td class="left">{{ hint_show_obj.hint7 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
         </table>
       </div>
       <button @click="send_code()">実行！</button>
@@ -100,6 +124,8 @@ export default {
         textarea3: "",
         textarea4: "",
         textarea5: "",
+        textarea6: "",
+        textarea7: "",
       },
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
@@ -110,14 +136,18 @@ export default {
         hint3: "",
         hint4: "",
         hint5: "",
+        hint6: "",
+        hint7: "",
       },
       //ヒントオブジェクト
       hint_obj: {
         hint1: "インクルード、マクロ",
         hint2: "変数, 配列の宣言",
-        hint3: "データの入力",
-        hint4: "ループによる処理",
-        hint5: "データの出力",
+        hint3: "データの入力/ループによる入力",
+        hint4: "代入/計算処理",
+        hint5: "ループによる処理",
+        hint6: "代入/計算処理",
+        hint7: "データの出力",
       },
       //各テキストエリアのスタイル設定
       textarea_style1: {
@@ -133,6 +163,12 @@ export default {
         background: "#ffffff",
       },
       textarea_style5: {
+        background: "#ffffff",
+      },
+      textarea_style6: {
+        background: "#ffffff",
+      },
+      textarea_style7: {
         background: "#ffffff",
       },
       //ヒントリストの各trスタイル設定
@@ -151,6 +187,12 @@ export default {
       hint_style5: {
         background: "#ffffff",
       },
+      hint_style6: {
+        background: "#ffffff",
+      },
+      hint_style7: {
+        background: "#ffffff",
+      },
     };
   },
   methods: {
@@ -166,6 +208,10 @@ export default {
         this.textarea_obj.textarea4 +
         "\n" +
         this.textarea_obj.textarea5 +
+        "\n" +
+        this.textarea_obj.textarea6 +
+        "\n" +
+        this.textarea_obj.textarea7 +
         "\n}\n";
       console.log(code);
       //CodeRunコンポーネントに送信
@@ -196,6 +242,14 @@ export default {
             this.textarea_style5.background = "#ffffff";
             this.hint_style5.background = "#ffffff";
             break;
+          case 5:
+            this.textarea_style6.background = "#ffffff";
+            this.hint_style6.background = "#ffffff";
+            break;
+          case 6:
+            this.textarea_style7.background = "#ffffff";
+            this.hint_style7.background = "#ffffff";
+            break;
         }
       }
       //フォーカスされたテキストエリアの背景を薄い黄色に変更
@@ -224,6 +278,16 @@ export default {
           this.textarea_style5.background = "#fffed7";
           this.hint_style5.background = "#fffed7";
           this.hint_show_obj.hint5 = this.hint_obj.hint5;
+          break;
+        case 5:
+          this.textarea_style6.background = "#fffed7";
+          this.hint_style6.background = "#fffed7";
+          this.hint_show_obj.hint6 = this.hint_obj.hint6;
+          break;
+        case 6:
+          this.textarea_style7.background = "#fffed7";
+          this.hint_style7.background = "#fffed7";
+          this.hint_show_obj.hint7 = this.hint_obj.hint7;
           break;
       }
       this.now_focus = num;
