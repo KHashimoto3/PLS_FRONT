@@ -14,6 +14,7 @@
       <textarea cols="70" rows="5" v-model="input"> </textarea><br />
 
       <button @click="run">実行！</button>
+      <button @click="download">ダウンロード</button>
       <p>＜実行結果＞</p>
       <p>
         出力：<br />
@@ -102,6 +103,22 @@ export default {
         } catch (err_msg) {
           alert(err_msg);
         }
+      }
+    },
+    //cファイルを作成してダウンロードする関数
+    download: async function () {
+      if (this.code != null) {
+        const data = this.code;
+        //Blob APIを利用
+        const blob = new Blob([data], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        document.body.appendChild(a); //擬似的にリンクを作成
+        a.download = "test.c";
+        a.href = url;
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
       }
     },
   },
