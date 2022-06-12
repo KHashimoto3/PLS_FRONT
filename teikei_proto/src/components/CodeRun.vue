@@ -6,15 +6,15 @@
       入力がある場合は、「入力」テキストエリアに入力し、実行してください。
     </p>
     <div class="source">
-      <p>ソース</p>
+      <p>＜ソース＞</p>
       <textarea cols="80" rows="30" v-model="code"> </textarea><br />
     </div>
     <div class="input_output">
-      <p>入力</p>
+      <p>入力：</p>
       <textarea cols="70" rows="5" v-model="input"> </textarea><br />
 
       <button @click="run">実行！</button>
-      <p>実行結果：</p>
+      <p>＜実行結果＞</p>
       <p>
         出力：<br />
         <textarea cols="70" rows="5" v-model="output_txt"></textarea><br />
