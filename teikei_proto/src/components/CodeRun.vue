@@ -7,22 +7,22 @@
     </p>
     <div class="source">
       <p>ソース</p>
-      <textarea cols="100" rows="30" v-model="code"> </textarea><br />
+      <textarea cols="80" rows="30" v-model="code"> </textarea><br />
     </div>
     <div class="input_output">
       <p>入力</p>
-      <textarea cols="100" rows="5" v-model="input"> </textarea><br />
+      <textarea cols="70" rows="5" v-model="input"> </textarea><br />
 
       <button @click="run">実行！</button>
       <p>実行結果：</p>
       <p>
         出力：<br />
-        <textarea class="100" rows="5" v-model="output_txt"></textarea><br />
+        <textarea cols="70" rows="5" v-model="output_txt"></textarea><br />
       </p>
 
       <p>
         エラー：<br />
-        <textarea class="100" rows="5" v-model="err_txt"></textarea><br />
+        <textarea cols="70" rows="5" v-model="err_txt"></textarea><br />
       </p>
     </div>
   </div>
@@ -107,6 +107,11 @@ export default {
 </script>
 
 <style>
+div.run_area {
+  width: 100%;
+  height: auto;
+  margin: 100px 30px;
+}
 div.source {
   width: 50%;
   height: auto;
