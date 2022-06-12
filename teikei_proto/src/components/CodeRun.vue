@@ -5,14 +5,26 @@
       完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
       入力がある場合は、「入力」テキストエリアに入力し、実行してください。
     </p>
-    <textarea cols="100" rows="30" v-model="code"> </textarea><br />
-    <button @click="run">実行！</button>
-    <p>入力</p>
-    <textarea cols="100" rows="5" v-model="input"> </textarea><br />
+    <div class="source">
+      <p>ソース</p>
+      <textarea cols="100" rows="30" v-model="code"> </textarea><br />
+    </div>
+    <div class="input_output">
+      <p>入力</p>
+      <textarea cols="100" rows="5" v-model="input"> </textarea><br />
 
-    <p>実行結果：</p>
-    <p>出力：<br />{{ output_txt }}</p>
-    <p>エラー：<br />{{ err_txt }}</p>
+      <button @click="run">実行！</button>
+      <p>実行結果：</p>
+      <p>
+        出力：<br />
+        <textarea class="100" rows="5" v-model="output_txt"></textarea><br />
+      </p>
+
+      <p>
+        エラー：<br />
+        <textarea class="100" rows="5" v-model="err_txt"></textarea><br />
+      </p>
+    </div>
   </div>
 </template>
 
@@ -93,3 +105,16 @@ export default {
   },
 };
 </script>
+
+<style>
+div.source {
+  width: 50%;
+  height: auto;
+  float: left;
+}
+div.input_output {
+  width: 50%;
+  height: auto;
+  margin-left: 50%;
+}
+</style>
