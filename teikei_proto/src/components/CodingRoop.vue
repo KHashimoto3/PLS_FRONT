@@ -100,8 +100,8 @@
             <td class="right"><button>サンプル</button></td>
           </tr>
         </table>
+        <button @click="send_code()">実行！</button>
       </div>
-      <button @click="send_code()">実行！</button>
     </div>
     <CodeRun ref="codeInput" />
   </div>
@@ -325,6 +325,7 @@ div.hint_area {
 /*テーブルの設定*/
 table {
   border-collapse: collapse;
+  margin-bottom: 30px;
 }
 table th.left,
 table td.left {
