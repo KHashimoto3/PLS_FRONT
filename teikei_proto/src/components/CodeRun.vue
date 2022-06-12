@@ -17,12 +17,14 @@
       <p>＜実行結果＞</p>
       <p>
         出力：<br />
-        <textarea cols="70" rows="5" v-model="output_txt"></textarea><br />
+        <textarea cols="70" rows="5" v-model="output_txt" disabled></textarea
+        ><br />
       </p>
 
       <p>
         エラー：<br />
-        <textarea cols="70" rows="5" v-model="err_txt"></textarea><br />
+        <textarea cols="70" rows="5" v-model="err_txt" disabled></textarea
+        ><br />
       </p>
     </div>
   </div>
