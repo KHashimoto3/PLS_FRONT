@@ -15,12 +15,22 @@
     <p>
       実験手順書に従い、以下のリンクをクリックしてコーディングを開始してください。
     </p>
-    <a href="CodingForm.html">次へ</a>
+    <a href="" @click="goto_form(0)">A問題</a>
+    <a href="" @click="goto_form(1)">B問題</a>
   </section>
 </template>
 
 <script>
 export default {
   name: "App",
+  methods: {
+    //指定されたフォームへ移動する（テスト用））
+    goto_form: function (form_id) {
+      //表示するform_idを取得
+      const url = "CodingForm.html?id=" + form_id;
+      //idのパラメータを含むurlに遷移
+      location.href = url;
+    },
+  },
 };
 </script>
