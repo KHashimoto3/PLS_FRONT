@@ -259,7 +259,27 @@ export default {
     },
     //入力したコードを取り出し、結合して実行フォームに送る
     send_code: function () {
-      const code = "";
+      const code =
+        this.textarea_obj.textarea1 +
+        "\n" +
+        this.textarea_obj.textarea2 +
+        "\n" +
+        this.textarea_obj.textarea3 +
+        "\n" +
+        this.textarea_obj.textarea4 +
+        "\nint main(void){\n" +
+        this.textarea_obj.textarea5 +
+        "\n" +
+        this.textarea_obj.textarea6 +
+        "\n" +
+        this.textarea_obj.textarea7 +
+        "\n" +
+        this.textarea_obj.textarea8 +
+        "\n" +
+        this.textarea_obj.textarea9 +
+        "\n" +
+        this.textarea_obj.textarea10 +
+        "\n}\n";
       console.log(code);
       //CodeRunコンポーネントに送信
       this.$refs.codeInput.insertCode(code);
