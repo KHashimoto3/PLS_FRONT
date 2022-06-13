@@ -54,6 +54,7 @@ export default {
     set_student_id: function (id) {
       this.student_id = id;
     },
+    //実行
     run: async function () {
       if (this.code == "") {
         alert("コードを入力してから押してください！");
@@ -120,7 +121,8 @@ export default {
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         document.body.appendChild(a); //擬似的にリンクを作成
-        a.download = "test.c";
+        const file_name = this.student_id + "_test.c";
+        a.download = file_name;
         a.href = url;
         a.click();
         a.remove();
