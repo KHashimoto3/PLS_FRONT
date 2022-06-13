@@ -24,7 +24,7 @@
 export default {
   name: "App",
   methods: {
-    //指定されたフォームへ移動する（テスト用））
+    //form_idをCodingFormに渡す
     goto_form: function (form_id) {
       //表示するform_idを取得
       const url = "CodingForm.html?id=" + form_id;
