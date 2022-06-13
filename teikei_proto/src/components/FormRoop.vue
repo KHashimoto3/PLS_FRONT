@@ -197,6 +197,14 @@ export default {
     };
   },
   methods: {
+    //フォームの表示
+    show_form: function () {
+      this.form_isShow = true;
+    },
+    //フォームの非表示
+    no_show_form: function () {
+      this.form_isShow = false;
+    },
     //入力したコードを取り出し、結合して実行フォームに送る
     send_code: function () {
       const code =
