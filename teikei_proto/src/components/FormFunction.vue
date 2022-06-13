@@ -85,6 +85,7 @@
         ></textarea
         ><br />
         <pre>
+   return 0;
 }
         </pre>
       </div>
@@ -260,30 +261,30 @@ export default {
     //入力したコードを取り出し、結合して実行フォームに送る
     send_code: function () {
       const code =
-        this.textarea_obj.textarea1 +
-        "\n" +
-        this.textarea_obj.textarea2 +
-        "\n" +
-        this.textarea_obj.textarea3 +
-        "\n" +
-        this.textarea_obj.textarea4 +
-        "\nint main(void){\n" +
-        this.textarea_obj.textarea5 +
-        "\n" +
-        this.textarea_obj.textarea6 +
-        "\n" +
-        this.textarea_obj.textarea7 +
-        "\n" +
-        this.textarea_obj.textarea8 +
-        "\n" +
-        this.textarea_obj.textarea9 +
-        "\n" +
-        this.textarea_obj.textarea10 +
-        "\n}\n";
+        this.check_blank(this.textarea_obj.textarea1) +
+        this.check_blank(this.textarea_obj.textarea2) +
+        this.check_blank(this.textarea_obj.textarea3) +
+        this.check_blank(this.textarea_obj.textarea4) +
+        "int main(void){\n" +
+        this.check_blank(this.textarea_obj.textarea5) +
+        this.check_blank(this.textarea_obj.textarea6) +
+        this.check_blank(this.textarea_obj.textarea7) +
+        this.check_blank(this.textarea_obj.textarea8) +
+        this.check_blank(this.textarea_obj.textarea9) +
+        this.check_blank(this.textarea_obj.textarea10) +
+        "   return 0;\n}\n";
       console.log(code);
       //CodeRunコンポーネントに送信
       this.$refs.codeInput.insertCode(code);
       this.$refs.codeInput.set_student_id(this.student_id);
+    },
+    //textareaが空欄でなければ、改行を加えて返す
+    check_blank: function (str) {
+      if (str != "") {
+        return str + "\n";
+      } else {
+        return "";
+      }
     },
     //フォーカスされたテキストエリアの背景を変更する関数
     textarea_focus: function (num) {
