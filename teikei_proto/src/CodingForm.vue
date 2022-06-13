@@ -2,7 +2,7 @@
   <section>
     <h1>繰り返し処理</h1>
     <FormRoop ref="formRoop" />
-    <FormFunc ref="FormFunc" />
+    <FormFunc ref="formFunc" />
   </section>
 </template>
 
@@ -16,6 +16,9 @@ export default {
     FormRoop,
     FormFunc,
   },
-  mounted() {},
+  mounted() {
+    //フォームを表示する
+    this.$refs.formFunc.show_form();
+  },
 };
 </script>
