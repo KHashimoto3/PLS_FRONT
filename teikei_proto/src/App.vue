@@ -15,7 +15,7 @@
     <p>
       実験手順書に従い、以下のリンクをクリックしてコーディングを開始してください。
     </p>
-    <a @click="goto_form(0)">A問題</a>
+    <a @click="goto_form(0)">A問題</a><br />
     <a @click="goto_form(1)">B問題</a>
   </section>
 </template>
@@ -34,3 +34,9 @@ export default {
   },
 };
 </script>
+
+<style>
+a {
+  cursor: pointer;
+}
+</style>
