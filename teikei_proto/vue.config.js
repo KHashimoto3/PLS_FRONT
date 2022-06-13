@@ -6,7 +6,13 @@ module.exports = {
       entry: "src/main.js",
       template: "public/index.html",
       filename: "index.html",
-      title: "Index Page2",
+      title: "テストの開始",
+    },
+    codingForm: {
+      entry: "src/codingForm.js",
+      template: "public/CodingForm.html",
+      filename: "CodingForm.html",
+      title: "コーディングフォーム",
     },
   },
 };

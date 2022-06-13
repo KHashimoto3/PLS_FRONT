@@ -1,17 +1,11 @@
 <template>
   <section>
-    <h1>繰り返し処理</h1>
-    <CodingRoop />
+    <h1>テストの開始</h1>
   </section>
 </template>
 
 <script>
-import CodingRoop from "./components/CodingRoop.vue";
-
 export default {
   name: "App",
-  components: {
-    CodingRoop,
-  },
 };
 </script>
