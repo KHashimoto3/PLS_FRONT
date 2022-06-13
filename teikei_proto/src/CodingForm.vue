@@ -38,11 +38,13 @@ export default {
       //フォームを表示する
       console.log("繰り返しフォームを表示");
       this.$refs.formRoop.show_form();
+      this.$refs.formRoop.set_student_id(this.student_id);
       this.form_title = "繰り返し";
     } else if (form_id == 1) {
       //フォームを表示する
       console.log("関数フォームを表示");
       this.$refs.formFunc.show_form();
+      this.$refs.formFunc.set_student_id(this.student_id);
       this.form_title = "関数";
     }
     /*switch (form_id) {

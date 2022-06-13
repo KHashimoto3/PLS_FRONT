@@ -162,6 +162,8 @@ export default {
       },
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
+      //学籍番号
+      student_id: "",
       //ヒントの表示オブジェクト
       hint_show_obj: {
         hint1: "", //インクルード
@@ -251,12 +253,17 @@ export default {
     no_show_form: function () {
       this.form_isShow = false;
     },
+    //学籍番号のセット
+    set_student_id: function (id) {
+      this.student_id = id;
+    },
     //入力したコードを取り出し、結合して実行フォームに送る
     send_code: function () {
       const code = "";
       console.log(code);
       //CodeRunコンポーネントに送信
       this.$refs.codeInput.insertCode(code);
+      this.$refs.codeInput.set_student_id(this.student_id);
     },
     //フォーカスされたテキストエリアの背景を変更する関数
     textarea_focus: function (num) {

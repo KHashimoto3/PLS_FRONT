@@ -15,6 +15,7 @@
 
       <button @click="run">実行！</button>
       <button @click="download">ダウンロード</button>
+      <p>学籍番号：{{ student_id }}</p>
       <p>＜実行結果＞</p>
       <p>
         出力：<br />
@@ -36,6 +37,7 @@ export default {
   name: "CodeRun",
   data() {
     return {
+      student_id: "", //学籍番号
       code: "",
       input: "",
       output_txt: "",
@@ -47,6 +49,10 @@ export default {
       if (code != null) {
         this.code = code;
       }
+    },
+    //学籍番号のセット
+    set_student_id: function (id) {
+      this.student_id = id;
     },
     run: async function () {
       if (this.code == "") {
