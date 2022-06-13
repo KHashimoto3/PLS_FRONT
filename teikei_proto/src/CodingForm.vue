@@ -1,17 +1,17 @@
 <template>
   <section>
     <h1>繰り返し処理</h1>
-    <CodingRoop />
+    <FormRoop />
   </section>
 </template>
 
 <script>
-import CodingRoop from "./components/CodingRoop.vue";
+import FormRoop from "./components/FormRoop.vue";
 
 export default {
   name: "CodingForm",
   components: {
-    CodingRoop,
+    FormRoop,
   },
 };
 </script>

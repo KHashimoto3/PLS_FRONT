@@ -111,7 +111,7 @@
 import CodeRun from "./CodeRun.vue";
 
 export default {
-  name: "CodingRoop",
+  name: "FormRoop",
   components: {
     CodeRun,
   },
