@@ -15,7 +15,6 @@
 
       <button @click="run">実行！</button>
       <button @click="download">ダウンロード</button>
-      <p>学籍番号：{{ student_id }}</p>
       <p>＜実行結果＞</p>
       <p>
         出力：<br />
