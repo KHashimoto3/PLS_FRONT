@@ -76,6 +76,14 @@
           v-model="textarea_obj.textarea9"
         ></textarea
         ><br />
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style10"
+          @focus="textarea_focus(9)"
+          v-model="textarea_obj.textarea10"
+        ></textarea
+        ><br />
         <pre>
 }
         </pre>
@@ -116,6 +124,10 @@
             <td class="left">{{ hint_show_obj.hint7 }}</td>
             <td class="right"><button>サンプル</button></td>
           </tr>
+          <tr :style="hint_style8">
+            <td class="left">{{ hint_show_obj.hint8 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
         </table>
         <button @click="send_code()">実行！</button>
       </div>
@@ -146,6 +158,7 @@ export default {
         textarea7: "",
         textarea8: "",
         textarea9: "",
+        textarea10: "",
       },
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
@@ -158,6 +171,7 @@ export default {
         hint5: "", //代入,計算処理
         hint6: "", //関数利用,返却値
         hint7: "", //代入,計算処理
+        hint8: "", //返却値に応じた処理
       },
       //ヒントオブジェクト
       hint_obj: {
@@ -168,6 +182,7 @@ export default {
         hint5: "代入/計算処理",
         hint6: "関数の利用/返却値の格納",
         hint7: "代入/計算処理",
+        hint8: "返却値に応じた処理（代入/計算/出力）",
       },
       //各テキストエリアのスタイル設定
       textarea_style1: {
@@ -197,6 +212,9 @@ export default {
       textarea_style9: {
         background: "#ffffff",
       },
+      textarea_style10: {
+        background: "#ffffff",
+      },
       //ヒントリストの各trスタイル設定
       hint_style1: {
         background: "#ffffff",
@@ -217,6 +235,9 @@ export default {
         background: "#ffffff",
       },
       hint_style7: {
+        background: "#ffffff",
+      },
+      hint_style8: {
         background: "#ffffff",
       },
     };
@@ -278,6 +299,10 @@ export default {
             this.textarea_style9.background = "#ffffff";
             this.hint_style7.background = "#ffffff";
             break;
+          case 9:
+            this.textarea_style10.background = "#ffffff";
+            this.hint_style8.background = "#ffffff";
+            break;
         }
       }
       //フォーカスされたテキストエリアの背景を薄い黄色に変更
@@ -333,6 +358,11 @@ export default {
           this.textarea_style9.background = "#fffed7";
           this.hint_style7.background = "#fffed7";
           this.hint_show_obj.hint7 = this.hint_obj.hint7;
+          break;
+        case 9:
+          this.textarea_style10.background = "#fffed7";
+          this.hint_style8.background = "#fffed7";
+          this.hint_show_obj.hint8 = this.hint_obj.hint8;
           break;
       }
       this.now_focus = num;
