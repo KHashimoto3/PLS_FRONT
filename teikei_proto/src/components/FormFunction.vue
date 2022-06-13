@@ -52,6 +52,14 @@
           v-model="textarea_obj.textarea6"
         ></textarea
         ><br />
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style7"
+          @focus="textarea_focus(6)"
+          v-model="textarea_obj.textarea7"
+        ></textarea
+        ><br />
         <pre>
 }
         </pre>
@@ -78,6 +86,10 @@
           </tr>
           <tr :style="hint_style4">
             <td class="left">{{ hint_show_obj.hint4 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
+          <tr :style="hint_style5">
+            <td class="left">{{ hint_show_obj.hint5 }}</td>
             <td class="right"><button>サンプル</button></td>
           </tr>
         </table>
@@ -117,6 +129,7 @@ export default {
         hint2: "", //関数
         hint3: "", //変数宣言
         hint4: "", //入力
+        hint5: "",
       },
       //ヒントオブジェクト
       hint_obj: {
@@ -124,6 +137,7 @@ export default {
         hint2: "関数の定義",
         hint3: "変数, 配列の宣言",
         hint4: "データの入力/ループによる入力",
+        hint5: "代入/計算処理",
       },
       //各テキストエリアのスタイル設定
       textarea_style1: {
@@ -144,6 +158,9 @@ export default {
       textarea_style6: {
         background: "#ffffff",
       },
+      textarea_style7: {
+        background: "#ffffff",
+      },
       //ヒントリストの各trスタイル設定
       hint_style1: {
         background: "#ffffff",
@@ -155,6 +172,9 @@ export default {
         background: "#ffffff",
       },
       hint_style4: {
+        background: "#ffffff",
+      },
+      hint_style5: {
         background: "#ffffff",
       },
     };
@@ -204,6 +224,10 @@ export default {
             this.textarea_style6.background = "#ffffff";
             this.hint_style4.background = "#ffffff";
             break;
+          case 6:
+            this.textarea_style7.background = "#ffffff";
+            this.hint_style5.background = "#ffffff";
+            break;
         }
       }
       //フォーカスされたテキストエリアの背景を薄い黄色に変更
@@ -241,6 +265,11 @@ export default {
           this.textarea_style6.background = "#fffed7";
           this.hint_style4.background = "#fffed7";
           this.hint_show_obj.hint4 = this.hint_obj.hint4;
+          break;
+        //男優/計算処理
+        case 6:
+          this.textarea_style7.background = "#ffffff";
+          this.hint_style5.background = "#ffffff";
           break;
       }
       this.now_focus = num;
