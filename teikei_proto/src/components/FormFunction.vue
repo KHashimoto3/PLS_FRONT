@@ -56,6 +56,18 @@
             <th class="left">ヒント</th>
             <th class="right">操作</th>
           </tr>
+          <tr :style="hint_style1">
+            <td class="left">{{ hint_show_obj.hint1 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
+          <tr :style="hint_style2">
+            <td class="left">{{ hint_show_obj.hint2 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
+          <tr :style="hint_style3">
+            <td class="left">{{ hint_show_obj.hint3 }}</td>
+            <td class="right"><button>サンプル</button></td>
+          </tr>
         </table>
         <button @click="send_code()">実行！</button>
       </div>
