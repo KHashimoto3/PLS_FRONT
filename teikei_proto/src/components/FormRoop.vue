@@ -312,12 +312,12 @@ div.cf_area {
 }
 div.cf_left {
   width: 50%;
-  height: 1000px;
+  height: 700px;
   float: left;
 }
 div.cf_right {
   width: 50%;
-  height: 1000px;
+  height: 700px;
   margin-left: 50%;
 }
 div.form_area {
