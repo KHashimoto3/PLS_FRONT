@@ -61,24 +61,6 @@ export default {
       textarea_style1: {
         background: "#ffffff",
       },
-      textarea_style2: {
-        background: "#ffffff",
-      },
-      textarea_style3: {
-        background: "#ffffff",
-      },
-      textarea_style4: {
-        background: "#ffffff",
-      },
-      textarea_style5: {
-        background: "#ffffff",
-      },
-      textarea_style6: {
-        background: "#ffffff",
-      },
-      textarea_style7: {
-        background: "#ffffff",
-      },
       //ヒントリストの各trスタイル設定
       hint_style1: {
         background: "#ffffff",
