@@ -15,7 +15,7 @@
     <p>
       実験手順書に従い、以下のリンクをクリックしてコーディングを開始してください。
     </p>
-    学籍番号：<input type="text" v-model="student_id" required />
+    学籍番号：<input type="text" v-model="student_id" required /><br />
     <a @click="goto_form(0)">A問題</a><br />
     <a @click="goto_form(1)">B問題</a>
   </section>
