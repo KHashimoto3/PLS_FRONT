@@ -10,9 +10,33 @@
           v-model="textarea_obj.textarea1"
         ></textarea
         ><br />
-        <pre>int main(void){</pre>
-
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style2"
+          @focus="textarea_focus(1)"
+          v-model="textarea_obj.textarea2"
+        ></textarea
         ><br />
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style3"
+          @focus="textarea_focus(2)"
+          v-model="textarea_obj.textarea3"
+        ></textarea
+        ><br />
+        <textarea
+          cols="82"
+          rows="5"
+          :style="textarea_style4"
+          @focus="textarea_focus(3)"
+          v-model="textarea_obj.textarea4"
+        ></textarea
+        ><br />
+        <pre>int main(void){</pre>
+        ><br />
+
         <pre>
 }
         </pre>
@@ -46,23 +70,43 @@ export default {
       //各テキストエリアの保持
       textarea_obj: {
         textarea1: "",
+        textarea2: "",
+        textarea3: "",
+        textarea4: "",
       },
       //現在ハイライト中のテキストエリアを記録
       now_focus: null,
       //ヒントの表示オブジェクト
       hint_show_obj: {
-        hint1: "",
+        hint1: "", //インクルード
+        hint2: "", //関数
       },
       //ヒントオブジェクト
       hint_obj: {
         hint1: "インクルード、マクロ",
+        hint2: "関数の定義",
       },
       //各テキストエリアのスタイル設定
       textarea_style1: {
         background: "#ffffff",
       },
+      textarea_style2: {
+        background: "#ffffff",
+      },
+      textarea_style3: {
+        background: "#ffffff",
+      },
+      textarea_style4: {
+        background: "#ffffff",
+      },
+      textarea_style5: {
+        background: "#ffffff",
+      },
       //ヒントリストの各trスタイル設定
       hint_style1: {
+        background: "#ffffff",
+      },
+      hint_style2: {
         background: "#ffffff",
       },
     };
@@ -84,14 +128,43 @@ export default {
             this.textarea_style1.background = "#ffffff";
             this.hint_style1.background = "#ffffff";
             break;
+          case 1:
+            this.textarea_style2.background = "#ffffff";
+            this.hint_style2.background = "#ffffff";
+            break;
+          case 2:
+            this.textarea_style3.background = "#ffffff";
+            this.hint_style2.background = "#ffffff";
+            break;
+          case 3:
+            this.textarea_style4.background = "#ffffff";
+            this.hint_style2.background = "#ffffff";
+            break;
         }
       }
       //フォーカスされたテキストエリアの背景を薄い黄色に変更
       switch (num) {
+        //インクルード
         case 0:
           this.textarea_style1.background = "#fffed7";
           this.hint_style1.background = "#fffed7";
           this.hint_show_obj.hint1 = this.hint_obj.hint1;
+          break;
+        //関数
+        case 1:
+          this.textarea_style2.background = "#fffed7";
+          this.hint_style2.background = "#fffed7";
+          this.hint_show_obj.hint2 = this.hint_obj.hint2;
+          break;
+        case 2:
+          this.textarea_style3.background = "#fffed7";
+          this.hint_style2.background = "#fffed7";
+          this.hint_show_obj.hint2 = this.hint_obj.hint2;
+          break;
+        case 3:
+          this.textarea_style4.background = "#fffed7";
+          this.hint_style2.background = "#fffed7";
+          this.hint_show_obj.hint2 = this.hint_obj.hint2;
           break;
       }
       this.now_focus = num;
