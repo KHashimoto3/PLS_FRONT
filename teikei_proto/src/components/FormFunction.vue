@@ -1,5 +1,5 @@
 <template>
-  <div class="cf_area">
+  <div class="cf_area" v-show="form_isShow">
     <div class="cf_left">
       <div class="form_area">
         <textarea
@@ -74,6 +74,7 @@ export default {
   },
   data() {
     return {
+      form_isShow: false,
       //各テキストエリアの保持
       textarea_obj: {
         textarea1: "",
