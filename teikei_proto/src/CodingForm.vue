@@ -1,5 +1,6 @@
 <template>
   <section>
+    <h3>学籍番号：{{ student_id }}</h3>
     <h1>{{ form_title }}</h1>
     <FormRoop ref="formRoop" />
     <FormFunc ref="formFunc" />
@@ -19,6 +20,7 @@ export default {
   data() {
     return {
       form_title: "",
+      student_id: "", //学籍番号
     };
   },
   mounted() {
@@ -27,6 +29,7 @@ export default {
     const params = url.searchParams;
     //getメソッドでジャンルidを取得
     const form_id = params.get("id");
+    this.student_id = params.get("student");
 
     console.log("取り出し成功！" + form_id);
 
