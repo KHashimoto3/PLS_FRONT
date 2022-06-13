@@ -35,7 +35,7 @@
         ></textarea
         ><br />
         <pre>int main(void){</pre>
-        ><br />
+        <br />
         <textarea
           cols="82"
           rows="5"
