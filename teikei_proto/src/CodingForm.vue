@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>繰り返し処理</h1>
+    <h1>{{ form_title }}</h1>
     <FormRoop ref="formRoop" />
     <FormFunc ref="formFunc" />
   </section>
@@ -16,6 +16,11 @@ export default {
     FormRoop,
     FormFunc,
   },
+  data() {
+    return {
+      form_title: "",
+    };
+  },
   mounted() {
     const url = new URL(window.location.href); //現在のURLを取得
     //オブジェクトを取得
@@ -30,10 +35,12 @@ export default {
       //フォームを表示する
       console.log("繰り返しフォームを表示");
       this.$refs.formRoop.show_form();
+      this.form_title = "繰り返し";
     } else if (form_id == 1) {
       //フォームを表示する
       console.log("関数フォームを表示");
       this.$refs.formFunc.show_form();
+      this.form_title = "関数";
     }
     /*switch (form_id) {
       case 0:
