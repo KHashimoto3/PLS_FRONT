@@ -115,12 +115,26 @@ export default {
     download: async function () {
       if (this.code != null) {
         const data = this.code;
+        //問題名を取得
+        let url = new URL(window.location.href); //現在のURLを取得
+        //オブジェクトを取得
+        const params = url.searchParams;
+        //getメソッドでジャンルidを取得
+        const form_id = params.get("id");
         //Blob APIを利用
         const blob = new Blob([data], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
+        url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         document.body.appendChild(a); //擬似的にリンクを作成
-        const file_name = this.student_id + "_test.c";
+        let file_name = this.student_id + "_";
+
+        //問題番号に応じてファイル名に追記
+        if (form_id == 0) {
+          file_name = file_name + "a.c";
+        } else if (form_id == 1) {
+          file_name = file_name + "b.c";
+        }
+
         a.download = file_name;
         a.href = url;
         a.click();
