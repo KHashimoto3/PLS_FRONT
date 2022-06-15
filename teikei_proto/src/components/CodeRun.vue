@@ -7,24 +7,24 @@
     </p>
     <div class="source">
       <p>＜ソース＞</p>
-      <textarea cols="80" rows="30" v-model="code"> </textarea><br />
+      <textarea cols="52" rows="30" v-model="code"> </textarea><br />
     </div>
     <div class="input_output">
       <p>入力：</p>
-      <textarea cols="70" rows="5" v-model="input"> </textarea><br />
+      <textarea cols="30" rows="5" v-model="input"> </textarea><br />
 
       <button @click="run">実行！</button>
       <button @click="download">ダウンロード</button>
       <p>＜実行結果＞</p>
       <p>
         出力：<br />
-        <textarea cols="70" rows="5" v-model="output_txt" disabled></textarea
+        <textarea cols="30" rows="5" v-model="output_txt" disabled></textarea
         ><br />
       </p>
 
       <p>
         エラー：<br />
-        <textarea cols="70" rows="5" v-model="err_txt" disabled></textarea
+        <textarea cols="55" rows="8" v-model="err_txt" disabled></textarea
         ><br />
       </p>
     </div>

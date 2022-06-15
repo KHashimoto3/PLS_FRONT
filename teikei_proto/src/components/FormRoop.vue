@@ -3,7 +3,7 @@
     <div class="cf_left">
       <div class="form_area">
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style1"
           @focus="textarea_focus(0)"
@@ -12,7 +12,7 @@
         ><br />
         <pre>int main(void){</pre>
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style2"
           @focus="textarea_focus(1)"
@@ -20,7 +20,7 @@
         ></textarea
         ><br />
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style3"
           @focus="textarea_focus(2)"
@@ -28,7 +28,7 @@
         ></textarea
         ><br />
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style4"
           @focus="textarea_focus(3)"
@@ -36,7 +36,7 @@
         ></textarea
         ><br />
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style5"
           @focus="textarea_focus(4)"
@@ -44,7 +44,7 @@
         ></textarea
         ><br />
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style6"
           @focus="textarea_focus(5)"
@@ -52,7 +52,7 @@
         ></textarea
         ><br />
         <textarea
-          cols="82"
+          cols="52"
           rows="5"
           :style="textarea_style7"
           @focus="textarea_focus(6)"
@@ -317,6 +317,12 @@ export default {
 </script>
 
 <style>
+textarea {
+  font-size: 16pt;
+}
+pre {
+  font-size: 16pt;
+}
 div.cf_area {
   width: 100%;
   height: auto;
