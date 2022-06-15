@@ -126,7 +126,7 @@ export default {
         url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         document.body.appendChild(a); //擬似的にリンクを作成
-        let file_name = this.student_id + "_";
+        let file_name = "cf_" + this.student_id + "_";
 
         //問題番号に応じてファイル名に追記
         if (form_id == 0) {
