@@ -216,7 +216,7 @@ export default {
     send_code: function () {
       const code =
         this.check_blank(this.textarea_obj.textarea1) +
-        "int main(void){\n" +
+        "int main(void){\n\n" +
         this.check_blank(this.textarea_obj.textarea2) +
         this.check_blank(this.textarea_obj.textarea3) +
         this.check_blank(this.textarea_obj.textarea4) +
@@ -232,7 +232,7 @@ export default {
     //textareaが空欄でなければ、改行を加えて返す
     check_blank: function (str) {
       if (str != "") {
-        return str + "\n";
+        return str + "\n\n";
       } else {
         return "";
       }
