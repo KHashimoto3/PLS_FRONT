@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h3>学籍番号：{{ student_id }}</h3>
+    <h3>協力者番号：{{ student_id }}</h3>
     <h1>{{ form_title }}</h1>
     <FormRoop ref="formRoop" />
     <FormFunc ref="formFunc" />
