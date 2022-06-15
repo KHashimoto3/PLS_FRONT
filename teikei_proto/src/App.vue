@@ -18,6 +18,15 @@
     協力者番号：<input type="text" v-model="student_id" required /><br />
     <a @click="goto_form(0)">A問題</a><br />
     <a @click="goto_form(1)">B問題</a>
+    <h2>実験後アンケート</h2>
+    <p>
+      実験が全て完了しましたら、以下のリンクより、アンケートにご回答ください
+    </p>
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLScjk7hp0hXKvKpW7LjCqcZF4b9V5OiL5FG91dQgv6oPNOSznA/viewform"
+      target="blank"
+      >アンケートはこちら</a
+    >
   </section>
 </template>
 
