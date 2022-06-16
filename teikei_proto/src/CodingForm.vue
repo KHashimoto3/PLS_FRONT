@@ -1,5 +1,6 @@
 <template>
   <section>
+    <a href="index.html">＜戻る</a>
     <h3>協力者番号：{{ student_id }}</h3>
     <h1>{{ form_title }}</h1>
     <FormRoop ref="formRoop" />
