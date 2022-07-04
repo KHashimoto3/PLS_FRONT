@@ -275,7 +275,7 @@ export default {
         "   return 0;\n}\n";
       console.log(code);
       //CodeRunコンポーネントに送信
-      this.$refs.codeInput.insertCode(code);
+      this.$refs.codeInput.insert_code(code);
       this.$refs.codeInput.set_student_id(this.student_id);
     },
     //textareaが空欄でなければ、改行を加えて返す

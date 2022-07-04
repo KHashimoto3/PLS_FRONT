@@ -44,7 +44,7 @@ export default {
     };
   },
   methods: {
-    insertCode: function (code) {
+    insert_code: function (code) {
       if (code != null) {
         this.code = code;
       }
