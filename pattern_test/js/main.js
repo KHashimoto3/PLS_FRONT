@@ -7,7 +7,14 @@ const App = {
   },
   methods: {
     check_pattern: function () {
-      this.result = "未確認";
+      //正規表現をチェック
+      //const result = this.txt.match(/^\d{3}-?\d{4}$/);
+      const result = this.txt.match(/^\d{3}-?\d{4}$/);
+      if (result == null) {
+        this.result = "不正";
+      } else {
+        this.result = "適合";
+      }
     },
   },
 };
