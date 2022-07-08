@@ -1,8 +1,14 @@
 const App = {
   data() {
     return {
-      test_txt: "Vue.js設置完了",
+      txt: "",
+      result: "",
     };
+  },
+  methods: {
+    check_pattern: function () {
+      this.result = "未確認";
+    },
   },
 };
 

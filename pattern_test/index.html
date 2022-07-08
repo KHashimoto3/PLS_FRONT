@@ -7,8 +7,9 @@
   <body>
     <div id="app">
       <h1>テスト</h1>
-      <p>{{test_txt}}</p>
-      <textarea rows="10" cols="50"></textarea>
+      <textarea rows="10" cols="50" v-model="txt"></textarea>
+      <button @click="check_pattern">チェック！</button>
+      <p>結果：{{result}}</p>
       <script src="js/main.js"></script>
     </div>
   </body>
