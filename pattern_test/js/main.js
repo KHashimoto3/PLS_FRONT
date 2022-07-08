@@ -10,7 +10,7 @@ const App = {
       //正規表現をチェック
       //const result = this.txt.match(/^\d{3}-?\d{4}$/);
       const result = this.txt.match(
-        /(^\sint\s\w+;)|(^\sint\s\w+\s=\s[0-9]+;)|(^\sdouble\s\w+;)|(^\sdouble\s\w+\s=\s([0-9]|\.)+;)|(^\schar\s\w+;)/
+        /(^\sint\s\w+;)|(^\sint\s\w+\s=\s[0-9]+;)|(^\sdouble\s\w+;)|(^\sdouble\s\w+\s=\s([0-9]|\.)+;)|(^\schar\s\w+;)|(^\schar\s\w+\s=\s'\w';)/
       );
       if (result == null) {
         this.result = "不正";
