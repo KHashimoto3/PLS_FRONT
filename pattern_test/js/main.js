@@ -3,6 +3,7 @@ const App = {
     return {
       txt4: "",
       txt5: "",
+      txt6: "",
       result: "",
     };
   },
@@ -23,6 +24,15 @@ const App = {
       }
       if (id == 5) {
         const result = this.txt5.match(/^\s(scanf)\(".+"(,\s\w)+\);/);
+        if (result == null) {
+          this.result = "不正";
+        } else {
+          this.result = "適合";
+        }
+        return;
+      }
+      if (id == 6) {
+        const result = this.txt6.match(/^\s(printf)\(".+"(,\s\w)+\);/);
         if (result == null) {
           this.result = "不正";
         } else {
