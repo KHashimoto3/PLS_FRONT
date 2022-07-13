@@ -8,6 +8,12 @@ module.exports = {
       filename: "index.html",
       title: "ホーム",
     },
+    coding: {
+      entry: "src/codingform.js",
+      template: "public/codingform.html",
+      filename: "codingform.html",
+      title: "コーディングフォーム",
+    },
   },
 };
 /*module.exports = defineConfig({
