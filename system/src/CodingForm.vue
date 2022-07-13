@@ -53,12 +53,10 @@ div.codingLeft {
 div.unitName {
   width: 100%;
   height: 10%;
-  background: #e7ffc1;
 }
 div.assist {
   width: 100%;
   height: 90%;
-  background: #fffbc1;
   position: relative;
 }
 div.assistInner {
@@ -70,7 +68,7 @@ div.assistInner {
   bottom: 0;
   margin: auto;
   position: absolute;
-  background: #ffc1f0;
+  border: solid 1px #000000;
 }
 div.codingRight {
   width: 60%;
@@ -80,13 +78,12 @@ div.codingRight {
 div.question {
   width: 100%;
   height: 20%;
-  background: #ffcdc1;
 }
 div.codingForm {
   width: 100%;
   height: 80%;
-  background: #c1fdff;
   position: relative;
+  border: solid 1px #000000;
 }
 div.codingFormInner {
   width: 90%;
@@ -97,6 +94,5 @@ div.codingFormInner {
   bottom: 0;
   margin: auto;
   position: absolute;
-  background: #cfffc1;
 }
 </style>
