@@ -9,6 +9,7 @@
           <h1>STEP{{ stepNo }}</h1>
           <h2>{{ assistObj[stepNo - 1].title }}</h2>
           <p>{{ assistObj[stepNo - 1].body }}</p>
+          <button @click="nextStep()">次へ</button>
         </div>
       </div>
     </div>
@@ -47,8 +48,19 @@ export default {
           body: "プログラムの説明を書きます",
           sample: "サンプルの図",
         },
+        {
+          id: 2,
+          title: "プロトタイプ宣言",
+          body: "プロトタイプの宣言を書きます",
+          sample: "サンプルの図",
+        },
       ],
     };
+  },
+  methods: {
+    nextStep: function () {
+      this.stepNo++;
+    },
   },
 };
 </script>
