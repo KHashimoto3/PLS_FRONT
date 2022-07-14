@@ -6,7 +6,9 @@
       </div>
       <div class="assist">
         <div class="assistInner">
-          <p>ここにアシストが入ります</p>
+          <h1>STEP{{ stepNo }}</h1>
+          <h2>{{ assistObj[stepNo - 1].title }}</h2>
+          <p>{{ assistObj[stepNo - 1].body }}</p>
         </div>
       </div>
     </div>
@@ -17,7 +19,8 @@
       </div>
       <div class="codingForm">
         <div class="codingFormInner">
-          <textarea rows="5" cols="30"></textarea>
+          <p>＜ヘッダーコメント＞</p>
+          <textarea rows="5" cols="100"></textarea>
         </div>
       </div>
     </div>
@@ -35,6 +38,16 @@ export default {
   data() {
     return {
       unitName: "繰り返し",
+      stepNo: 1,
+      //アシストの内容を格納するオブジェクト
+      assistObj: [
+        {
+          id: 1,
+          title: "ヘッダーコメントの記述",
+          body: "プログラムの説明を書きます",
+          sample: "サンプルの図",
+        },
+      ],
     };
   },
 };
