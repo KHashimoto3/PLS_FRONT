@@ -55,8 +55,8 @@ export default {
     return {
       unitName: "繰り返し",
       stepNo: 1,
-      OutMainCnt: 0,
-      InMainCnt: 0,
+      OutMainCnt: 0, //main関数外のtextareaの数
+      InMainCnt: 0, //main関数内のtextareaの数
 
       //表示の制御
       mainIsShow: false,
@@ -65,24 +65,28 @@ export default {
       assistObj: [
         {
           id: 1,
+          type: 0,
           title: "ヘッダーコメントの記述",
           body: "プログラムの説明を書きます",
           sample: "サンプルの図",
         },
         {
           id: 2,
+          tyle: 0,
           title: "プロトタイプ宣言",
           body: "プロトタイプの宣言を書きます",
           sample: "サンプルの図",
         },
         {
           id: 3,
+          type: 0,
           title: "main関数",
           body: "main関数を書きます",
           sample: "サンプルの図",
         },
         {
           id: 4,
+          type: 0,
           title: "変数・配列の宣言",
           body: "変数や配列の宣言を書きます",
           sample: "サンプルの図",
