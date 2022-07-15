@@ -24,11 +24,19 @@
           <textarea rows="5" cols="100"></textarea>
           <p>＜コーディングフォーム＞</p>
           <textarea
-            v-for="i of textAreaCnt"
+            v-for="i of OutMainCnt"
             :key="i"
             role="5"
             cols="100"
           ></textarea>
+          <p v-show="mainIsShow">int main(void){</p>
+          <textarea
+            v-for="i of InMainCnt"
+            :key="i"
+            role="5"
+            cols="100"
+          ></textarea>
+          <p v-show="mainIsShow">}</p>
         </div>
       </div>
     </div>
@@ -47,7 +55,12 @@ export default {
     return {
       unitName: "繰り返し",
       stepNo: 1,
-      textAreaCnt: 0,
+      OutMainCnt: 0,
+      InMainCnt: 0,
+
+      //表示の制御
+      mainIsShow: false,
+
       //アシストの内容を格納するオブジェクト
       assistObj: [
         {
@@ -68,13 +81,31 @@ export default {
           body: "main関数を書きます",
           sample: "サンプルの図",
         },
+        {
+          id: 4,
+          title: "変数・配列の宣言",
+          body: "変数や配列の宣言を書きます",
+          sample: "サンプルの図",
+        },
       ],
     };
   },
   methods: {
     nextStep: function () {
-      this.stepNo++;
-      this.textAreaCnt++;
+      if (this.stepNo < 3) {
+        //main関数記述前
+        this.stepNo++;
+        this.OutMainCnt++;
+      } else if (this.stepNo == 3) {
+        //main関数記述後
+        this.stepNo++;
+        this.OutMainCnt--; //main関数記述前へ戻す
+        this.mainIsShow = true; //main関数を表示
+        this.InMainCnt++; //main関数内のtextareaを表示する
+      } else {
+        this.stepNo++;
+        this.InMainCnt++;
+      }
     },
   },
 };
