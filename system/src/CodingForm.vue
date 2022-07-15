@@ -22,6 +22,13 @@
         <div class="codingFormInner">
           <p>＜ヘッダーコメント＞</p>
           <textarea rows="5" cols="100"></textarea>
+          <p>＜コーディングフォーム＞</p>
+          <textarea
+            v-for="i of textAreaCnt"
+            :key="i"
+            role="5"
+            cols="100"
+          ></textarea>
         </div>
       </div>
     </div>
@@ -40,6 +47,7 @@ export default {
     return {
       unitName: "繰り返し",
       stepNo: 1,
+      textAreaCnt: 0,
       //アシストの内容を格納するオブジェクト
       assistObj: [
         {
@@ -54,12 +62,19 @@ export default {
           body: "プロトタイプの宣言を書きます",
           sample: "サンプルの図",
         },
+        {
+          id: 3,
+          title: "main関数",
+          body: "main関数を書きます",
+          sample: "サンプルの図",
+        },
       ],
     };
   },
   methods: {
     nextStep: function () {
       this.stepNo++;
+      this.textAreaCnt++;
     },
   },
 };
