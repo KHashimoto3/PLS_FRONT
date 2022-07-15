@@ -72,7 +72,7 @@ export default {
         },
         {
           id: 2,
-          tyle: 0,
+          type: 0,
           title: "プロトタイプ宣言",
           body: "プロトタイプの宣言を書きます",
           sample: "サンプルの図",
@@ -86,14 +86,14 @@ export default {
         },
         {
           id: 4,
-          type: 0,
+          type: -1,
           title: "変数・配列の宣言",
           body: "変数や配列の宣言を書きます",
           sample: "サンプルの図",
         },
         {
           id: 5,
-          type: 0,
+          type: 1,
           title: "ループによる値の入力",
           body:
             "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
@@ -101,14 +101,14 @@ export default {
         },
         {
           id: 5,
-          type: 0,
+          type: 1,
           title: "ループによる値の処理",
           body: "ループを使って値を処理します。",
           sample: "サンプルの図",
         },
         {
           id: 6,
-          type: 0,
+          type: 1,
           title: "値の出力",
           body:
             "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
@@ -119,17 +119,17 @@ export default {
   },
   methods: {
     nextStep: function () {
-      if (this.stepNo < 3) {
+      if (this.assistObj[this.stepNo].type == 0) {
         //main関数記述前
         this.stepNo++;
         this.OutMainCnt++;
-      } else if (this.stepNo == 3) {
+      } else if (this.assistObj[this.stepNo].type == -1) {
         //main関数記述後
         this.stepNo++;
         this.OutMainCnt--; //main関数記述前へ戻す
         this.mainIsShow = true; //main関数を表示
         this.InMainCnt++; //main関数内のtextareaを表示する
-      } else {
+      } else if (this.assistObj[this.stepNo].type == 1) {
         this.stepNo++;
         this.InMainCnt++;
       }
