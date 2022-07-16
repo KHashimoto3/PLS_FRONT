@@ -21,13 +21,13 @@
       <div class="codingForm">
         <div class="codingFormInner">
           <p>＜ヘッダーコメント＞</p>
-          <textarea rows="5" cols="100"></textarea>
+          <textarea rows="5" cols="70"></textarea>
           <p>＜コーディングフォーム＞</p>
           <textarea
             v-for="i of OutMainCnt"
             :key="i"
             role="5"
-            cols="100"
+            cols="70"
           ></textarea>
           <pre v-show="mainIsShow">
 int main(void){
@@ -36,7 +36,7 @@ int main(void){
             v-for="i of InMainCnt"
             :key="i"
             role="5"
-            cols="100"
+            cols="70"
           ></textarea>
           <pre v-show="mainIsShow">
     return 0;
