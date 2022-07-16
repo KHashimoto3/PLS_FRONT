@@ -187,6 +187,7 @@ div.codingForm {
   height: 80%;
   position: relative;
   border: solid 1px #000000;
+  overflow: auto;
 }
 div.codingFormInner {
   width: 90%;
