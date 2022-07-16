@@ -29,14 +29,19 @@
             role="5"
             cols="100"
           ></textarea>
-          <p v-show="mainIsShow">int main(void){</p>
+          <pre v-show="mainIsShow">
+int main(void){
+          </pre>
           <textarea
             v-for="i of InMainCnt"
             :key="i"
             role="5"
             cols="100"
           ></textarea>
-          <p v-show="mainIsShow">}</p>
+          <pre v-show="mainIsShow">
+    return 0;
+}
+          </pre>
         </div>
       </div>
     </div>
@@ -192,5 +197,9 @@ div.codingFormInner {
   bottom: 0;
   margin: auto;
   position: absolute;
+}
+pre,
+textarea {
+  font-size: 16pt;
 }
 </style>
