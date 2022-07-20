@@ -9,8 +9,8 @@
           <h1>STEP{{ viewStepNo }}</h1>
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
-          <button @click="backStep()">前へ</button>
-          <button @click="nextStep()">次へ</button>
+          <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
+          <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
           <img
             class="styleSample"
             :src="assistObj[viewStepNo - 1].sample"
@@ -72,6 +72,8 @@ export default {
 
       //表示の制御
       mainIsShow: false,
+      backIsDisabled: true,
+      nextIsDisabled: false,
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
@@ -130,13 +132,27 @@ export default {
     };
   },
   methods: {
+    changeDisabled: function () {
+      if (this.viewStepNo == 1) {
+        this.backIsDisabled = true;
+      } else {
+        this.backIsDisabled = false;
+      }
+      if (this.viewStepNo == this.assistObj.length) {
+        this.nextIsDisabled = true;
+      } else {
+        this.nextIsDisabled = false;
+      }
+    },
     backStep: function () {
       this.viewStepNo--;
+      this.changeDisabled();
     },
     nextStep: function () {
       //現在のステップよりも前にいる場合
       if (this.viewStepNo < this.nowStepNo) {
         this.viewStepNo++;
+        this.changeDisabled();
         return;
       }
       if (this.assistObj[this.nowStepNo].type == 0) {
@@ -156,6 +172,7 @@ export default {
         this.viewStepNo++;
         this.InMainCnt++;
       }
+      this.changeDisabled();
     },
   },
 };
