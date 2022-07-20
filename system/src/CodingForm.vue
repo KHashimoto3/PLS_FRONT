@@ -16,6 +16,7 @@
             :src="assistObj[viewStepNo - 1].sample"
             alt="サンプル画像"
           />
+          <br />
         </div>
       </div>
     </div>
@@ -27,13 +28,14 @@
       <div class="codingForm">
         <div class="codingFormInner">
           <p>＜ヘッダーコメント＞</p>
-          <textarea rows="5" cols="70"></textarea>
+          <textarea rows="5" cols="70" v-model="headerText"></textarea>
           <p>＜コーディングフォーム＞</p>
           <textarea
             v-for="i of OutMainCnt"
             :key="i"
             role="5"
             cols="70"
+            v-model="outMainTextArray[i - 1]"
           ></textarea>
           <pre v-show="mainIsShow">
 int main(void){
@@ -43,6 +45,7 @@ int main(void){
             :key="i"
             role="5"
             cols="70"
+            v-model="inMainTextArray[i - 1]"
           ></textarea>
           <pre v-show="mainIsShow">
     return 0;
@@ -74,6 +77,11 @@ export default {
       mainIsShow: false,
       backIsDisabled: true,
       nextIsDisabled: false,
+
+      //テキストエリアの文章
+      headerText: "",
+      outMainTextArray: [],
+      inMainTextArray: [],
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
