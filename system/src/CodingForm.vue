@@ -6,13 +6,14 @@
       </div>
       <div class="assist">
         <div class="assistInner">
-          <h1>STEP{{ stepNo }}</h1>
-          <h2>{{ assistObj[stepNo - 1].title }}</h2>
-          <p>{{ assistObj[stepNo - 1].body }}</p>
+          <h1>STEP{{ viewStepNo }}</h1>
+          <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
+          <p>{{ assistObj[viewStepNo - 1].body }}</p>
+          <button @click="backStep()">前へ</button>
           <button @click="nextStep()">次へ</button>
           <img
             class="styleSample"
-            :src="assistObj[stepNo - 1].sample"
+            :src="assistObj[viewStepNo - 1].sample"
             alt="サンプル画像"
           />
         </div>
@@ -64,7 +65,8 @@ export default {
   data() {
     return {
       unitName: "繰り返し",
-      stepNo: 1,
+      viewStepNo: 1,
+      nowStepNo: 1,
       OutMainCnt: 0, //main関数外のtextareaの数
       InMainCnt: 0, //main関数内のtextareaの数
 
@@ -128,19 +130,30 @@ export default {
     };
   },
   methods: {
+    backStep: function () {
+      this.viewStepNo--;
+    },
     nextStep: function () {
-      if (this.assistObj[this.stepNo].type == 0) {
+      //現在のステップよりも前にいる場合
+      if (this.viewStepNo < this.nowStepNo) {
+        this.viewStepNo++;
+        return;
+      }
+      if (this.assistObj[this.nowStepNo].type == 0) {
         //main関数記述前
-        this.stepNo++;
+        this.nowStepNo++;
+        this.viewStepNo++;
         this.OutMainCnt++;
-      } else if (this.assistObj[this.stepNo].type == -1) {
+      } else if (this.assistObj[this.nowStepNo].type == -1) {
         //main関数記述後
-        this.stepNo++;
+        this.nowStepNo++;
+        this.viewStepNo++;
         this.OutMainCnt--; //main関数記述前へ戻す
         this.mainIsShow = true; //main関数を表示
         this.InMainCnt++; //main関数内のtextareaを表示する
-      } else if (this.assistObj[this.stepNo].type == 1) {
-        this.stepNo++;
+      } else if (this.assistObj[this.nowStepNo].type == 1) {
+        this.nowStepNo++;
+        this.viewStepNo++;
         this.InMainCnt++;
       }
     },
