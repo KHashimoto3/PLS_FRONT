@@ -9,14 +9,14 @@
           <h1>STEP{{ viewStepNo }}</h1>
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
-          <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
-          <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
           <img
             class="styleSample"
             :src="assistObj[viewStepNo - 1].sample"
             alt="サンプル画像"
           />
           <br />
+          <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
+          <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
         </div>
       </div>
     </div>
