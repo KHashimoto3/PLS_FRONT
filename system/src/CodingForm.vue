@@ -201,20 +201,20 @@ div.unitName {
   height: 10%;
 }
 div.assist {
-  width: 100%;
-  height: 90%;
+  width: 95%;
+  height: 80%;
   position: relative;
+  border: solid 1px #000000;
 }
 div.assistInner {
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
   position: absolute;
-  border: solid 1px #000000;
 }
 div.codingRight {
   width: 60%;
