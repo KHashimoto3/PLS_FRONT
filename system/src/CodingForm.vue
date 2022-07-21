@@ -9,12 +9,8 @@
           <h1>STEP{{ viewStepNo }}</h1>
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
-          <img
-            class="styleSample"
-            :src="assistObj[viewStepNo - 1].sample"
-            alt="サンプル画像"
-          />
           <br />
+          <pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
         </div>
@@ -90,28 +86,29 @@ export default {
           type: 0,
           title: "ヘッダーコメントの記述",
           body: "プログラムの説明を書きます",
-          sample: require("@/assets/sample.png"),
+          sample:
+            "/**\n * 問題1: 合計と平均を求めるプログラム\n * 日付: 2021/04/01\n * 学籍番号: 2121000\n * 作成者: 神奈川太郎\n */",
         },
         {
           id: 2,
           type: 0,
           title: "プロトタイプ宣言",
           body: "プロトタイプの宣言を書きます",
-          sample: require("@/assets/sample.png"),
+          sample: "",
         },
         {
           id: 3,
           type: 0,
           title: "main関数",
           body: "main関数を書きます",
-          sample: require("@/assets/sample.png"),
+          sample: "",
         },
         {
           id: 4,
           type: -1,
           title: "変数・配列の宣言",
           body: "変数や配列の宣言を書きます",
-          sample: require("@/assets/sample.png"),
+          sample: "",
         },
         {
           id: 5,
@@ -119,14 +116,14 @@ export default {
           title: "ループによる値の入力",
           body:
             "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
-          sample: require("@/assets/sample.png"),
+          sample: "",
         },
         {
           id: 5,
           type: 1,
           title: "ループによる値の処理",
           body: "ループを使って値を処理します。",
-          sample: require("@/assets/sample.png"),
+          sample: "",
         },
         {
           id: 6,
@@ -134,7 +131,7 @@ export default {
           title: "値の出力",
           body:
             "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
-          sample: require("@/assets/sample.png"),
+          sample: "",
         },
       ],
     };
