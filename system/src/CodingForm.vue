@@ -10,7 +10,8 @@
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
-          <pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>
+          <highlightjs language="js" code="console.log('Hello world');" />
+          <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
         </div>
@@ -54,13 +55,14 @@ int main(void){
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+import "highlight.js/lib/common";
+import hljsVuePlugin from "@highlightjs/vue-plugin";
 
 export default {
   name: "CodingForm",
-  /*components: {
-    HelloWorld
-  }*/
+  components: {
+    highlightjs: hljsVuePlugin.component,
+  },
   data() {
     return {
       unitName: "繰り返し",
