@@ -10,7 +10,12 @@
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
-          <highlightjs language="js" code="console.log('Hello world');" />
+          <prism-editor
+            class="my-editor"
+            v-model="code"
+            :highlight="highlighter"
+            line-numbers
+          ></prism-editor>
           <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
@@ -55,13 +60,18 @@ int main(void){
 </template>
 
 <script>
-import "highlight.js/lib/common";
-import hljsVuePlugin from "@highlightjs/vue-plugin";
+import { PrismEditor } from "vue-prism-editor";
+import "vue-prism-editor/dist/prismeditor.min.css";
+
+import { highlight, languages } from "prismjs/components/prism-core";
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-javascript";
+import "prismjs/themes/prism-tomorrow.css"; // シンタックスハイライトのスタイル
 
 export default {
   name: "CodingForm",
   components: {
-    highlightjs: hljsVuePlugin.component,
+    PrismEditor,
   },
   data() {
     return {
@@ -80,6 +90,9 @@ export default {
       headerText: "",
       outMainTextArray: [],
       inMainTextArray: [],
+
+      //テスト用コード
+      code: 'console.log("Hello World")',
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
@@ -139,6 +152,9 @@ export default {
     };
   },
   methods: {
+    highlighter(code) {
+      return highlight(code, languages.js);
+    },
     changeDisabled: function () {
       if (this.viewStepNo == 1) {
         this.backIsDisabled = true;
@@ -249,5 +265,23 @@ img.styleSample {
   text-align: center;
   width: 80%;
   height: auto;
+}
+
+/*prism-editor部分*/
+.my-editor {
+  /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
+  background: #2d2d2d;
+  color: #ccc;
+
+  /* you must provide font-family font-size line-height. Example: */
+  font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 5px;
+}
+
+/* optional class for removing the outline */
+.prism-editor__textarea:focus {
+  outline: none;
 }
 </style>
