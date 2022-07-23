@@ -31,6 +31,7 @@
             :indent-with-tab="false"
             :tab-size="2"
             :extensions="extensions"
+            :disabled="true"
           />
           <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
