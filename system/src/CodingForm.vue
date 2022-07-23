@@ -10,6 +10,19 @@
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
+          <codemirror
+            v-model="code"
+            placeholder="Code goes here..."
+            :style="{ height: '100px' }"
+            :autofocus="true"
+            :indent-with-tab="true"
+            :tab-size="2"
+            :extensions="extensions"
+            @ready="log('ready', $event)"
+            @change="log('change', $event)"
+            @focus="log('focus', $event)"
+            @blur="log('blur', $event)"
+          />
           <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
@@ -54,8 +67,15 @@ int main(void){
 </template>
 
 <script>
+import { Codemirror } from "vue-codemirror";
+import { javascript } from "@codemirror/lang-javascript";
+import { oneDark } from "@codemirror/theme-one-dark";
+
 export default {
   name: "CodingForm",
+  components: {
+    Codemirror,
+  },
   data() {
     return {
       unitName: "繰り返し",
@@ -73,6 +93,10 @@ export default {
       headerText: "",
       outMainTextArray: [],
       inMainTextArray: [],
+
+      //テスト用コード
+      code: "console.log('hello, world!);",
+      extensions: [javascript(), oneDark],
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
