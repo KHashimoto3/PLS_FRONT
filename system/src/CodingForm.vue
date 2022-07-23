@@ -50,7 +50,7 @@
           <!--<textarea rows="5" cols="70" v-model="headerText"></textarea>-->
           <codemirror
             v-model="headerText"
-            placeholder="Code goes here..."
+            placeholder="ヘッダーコメント"
             :style="{ height: '100px' }"
             :autofocus="true"
             :indent-with-tab="false"
@@ -68,7 +68,7 @@
           <div v-for="i of OutMainCnt" :key="i">
             <codemirror
               v-model="outMainTextArray[i - 1]"
-              placeholder="Code goes here..."
+              placeholder="コードを書く"
               :style="{ height: '100px' }"
               :autofocus="true"
               :indent-with-tab="false"
@@ -89,7 +89,7 @@ int main(void){
           <div v-for="i of InMainCnt" :key="i">
             <codemirror
               v-model="inMainTextArray[i - 1]"
-              placeholder="Code goes here..."
+              placeholder="コードを書く"
               :style="{ height: '100px' }"
               :autofocus="true"
               :indent-with-tab="false"
