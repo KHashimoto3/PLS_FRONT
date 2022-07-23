@@ -10,7 +10,7 @@
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
-          <codemirror
+          <!--<codemirror
             v-model="assistObj[viewStepNo - 1].sample"
             placeholder="Code goes here..."
             :style="{ height: '100px' }"
@@ -22,6 +22,15 @@
             @change="log('change', $event)"
             @focus="log('focus', $event)"
             @blur="log('blur', $event)"
+          />-->
+          <codemirror
+            v-model="assistObj[viewStepNo - 1].sample"
+            placeholder="Code goes here..."
+            :style="{ height: '100px' }"
+            :autofocus="true"
+            :indent-with-tab="false"
+            :tab-size="2"
+            :extensions="extensions"
           />
           <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
