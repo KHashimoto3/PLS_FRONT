@@ -10,12 +10,6 @@
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
-          <prism-editor
-            class="my-editor"
-            v-model="code"
-            :highlight="highlighter"
-            line-numbers
-          ></prism-editor>
           <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
@@ -60,19 +54,8 @@ int main(void){
 </template>
 
 <script>
-import { PrismEditor } from "vue-prism-editor";
-import "vue-prism-editor/dist/prismeditor.min.css";
-
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import "prismjs/themes/prism-tomorrow.css"; // シンタックスハイライトのスタイル
-
 export default {
   name: "CodingForm",
-  components: {
-    PrismEditor,
-  },
   data() {
     return {
       unitName: "繰り返し",
@@ -90,9 +73,6 @@ export default {
       headerText: "",
       outMainTextArray: [],
       inMainTextArray: [],
-
-      //テスト用コード
-      code: 'console.log("Hello World")',
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
@@ -152,9 +132,6 @@ export default {
     };
   },
   methods: {
-    highlighter(code) {
-      return highlight(code, languages.js);
-    },
     changeDisabled: function () {
       if (this.viewStepNo == 1) {
         this.backIsDisabled = true;
