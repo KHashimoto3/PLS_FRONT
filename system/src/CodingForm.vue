@@ -11,7 +11,7 @@
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
           <codemirror
-            v-model="code"
+            v-model="assistObj[viewStepNo - 1].sample"
             placeholder="Code goes here..."
             :style="{ height: '100px' }"
             :autofocus="true"
@@ -68,7 +68,7 @@ int main(void){
 
 <script>
 import { Codemirror } from "vue-codemirror";
-import { javascript } from "@codemirror/lang-javascript";
+import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
 
 export default {
@@ -94,9 +94,8 @@ export default {
       outMainTextArray: [],
       inMainTextArray: [],
 
-      //テスト用コード
-      code: "console.log('hello, world!);",
-      extensions: [javascript(), oneDark],
+      //codemirrorの設定
+      extensions: [cpp(), oneDark],
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
