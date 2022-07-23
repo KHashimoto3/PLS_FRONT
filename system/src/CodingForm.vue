@@ -46,25 +46,57 @@
       <div class="codingForm">
         <div class="codingFormInner">
           <p>＜ヘッダーコメント＞</p>
-          <textarea rows="5" cols="70" v-model="headerText"></textarea>
+          <!--<textarea rows="5" cols="70" v-model="headerText"></textarea>-->
+          <codemirror
+            v-model="headerText"
+            placeholder="Code goes here..."
+            :style="{ height: '100px' }"
+            :autofocus="true"
+            :indent-with-tab="false"
+            :tab-size="2"
+            :extensions="extensions"
+          />
           <p>＜コーディングフォーム＞</p>
-          <textarea
+          <!--<textarea
             v-for="i of OutMainCnt"
             :key="i"
             role="5"
             cols="70"
             v-model="outMainTextArray[i - 1]"
-          ></textarea>
+          ></textarea>-->
+          <div v-for="i of OutMainCnt" :key="i">
+            <codemirror
+              v-model="outMainTextArray[i - 1]"
+              placeholder="Code goes here..."
+              :style="{ height: '100px' }"
+              :autofocus="true"
+              :indent-with-tab="false"
+              :tab-size="2"
+              :extensions="extensions"
+            />
+          </div>
           <pre v-show="mainIsShow">
 int main(void){
           </pre>
-          <textarea
+          <!--<textarea
             v-for="i of InMainCnt"
             :key="i"
             role="5"
             cols="70"
             v-model="inMainTextArray[i - 1]"
-          ></textarea>
+          ></textarea>-->
+          <div v-for="i of InMainCnt" :key="i">
+            <codemirror
+              v-model="inMainTextArray[i - 1]"
+              placeholder="Code goes here..."
+              :style="{ height: '100px' }"
+              :autofocus="true"
+              :indent-with-tab="false"
+              :tab-size="2"
+              :extensions="extensions"
+            />
+          </div>
+
           <pre v-show="mainIsShow">
     return 0;
 }
