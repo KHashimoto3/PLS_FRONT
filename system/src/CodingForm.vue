@@ -112,21 +112,22 @@ export default {
           type: 0,
           title: "プロトタイプ宣言",
           body: "プロトタイプの宣言を書きます",
-          sample: "",
+          sample: "#include <stdio.h>\n#include <string.h>",
         },
         {
           id: 3,
           type: 0,
           title: "main関数",
           body: "main関数を書きます",
-          sample: "",
+          sample: "int main(void) {\n    //処理\n    return 0;\n}",
         },
         {
           id: 4,
           type: -1,
           title: "変数・配列の宣言",
           body: "変数や配列の宣言を書きます",
-          sample: "",
+          sample:
+            "int    numArray[3] = {10, 20, 30};\nint    sum  = 0;\ndouble ave;",
         },
         {
           id: 5,
@@ -134,14 +135,14 @@ export default {
           title: "ループによる値の入力",
           body:
             "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
-          sample: "",
+          sample: 'scanf("%d%d%lf", &a, &b, &c);',
         },
         {
           id: 5,
           type: 1,
           title: "ループによる値の処理",
           body: "ループを使って値を処理します。",
-          sample: "",
+          sample: "for (i = 0; i < 5; i++) {\n    //繰り返す処理\n}",
         },
         {
           id: 6,
@@ -149,7 +150,7 @@ export default {
           title: "値の出力",
           body:
             "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
-          sample: "",
+          sample: 'printf("合計：%d¥n", sum);',
         },
       ],
     };
