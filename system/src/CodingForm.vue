@@ -4,6 +4,7 @@
       <div class="unitName">
         <h1>{{ unitName }}</h1>
       </div>
+      <h2>＜スタイルアシスト＞</h2>
       <div class="assist">
         <div class="assistInner">
           <h1>STEP{{ viewStepNo }}</h1>
@@ -238,11 +239,11 @@ div.codingLeft {
 }
 div.unitName {
   width: 100%;
-  height: 10%;
+  height: 8%;
 }
 div.assist {
   width: 95%;
-  height: 80%;
+  height: 92%;
   position: relative;
   border: solid 1px #000000;
 }
