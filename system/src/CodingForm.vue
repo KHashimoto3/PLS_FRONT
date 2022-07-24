@@ -10,19 +10,6 @@
           <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
           <p>{{ assistObj[viewStepNo - 1].body }}</p>
           <br />
-          <!--<codemirror
-            v-model="assistObj[viewStepNo - 1].sample"
-            placeholder="Code goes here..."
-            :style="{ height: '100px' }"
-            :autofocus="true"
-            :indent-with-tab="true"
-            :tab-size="2"
-            :extensions="extensions"
-            @ready="log('ready', $event)"
-            @change="log('change', $event)"
-            @focus="log('focus', $event)"
-            @blur="log('blur', $event)"
-          />-->
           <codemirror
             v-model="assistObj[viewStepNo - 1].sample"
             placeholder="Code goes here..."
@@ -33,7 +20,6 @@
             :extensions="extensions"
             :disabled="true"
           />
-          <!--<pre><code>{{assistObj[viewStepNo-1].sample}}</code></pre>-->
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
         </div>
@@ -47,7 +33,6 @@
       <div class="codingForm">
         <div class="codingFormInner">
           <p>＜ヘッダーコメント＞</p>
-          <!--<textarea rows="5" cols="70" v-model="headerText"></textarea>-->
           <codemirror
             v-model="headerText"
             placeholder="ヘッダーコメント"
@@ -58,13 +43,6 @@
             :extensions="extensions"
           />
           <p>＜コーディングフォーム＞</p>
-          <!--<textarea
-            v-for="i of OutMainCnt"
-            :key="i"
-            role="5"
-            cols="70"
-            v-model="outMainTextArray[i - 1]"
-          ></textarea>-->
           <div v-for="i of OutMainCnt" :key="i">
             <codemirror
               v-model="outMainTextArray[i - 1]"
@@ -79,13 +57,6 @@
           <pre v-show="mainIsShow">
 int main(void){
           </pre>
-          <!--<textarea
-            v-for="i of InMainCnt"
-            :key="i"
-            role="5"
-            cols="70"
-            v-model="inMainTextArray[i - 1]"
-          ></textarea>-->
           <div v-for="i of InMainCnt" :key="i">
             <codemirror
               v-model="inMainTextArray[i - 1]"
