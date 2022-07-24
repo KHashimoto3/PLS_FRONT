@@ -12,6 +12,7 @@
     "@codemirror/lang-javascript": "^6.0.2",
     "@codemirror/theme-one-dark": "^6.0.0",
     "@highlightjs/vue-plugin": "^2.1.0",
+    "@vueform/toggle": "^2.1.1",
     "codemirror": "^6.0.1",
     "core-js": "^3.8.3",
     "highlight.js": "^11.6.0",

@@ -22,6 +22,8 @@
           />
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
+          <br />
+          <Toggle v-model="sampleIsShow" />
         </div>
       </div>
     </div>
@@ -84,10 +86,13 @@ import { Codemirror } from "vue-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
 
+import Toggle from "@vueform/toggle";
+
 export default {
   name: "CodingForm",
   components: {
     Codemirror,
+    Toggle,
   },
   data() {
     return {
@@ -101,6 +106,7 @@ export default {
       mainIsShow: false,
       backIsDisabled: true,
       nextIsDisabled: false,
+      sampleIsShow: true,
 
       //テキストエリアの文章
       headerText: "",
@@ -299,3 +305,4 @@ img.styleSample {
   outline: none;
 }
 </style>
+<style src="@vueform/toggle/themes/default.css"></style>
