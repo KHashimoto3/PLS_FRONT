@@ -23,7 +23,12 @@
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
           <br />
-          <Toggle v-model="sampleIsShow" />
+          <Toggle
+            v-model="sampleIsShow"
+            offLabel="非表示"
+            onLabel="表示"
+            class="sampleToggle"
+          />
         </div>
       </div>
     </div>
@@ -303,6 +308,10 @@ img.styleSample {
 /* optional class for removing the outline */
 .prism-editor__textarea:focus {
   outline: none;
+}
+
+.sampleToggle {
+  --toggle-width: 4rem;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
