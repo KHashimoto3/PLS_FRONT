@@ -21,7 +21,7 @@
             <codemirror
               v-model="assistObj[viewStepNo - 1].sample"
               placeholder="Code goes here..."
-              :style="{ height: 'auto' }"
+              :style="{ height: 'auto', 'font-size': '14pt' }"
               :autofocus="true"
               :indent-with-tab="false"
               :tab-size="2"
