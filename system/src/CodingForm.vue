@@ -46,7 +46,7 @@
           <codemirror
             v-model="headerText"
             placeholder="ヘッダーコメント"
-            :style="{ height: '100px' }"
+            :style="{ height: '100px', 'font-size': '16pt' }"
             :autofocus="true"
             :indent-with-tab="false"
             :tab-size="2"
@@ -57,7 +57,7 @@
             <codemirror
               v-model="outMainTextArray[i - 1]"
               placeholder="コードを書く"
-              :style="{ height: '100px' }"
+              :style="{ height: '100px', 'font-size': '16pt' }"
               :autofocus="true"
               :indent-with-tab="false"
               :tab-size="2"
@@ -65,13 +65,18 @@
             />
           </div>
           <pre v-show="mainIsShow">
-int main(void){
+  int main(void){
           </pre>
           <div v-for="i of InMainCnt" :key="i">
             <codemirror
               v-model="inMainTextArray[i - 1]"
               placeholder="コードを書く"
-              :style="{ height: '100px' }"
+              :style="{
+                width: '95%',
+                height: '100px',
+                'font-size': '16pt',
+                margin: '0 auto',
+              }"
               :autofocus="true"
               :indent-with-tab="false"
               :tab-size="2"
@@ -81,7 +86,7 @@ int main(void){
 
           <pre v-show="mainIsShow">
     return 0;
-}
+  }
           </pre>
         </div>
       </div>
