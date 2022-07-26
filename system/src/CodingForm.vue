@@ -5,6 +5,12 @@
         <h1>{{ unitName }}</h1>
       </div>
       <h2>＜スタイルアシスト＞</h2>
+      <Toggle
+        v-model="sampleIsShow"
+        offLabel="非表示"
+        onLabel="表示"
+        class="sampleToggle"
+      />
       <div class="assist">
         <div class="assistInner">
           <h1>STEP{{ viewStepNo }}</h1>
@@ -26,12 +32,6 @@
           <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
           <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
           <br />
-          <Toggle
-            v-model="sampleIsShow"
-            offLabel="非表示"
-            onLabel="表示"
-            class="sampleToggle"
-          />
         </div>
       </div>
     </div>
