@@ -21,7 +21,7 @@
             <codemirror
               v-model="assistObj[viewStepNo - 1].sample"
               placeholder="Code goes here..."
-              :style="{ height: '100px' }"
+              :style="{ height: 'auto' }"
               :autofocus="true"
               :indent-with-tab="false"
               :tab-size="2"
@@ -46,7 +46,7 @@
           <codemirror
             v-model="headerText"
             placeholder="ヘッダーコメント"
-            :style="{ height: '100px', 'font-size': '16pt' }"
+            :style="{ height: 'auto', 'font-size': '16pt' }"
             :autofocus="true"
             :indent-with-tab="false"
             :tab-size="2"
@@ -57,7 +57,7 @@
             <codemirror
               v-model="outMainTextArray[i - 1]"
               placeholder="コードを書く"
-              :style="{ height: '100px', 'font-size': '16pt' }"
+              :style="{ height: 'auto', 'font-size': '16pt' }"
               :autofocus="true"
               :indent-with-tab="false"
               :tab-size="2"
@@ -73,7 +73,7 @@
               placeholder="コードを書く"
               :style="{
                 width: '95%',
-                height: '100px',
+                height: 'auto',
                 'font-size': '16pt',
                 margin: '0 auto',
               }"
