@@ -45,7 +45,7 @@
           <p>＜ヘッダーコメント＞</p>
           <codemirror
             v-model="headerText"
-            placeholder="ヘッダーコメント"
+            placeholder="コメントを書く"
             :style="{ height: 'auto', 'font-size': '16pt' }"
             :autofocus="true"
             :indent-with-tab="false"
