@@ -24,7 +24,7 @@
               :style="{ height: 'auto', 'font-size': '14pt' }"
               :autofocus="true"
               :indent-with-tab="false"
-              :tab-size="2"
+              :tab-size="4"
               :extensions="extensions"
               :disabled="true"
             />
@@ -49,7 +49,7 @@
             :style="{ height: 'auto', 'font-size': '16pt' }"
             :autofocus="true"
             :indent-with-tab="false"
-            :tab-size="2"
+            :tab-size="4"
             :extensions="extensions"
           />
           <p>＜コーディングフォーム＞</p>
@@ -60,7 +60,7 @@
               :style="{ height: 'auto', 'font-size': '16pt' }"
               :autofocus="true"
               :indent-with-tab="false"
-              :tab-size="2"
+              :tab-size="4"
               :extensions="extensions"
             />
           </div>
@@ -79,7 +79,7 @@
               }"
               :autofocus="true"
               :indent-with-tab="false"
-              :tab-size="2"
+              :tab-size="4"
               :extensions="extensions"
             />
           </div>
