@@ -98,6 +98,8 @@
 import { Codemirror } from "vue-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
+import { keymap } from "@codemirror/view";
+import { indentWithTab } from "@codemirror/commands";
 
 import Toggle from "@vueform/toggle";
 
@@ -127,7 +129,7 @@ export default {
       inMainTextArray: [],
 
       //codemirrorの設定
-      extensions: [cpp(), oneDark],
+      extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
 
       //アシストの内容を格納するオブジェクト
       assistObj: [
