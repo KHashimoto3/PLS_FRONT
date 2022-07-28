@@ -4,7 +4,7 @@
       <div class="unitName">
         <h1>{{ unitName }}</h1>
       </div>
-      <h2>＜スタイルアシスト＞</h2>
+      <p>＜スタイルアシスト＞</p>
       <Toggle
         v-model="sampleIsShow"
         offLabel="非表示"
@@ -311,6 +311,9 @@ div.codingFormInner {
 pre,
 textarea {
   font-size: 16pt;
+}
+h1 {
+  margin: 0;
 }
 img.styleSample {
   text-align: center;
