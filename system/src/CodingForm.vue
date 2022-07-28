@@ -13,25 +13,29 @@
       />
       <div class="assist">
         <div class="assistInner">
-          <h1>STEP{{ viewStepNo }}</h1>
-          <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
-          <p>{{ assistObj[viewStepNo - 1].body }}</p>
-          <br />
-          <div v-show="sampleIsShow">
-            <codemirror
-              v-model="assistObj[viewStepNo - 1].sample"
-              placeholder="Code goes here..."
-              :style="{ height: 'auto', 'font-size': '14pt' }"
-              :autofocus="true"
-              :indent-with-tab="false"
-              :tab-size="4"
-              :extensions="extensions"
-              :disabled="true"
-            />
+          <div class="assistText">
+            <h1>STEP{{ viewStepNo }}</h1>
+            <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
+            <p>{{ assistObj[viewStepNo - 1].body }}</p>
           </div>
-          <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
-          <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
-          <br />
+          <div class="assistSample">
+            <div v-show="sampleIsShow">
+              <codemirror
+                v-model="assistObj[viewStepNo - 1].sample"
+                placeholder="Code goes here..."
+                :style="{ height: 'auto', 'font-size': '14pt' }"
+                :autofocus="true"
+                :indent-with-tab="false"
+                :tab-size="4"
+                :extensions="extensions"
+                :disabled="true"
+              />
+            </div>
+          </div>
+          <div class="assistSelect">
+            <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
+            <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
+          </div>
         </div>
       </div>
     </div>
@@ -265,6 +269,18 @@ div.assistInner {
   bottom: 0;
   margin: auto;
   position: absolute;
+}
+div.assistText {
+  width: 100%;
+  height: 60%;
+}
+div.assistSample {
+  width: 100%;
+  height: 30%;
+}
+div.assistSelect {
+  width: 100%;
+  height: 10%;
 }
 div.codingRight {
   width: 60%;
