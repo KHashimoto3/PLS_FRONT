@@ -53,8 +53,8 @@
     </div>
     <div class="codingRight">
       <div class="question">
-        <h2>問題文</h2>
-        <p>問題文がここに入ります</p>
+        <h2>サンプル問題</h2>
+        <p>{{ questionDescription }}</p>
       </div>
       <div class="codingForm">
         <div class="codingFormInner">
@@ -128,6 +128,7 @@ export default {
   data() {
     return {
       unitName: "繰り返し",
+      questionDescription: "問題文が入ります。",
       viewStepNo: 1,
       nowStepNo: 1,
       OutMainCnt: 0, //main関数外のtextareaの数
