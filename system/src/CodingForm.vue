@@ -33,8 +33,20 @@
             </div>
           </div>
           <div class="assistSelect">
-            <button @click="backStep()" :disabled="backIsDisabled">前へ</button>
-            <button @click="nextStep()" :disabled="nextIsDisabled">次へ</button>
+            <button
+              class="css-button-rounded--sand"
+              @click="backStep()"
+              :disabled="backIsDisabled"
+            >
+              前へ
+            </button>
+            <button
+              class="css-button-rounded--green"
+              @click="nextStep()"
+              :disabled="nextIsDisabled"
+            >
+              次へ
+            </button>
           </div>
         </div>
       </div>
@@ -279,9 +291,62 @@ div.assistSample {
   height: 30%;
 }
 div.assistSelect {
+  text-align: center;
   width: 100%;
   height: 10%;
 }
+button {
+  margin: 10px;
+}
+button.css-button-rounded--green {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #57cc99;
+  background: #57cc99;
+}
+button.css-button-rounded--green:hover {
+  background: #fff;
+  color: #57cc99;
+}
+button.css-button-rounded--green:disabled {
+  color: #fff;
+  border: 2px solid #a7cfbe;
+  background: #a7cfbe;
+}
+button.css-button-rounded--sand {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #adb5bd;
+  background: #adb5bd;
+}
+button.css-button-rounded--sand:hover {
+  background: #fff;
+  color: #adb5bd;
+}
+button.css-button-rounded--sand:disabled {
+  color: #fff;
+  border: 2px solid #d6d6d6;
+  background: #d6d6d6;
+}
+
 div.codingRight {
   width: 60%;
   height: 100%;
