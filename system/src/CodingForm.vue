@@ -298,6 +298,7 @@ div.assistSelect {
 }
 button {
   margin: 10px;
+  font-size: 16pt;
 }
 button.css-button-rounded--green {
   min-width: 130px;
