@@ -1,109 +1,114 @@
 <template>
-  <div class="codingArea">
-    <div class="codingLeft">
-      <div class="unitName">
-        <h1>{{ unitName }}</h1>
-      </div>
-      <p>＜スタイルアシスト＞</p>
-      <Toggle
-        v-model="sampleIsShow"
-        offLabel="非表示"
-        onLabel="表示"
-        class="sampleToggle"
-      />
-      <div class="assist">
-        <div class="assistInner">
-          <div class="assistText">
-            <h1>STEP{{ viewStepNo }}</h1>
-            <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
-            <p>{{ assistObj[viewStepNo - 1].body }}</p>
-          </div>
-          <div class="assistSample">
-            <div v-show="sampleIsShow">
-              <codemirror
-                v-model="assistObj[viewStepNo - 1].sample"
-                placeholder="Code goes here..."
-                :style="{ height: 'auto', 'font-size': '14pt' }"
-                :autofocus="true"
-                :indent-with-tab="false"
-                :tab-size="4"
-                :extensions="extensions"
-                :disabled="true"
-              />
+  <div>
+    <div class="notificationArea">通知バー</div>
+    <div class="codingArea">
+      <div class="codingLeft">
+        <div class="unitName">
+          <h1>{{ unitName }}</h1>
+        </div>
+        <p>＜スタイルアシスト＞</p>
+        <Toggle
+          v-model="sampleIsShow"
+          offLabel="非表示"
+          onLabel="表示"
+          class="sampleToggle"
+        />
+        <div class="assist">
+          <div class="assistInner">
+            <div class="assistText">
+              <h1>STEP{{ viewStepNo }}</h1>
+              <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
+              <p>{{ assistObj[viewStepNo - 1].body }}</p>
             </div>
-          </div>
-          <div class="assistSelect">
-            <button
-              class="css-button-rounded--sand"
-              @click="backStep()"
-              :disabled="backIsDisabled"
-            >
-              前へ
-            </button>
-            <button
-              class="css-button-rounded--green"
-              @click="nextStep()"
-              :disabled="nextIsDisabled"
-            >
-              次へ
-            </button>
+            <div class="assistSample">
+              <div v-show="sampleIsShow">
+                <codemirror
+                  v-model="assistObj[viewStepNo - 1].sample"
+                  placeholder="Code goes here..."
+                  :style="{ height: 'auto', 'font-size': '14pt' }"
+                  :autofocus="true"
+                  :indent-with-tab="false"
+                  :tab-size="4"
+                  :extensions="extensions"
+                  :disabled="true"
+                />
+              </div>
+            </div>
+            <div class="assistSelect">
+              <button
+                class="css-button-rounded--sand"
+                @click="backStep()"
+                :disabled="backIsDisabled"
+              >
+                前へ
+              </button>
+              <button
+                class="css-button-rounded--green"
+                @click="nextStep()"
+                :disabled="nextIsDisabled"
+              >
+                次へ
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="codingRight">
-      <div class="question">
-        <h2>サンプル問題</h2>
-        <p>{{ questionDescription }}</p>
-      </div>
-      <div class="codingForm">
-        <div class="codingFormInner">
-          <p>＜ヘッダーコメント＞</p>
-          <codemirror
-            v-model="headerText"
-            placeholder="コメントを書く"
-            :style="{ height: 'auto', 'font-size': '16pt' }"
-            :autofocus="true"
-            :indent-with-tab="false"
-            :tab-size="4"
-            :extensions="extensions"
-          />
-          <p>＜コーディングフォーム＞</p>
-          <div v-for="i of OutMainCnt" :key="i">
+      <div class="codingRight">
+        <div class="question">
+          <h2>サンプル問題</h2>
+          <p>{{ questionDescription }}</p>
+        </div>
+        <div class="codingForm">
+          <div class="codingFormInner">
+            <p>＜ヘッダーコメント＞</p>
             <codemirror
-              v-model="outMainTextArray[i - 1]"
-              placeholder="コードを書く"
+              v-model="headerText"
+              placeholder="コメントを書く"
               :style="{ height: 'auto', 'font-size': '16pt' }"
               :autofocus="true"
               :indent-with-tab="false"
               :tab-size="4"
               :extensions="extensions"
             />
-          </div>
-          <pre v-show="mainIsShow">
+            <p>＜コーディングフォーム＞</p>
+            <div v-for="i of OutMainCnt" :key="i">
+              <codemirror
+                v-model="outMainTextArray[i - 1]"
+                placeholder="コードを書く"
+                :style="{ height: 'auto', 'font-size': '16pt' }"
+                :autofocus="true"
+                :indent-with-tab="false"
+                :tab-size="4"
+                :extensions="extensions"
+              />
+            </div>
+            <pre v-show="mainIsShow">
   int main(void){
-          </pre>
-          <div v-for="i of InMainCnt" :key="i">
-            <codemirror
-              v-model="inMainTextArray[i - 1]"
-              placeholder="コードを書く"
-              :style="{
-                width: '95%',
-                height: 'auto',
-                'font-size': '16pt',
-                margin: '0 auto',
-              }"
-              :autofocus="true"
-              :indent-with-tab="false"
-              :tab-size="4"
-              :extensions="extensions"
-            />
-          </div>
+          </pre
+            >
+            <div v-for="i of InMainCnt" :key="i">
+              <codemirror
+                v-model="inMainTextArray[i - 1]"
+                placeholder="コードを書く"
+                :style="{
+                  width: '95%',
+                  height: 'auto',
+                  'font-size': '16pt',
+                  margin: '0 auto',
+                }"
+                :autofocus="true"
+                :indent-with-tab="false"
+                :tab-size="4"
+                :extensions="extensions"
+              />
+            </div>
 
-          <pre v-show="mainIsShow">
+            <pre v-show="mainIsShow">
     return 0;
   }
-          </pre>
+          </pre
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -254,6 +259,16 @@ export default {
 </script>
 
 <style>
+div.notificationArea {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  left: 0;
+  top: 9;
+  background: #75a51c;
+  z-index: 9999;
+  margin: 0;
+}
 div.codingArea {
   width: 100%;
   height: 700px;
