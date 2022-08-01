@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="notificationArea">通知バー</div>
+    <div class="notificationArea" v-show="notificationIsShow">
+      {{ notificationText }}
+    </div>
     <div class="codingArea">
       <div class="codingLeft">
         <div class="unitName">
@@ -144,11 +146,15 @@ export default {
       backIsDisabled: true,
       nextIsDisabled: false,
       sampleIsShow: true,
+      notificationIsShow: true,
 
       //テキストエリアの文章
       headerText: "",
       outMainTextArray: [],
       inMainTextArray: [],
+
+      //通知バーのテキスト
+      notificationText: "通知がここに入ります",
 
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
