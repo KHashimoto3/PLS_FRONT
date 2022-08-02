@@ -67,10 +67,11 @@
               v-model="headerText"
               placeholder="コメントを書く"
               :style="{ height: 'auto', 'font-size': '16pt' }"
-              :autofocus="true"
+              :autofocus="false"
               :indent-with-tab="false"
               :tab-size="4"
               :extensions="extensions"
+              @focus="notice()"
             />
             <p>＜コーディングフォーム＞</p>
             <div v-for="i of OutMainCnt" :key="i">
@@ -146,7 +147,7 @@ export default {
       backIsDisabled: true,
       nextIsDisabled: false,
       sampleIsShow: true,
-      notificationIsShow: true,
+      notificationIsShow: false,
 
       //テキストエリアの文章
       headerText: "",
@@ -154,7 +155,7 @@ export default {
       inMainTextArray: [],
 
       //通知バーのテキスト
-      notificationText: "通知がここに入ります",
+      notificationText: "",
 
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
@@ -259,6 +260,10 @@ export default {
         this.InMainCnt++;
       }
       this.changeDisabled();
+    },
+    notice: function () {
+      this.notificationText = "ここに通知が入ります。";
+      this.notificationIsShow = true;
     },
   },
 };
