@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="notificationArea" v-show="notificationIsShow">
-      {{ notificationText }}
+      <div class="notifiLeft">
+        {{ notificationText }}
+      </div>
+      <div class="notifiRight" @click="closeNotice()">閉じる</div>
     </div>
     <div class="codingArea">
       <div class="codingLeft">
@@ -265,6 +268,10 @@ export default {
       this.notificationText = "ここに通知が入ります。";
       this.notificationIsShow = true;
     },
+    closeNotice: function () {
+      this.notificationText = "";
+      this.notificationIsShow = false;
+    },
   },
 };
 </script>
@@ -279,6 +286,17 @@ div.notificationArea {
   background: #75a51c;
   z-index: 9999;
   margin: 0;
+}
+div.notifiLeft {
+  width: 90%;
+  height: 100%;
+  float: left;
+}
+div.notifiRight {
+  width: 10%;
+  height: 100%;
+  margin-left: 90%;
+  background: #3f76ec;
 }
 div.codingArea {
   width: 100%;
