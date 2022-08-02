@@ -28,7 +28,7 @@
                   v-model="assistObj[viewStepNo - 1].sample"
                   placeholder="Code goes here..."
                   :style="{ height: 'auto', 'font-size': '14pt' }"
-                  :autofocus="true"
+                  :autofocus="false"
                   :indent-with-tab="false"
                   :tab-size="4"
                   :extensions="extensions"
@@ -79,7 +79,7 @@
                 v-model="outMainTextArray[i - 1]"
                 placeholder="コードを書く"
                 :style="{ height: 'auto', 'font-size': '16pt' }"
-                :autofocus="true"
+                :autofocus="false"
                 :indent-with-tab="false"
                 :tab-size="4"
                 :extensions="extensions"
@@ -99,7 +99,7 @@
                   'font-size': '16pt',
                   margin: '0 auto',
                 }"
-                :autofocus="true"
+                :autofocus="false"
                 :indent-with-tab="false"
                 :tab-size="4"
                 :extensions="extensions"
