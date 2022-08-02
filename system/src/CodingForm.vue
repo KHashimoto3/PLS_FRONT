@@ -2,9 +2,9 @@
   <div>
     <div class="notificationArea" v-show="notificationIsShow">
       <div class="notifiLeft">
-        {{ notificationText }}
+        <p>{{ notificationText }}</p>
       </div>
-      <div class="notifiRight" @click="closeNotice()">閉じる</div>
+      <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
     </div>
     <div class="codingArea">
       <div class="codingLeft">
@@ -286,17 +286,28 @@ div.notificationArea {
   background: #75a51c;
   z-index: 9999;
   margin: 0;
+  color: #ffffff;
 }
 div.notifiLeft {
+  text-align: center;
+  display: table;
   width: 90%;
   height: 100%;
   float: left;
 }
 div.notifiRight {
+  text-align: center;
+  display: table;
   width: 10%;
   height: 100%;
   margin-left: 90%;
   background: #3f76ec;
+  cursor: pointer;
+}
+div.notifiRight p,
+div.notifiLeft p {
+  display: table-cell;
+  vertical-align: middle;
 }
 div.codingArea {
   width: 100%;
