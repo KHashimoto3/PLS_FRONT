@@ -74,7 +74,6 @@
               :indent-with-tab="false"
               :tab-size="4"
               :extensions="extensions"
-              @focus="notice()"
             />
             <p>＜コーディングフォーム＞</p>
             <div v-for="i of OutMainCnt" :key="i">
@@ -86,6 +85,7 @@
                 :indent-with-tab="false"
                 :tab-size="4"
                 :extensions="extensions"
+                @focus="setNotice(0, i)"
               />
             </div>
             <pre v-show="mainIsShow">
@@ -106,6 +106,7 @@
                 :indent-with-tab="false"
                 :tab-size="4"
                 :extensions="extensions"
+                @focus="setNotice(1, i)"
               />
             </div>
 
@@ -271,6 +272,33 @@ export default {
     closeNotice: function () {
       this.notificationText = "";
       this.notificationIsShow = false;
+    },
+    //各テキストエリアにフォーカスした時の通知
+    setNotice: function (type, id) {
+      if (type == 0) {
+        this.notificationText = this.assistObj[id].body;
+        this.notificationIsShow = true;
+        return;
+      }
+      if (type == 1 && this.mainIsShow == false) {
+        const place = this.findStart(-1);
+        this.notificationText = this.assistObj[place - 1].body;
+        this.notificationIsShow = true;
+        return;
+      }
+      const startPlace = this.findStart(1);
+      this.notificationText = this.assistObj[startPlace + id].body;
+      this.notificationIsShow = true;
+      return;
+    },
+    findStart: function (type) {
+      let place = 0;
+      this.assistObj.forEach((element) => {
+        if (element.type == type) {
+          return place;
+        }
+        place++;
+      });
     },
   },
 };
