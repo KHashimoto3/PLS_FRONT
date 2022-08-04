@@ -275,31 +275,52 @@ export default {
     },
     //各テキストエリアにフォーカスした時の通知
     setNotice: function (type, id) {
+      console.log("クリック：" + id);
+      //main関数
+      if (type == 0 && this.mainIsShow == false && id == 2) {
+        console.log("メイン関数だー！");
+        //const place = this.findStart(-1);
+
+        let place = 0;
+        this.assistObj.forEach((element) => {
+          if (element.type == -1) {
+            console.log("場所：" + place);
+            this.notificationText = this.assistObj[place - 1].body;
+            this.notificationIsShow = true;
+            return;
+          }
+          place++;
+        });
+      }
       if (type == 0) {
         this.notificationText = this.assistObj[id].body;
         this.notificationIsShow = true;
         return;
       }
-      if (type == 1 && this.mainIsShow == false) {
-        const place = this.findStart(-1);
-        this.notificationText = this.assistObj[place - 1].body;
-        this.notificationIsShow = true;
-        return;
-      }
-      const startPlace = this.findStart(1);
-      this.notificationText = this.assistObj[startPlace + id].body;
-      this.notificationIsShow = true;
-      return;
+      console.log("メイン関数移行だー！");
+      //const startPlace = this.findStart(-1);
+
+      let startPlace = 0;
+      this.assistObj.forEach((element) => {
+        if (element.type == -1) {
+          console.log("場所：" + startPlace);
+          this.notificationText = this.assistObj[startPlace + id - 1].body;
+          this.notificationIsShow = true;
+          return;
+        }
+        startPlace++;
+      });
     },
-    findStart: function (type) {
+    /*findStart: function (type) {
       let place = 0;
       this.assistObj.forEach((element) => {
         if (element.type == type) {
+          console.log("場所：" + place);
           return place;
         }
         place++;
       });
-    },
+    },*/
   },
 };
 </script>
