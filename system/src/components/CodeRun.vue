@@ -1,5 +1,5 @@
 <template>
-  <div class="run_area">
+  <div class="run_area" v-show="thisIsShow">
     <h1>ソースコードの実行</h1>
     <p>
       完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
@@ -36,6 +36,8 @@ export default {
   name: "CodeRun",
   data() {
     return {
+      thisIsShow: false,
+
       student_id: "", //学籍番号
       code: "",
       input: "",
@@ -44,10 +46,15 @@ export default {
     };
   },
   methods: {
+    /*
     insert_code: function (code) {
       if (code != null) {
         this.code = code;
       }
+    },
+    */
+    insertCode: function () {
+      this.thisIsShow = true;
     },
     //学籍番号のセット
     set_student_id: function (id) {
@@ -150,7 +157,11 @@ export default {
 div.run_area {
   width: 100%;
   height: auto;
-  margin: 100px 30px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: #ffffff;
+  padding: 30px;
 }
 div.source {
   width: 50%;

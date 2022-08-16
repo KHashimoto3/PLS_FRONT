@@ -107,10 +107,12 @@
         </div>
       </div>
       <div class="codeRunButton">
-        <button class="css-button-rounded--green">実行</button>
+        <button class="css-button-rounded--green" @click="codeRun()">
+          実行
+        </button>
       </div>
     </div>
-    <CodeRun />
+    <CodeRun ref="codeRunner" />
   </div>
 </template>
 
@@ -255,6 +257,10 @@ export default {
         this.InMainCnt++;
       }
       this.changeDisabled();
+    },
+    //コードの実行
+    codeRun: function () {
+      this.$refs.codeRunner.insertCode();
     },
   },
 };
