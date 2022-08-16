@@ -110,6 +110,7 @@
         <button class="css-button-rounded--green">実行</button>
       </div>
     </div>
+    <CodeRun />
   </div>
 </template>
 
@@ -122,11 +123,14 @@ import { indentWithTab } from "@codemirror/commands";
 
 import Toggle from "@vueform/toggle";
 
+import CodeRun from "./components/CodeRun.vue";
+
 export default {
   name: "CodingForm",
   components: {
     Codemirror,
     Toggle,
+    CodeRun,
   },
   data() {
     return {
