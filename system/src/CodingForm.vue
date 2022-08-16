@@ -106,6 +106,9 @@
           </pre>
         </div>
       </div>
+      <div class="codingExe">
+        <button class="css-button-rounded--green">実行</button>
+      </div>
     </div>
   </div>
 </template>
@@ -360,10 +363,15 @@ div.question {
 }
 div.codingForm {
   width: 100%;
-  height: 80%;
+  height: 75%;
   position: relative;
   border: solid 1px #000000;
   overflow: auto;
+}
+div.codingExe {
+  text-align: right;
+  width: 100%;
+  height: 5%;
 }
 div.codingFormInner {
   width: 90%;
