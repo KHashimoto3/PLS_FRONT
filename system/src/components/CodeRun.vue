@@ -1,5 +1,5 @@
 <template>
-  <div class="run_area" v-show="thisIsShow">
+  <div class="runArea" v-show="thisIsShow">
     <h1>ソースコードの実行</h1>
     <p>
       完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
@@ -9,7 +9,7 @@
       <p>＜ソース＞</p>
       <textarea cols="52" rows="30" v-model="code"> </textarea><br />
     </div>
-    <div class="input_output">
+    <div class="inputOutput">
       <p>入力：</p>
       <textarea cols="30" rows="5" v-model="input"> </textarea><br />
 
@@ -18,14 +18,13 @@
       <p>＜実行結果＞</p>
       <p>
         出力：<br />
-        <textarea cols="30" rows="5" v-model="output_txt" disabled></textarea
+        <textarea cols="30" rows="5" v-model="outputTxt" disabled></textarea
         ><br />
       </p>
 
       <p>
         エラー：<br />
-        <textarea cols="55" rows="8" v-model="err_txt" disabled></textarea
-        ><br />
+        <textarea cols="55" rows="8" v-model="errTxt" disabled></textarea><br />
       </p>
     </div>
   </div>
@@ -38,11 +37,10 @@ export default {
     return {
       thisIsShow: false,
 
-      student_id: "", //学籍番号
       code: "",
       input: "",
-      output_txt: "",
-      err_txt: "",
+      outputTxt: "",
+      errTxt: "",
     };
   },
   methods: {
@@ -55,10 +53,6 @@ export default {
     */
     insertCode: function () {
       this.thisIsShow = true;
-    },
-    //学籍番号のセット
-    set_student_id: function (id) {
-      this.student_id = id;
     },
     //実行
     run: async function () {
@@ -94,7 +88,7 @@ export default {
 
         const url = "https://wandbox.org/api/compile.json";
 
-        let err_msg;
+        let errMsg;
 
         try {
           const response = await fetch(url, {
@@ -104,22 +98,22 @@ export default {
           if (!response.ok) {
             switch (response.status) {
               default:
-                err_msg = "何らかの理由でエラーが発生しました。";
-                throw new Error(err_msg);
+                errMsg = "何らかの理由でエラーが発生しました。";
+                throw new Error(errMsg);
             }
           } else {
-            const response_data = await response.json();
-            this.output_txt = response_data.program_output;
-            this.err_txt = response_data.compiler_message;
-            console.log(response_data);
+            const responseData = await response.json();
+            this.outputTxt = responseData.program_output;
+            this.errTxt = responseData.compiler_message;
+            console.log(responseData);
           }
-        } catch (err_msg) {
-          alert(err_msg);
+        } catch (errMsg) {
+          alert(errMsg);
         }
       }
     },
     //cファイルを作成してダウンロードする関数
-    download: async function () {
+    /*download: async function () {
       if (this.code != null) {
         const data = this.code;
         //問題名を取得
@@ -148,13 +142,13 @@ export default {
         a.remove();
         URL.revokeObjectURL(url);
       }
-    },
+    },*/
   },
 };
 </script>
 
 <style>
-div.run_area {
+div.runArea {
   width: 100%;
   height: auto;
   top: 0;
@@ -168,7 +162,7 @@ div.source {
   height: auto;
   float: left;
 }
-div.input_output {
+div.inputOutput {
   width: 50%;
   height: auto;
   margin-left: 50%;
