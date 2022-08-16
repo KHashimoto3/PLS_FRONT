@@ -106,7 +106,7 @@
           </pre>
         </div>
       </div>
-      <div class="codingExe">
+      <div class="codeRunButton">
         <button class="css-button-rounded--green">実行</button>
       </div>
     </div>
@@ -368,7 +368,7 @@ div.codingForm {
   border: solid 1px #000000;
   overflow: auto;
 }
-div.codingExe {
+div.codeRunButton {
   text-align: right;
   width: 100%;
   height: 5%;
