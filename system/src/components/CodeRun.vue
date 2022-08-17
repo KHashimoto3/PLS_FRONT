@@ -7,7 +7,16 @@
     </p>
     <div class="source">
       <p>＜ソース＞</p>
-      <textarea cols="52" rows="30" v-model="code"> </textarea><br />
+      <codemirror
+        v-model="code"
+        :style="{ width: '80%', height: 'auto', 'font-size': '14pt' }"
+        :autofocus="false"
+        :indent-with-tab="true"
+        :tab-size="4"
+        :extensions="extensions"
+        :disabled="false"
+      />
+      <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
     </div>
     <div class="inputOutput">
       <p>入力：</p>
@@ -31,11 +40,23 @@
 </template>
 
 <script>
+import { Codemirror } from "vue-codemirror";
+import { cpp } from "@codemirror/lang-cpp";
+import { oneDark } from "@codemirror/theme-one-dark";
+import { keymap } from "@codemirror/view";
+import { indentWithTab } from "@codemirror/commands";
+
 export default {
   name: "CodeRun",
+  components: {
+    Codemirror,
+  },
   data() {
     return {
       thisIsShow: false,
+
+      //codemirrorの設定
+      extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
 
       code: "",
       input: "",
