@@ -260,7 +260,25 @@ export default {
     },
     //コードの実行
     codeRun: function () {
-      this.$refs.codeRunner.insertCode();
+      if (this.mainIsShow == false) {
+        alert("実行するには、main関数を定義する必要があります。");
+        return;
+      }
+
+      let code;
+      code = code + this.headerText + "\n";
+      console.log("main前：" + this.outMainTextArray);
+      this.outMainTextArray.forEach((element) => {
+        code = code + element + "\n";
+      });
+      code += "int main(void) {\n";
+      console.log("mainあと：" + this.inMainTextArray);
+      this.inMainTextArray.forEach((element) => {
+        code = code + "    " + element + "\n";
+      });
+      code += "    return 0;\n}\n";
+      console.log(code);
+      this.$refs.codeRunner.insertCode(code);
     },
   },
 };

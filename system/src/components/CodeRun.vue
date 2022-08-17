@@ -72,7 +72,8 @@ export default {
       }
     },
     */
-    insertCode: function () {
+    insertCode: function (code) {
+      this.code = code;
       this.thisIsShow = true;
     },
     //実行
