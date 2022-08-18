@@ -265,20 +265,29 @@ export default {
         return;
       }
 
-      let code;
+      let code = "";
       code = code + this.headerText + "\n";
+
       console.log("main前：" + this.outMainTextArray);
-      this.outMainTextArray.forEach((element) => {
-        code = code + element + "\n";
-      });
+      code += this.outMainTextArray;
       code += "int main(void) {\n";
       console.log("mainあと：" + this.inMainTextArray);
-      this.inMainTextArray.forEach((element) => {
-        code = code + "    " + element + "\n";
-      });
+      code += this.inMainTextArray;
       code += "    return 0;\n}\n";
       console.log(code);
       this.$refs.codeRunner.insertCode(code);
+    },
+    codeAdjust: function (type) {
+      //コード結合前に各コードを修正する必要があるときはここに追加する
+      let adjusted;
+      if (type == 1) {
+        const outMainTextLeng = this.outMainTextArray.length;
+        for (let i = 0; i < outMainTextLeng - 1; i++) {
+          adjusted += this.outMainTextArray[i];
+        }
+        return adjusted;
+      }
+      return;
     },
   },
 };
