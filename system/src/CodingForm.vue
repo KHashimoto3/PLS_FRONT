@@ -290,10 +290,9 @@ export default {
       let connectedTxt = "";
       const inMainTextLeng = this.inMainTextArray.length;
       for (let i = 0; i < inMainTextLeng; i++) {
+        console.log("処理中：" + this.inMainTextArray[i] + "\n");
         connectedTxt =
-          connectedTxt +
-          this.insertTab(this.inMainTextArray[i].split("\n")) +
-          "\n";
+          connectedTxt + this.insertTab(this.inMainTextArray[i].split("\n"));
       }
       return connectedTxt;
     },
@@ -301,7 +300,7 @@ export default {
       let connectedTxt = "";
       const strLeng = str.length;
       for (let i = 0; i < strLeng; i++) {
-        connectedTxt = connectedTxt + "    " + str[i];
+        connectedTxt = connectedTxt + "    " + str[i] + "\n";
       }
       return connectedTxt;
     },
