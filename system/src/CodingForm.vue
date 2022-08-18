@@ -270,12 +270,11 @@ export default {
 
       console.log("main前：" + this.outMainTextArray);
       const adjustedOutMain = this.cutMain();
-      console.log("******：" + adjustedOutMain);
       code += adjustedOutMain;
       code += "int main(void) {\n";
       console.log("mainあと：" + this.inMainTextArray);
       code += this.inMainTextArray;
-      code += "    return 0;\n}\n";
+      code += "\n    return 0;\n}\n";
       console.log(code);
       this.$refs.codeRunner.insertCode(code);
     },
@@ -283,7 +282,7 @@ export default {
       let cutTxt = "";
       const outMainTextLeng = this.outMainTextArray.length;
       for (let i = 0; i < outMainTextLeng - 1; i++) {
-        cutTxt += this.outMainTextArray[i];
+        cutTxt = cutTxt + this.outMainTextArray[i] + "\n";
       }
       cutTxt += "\n";
       return cutTxt;
