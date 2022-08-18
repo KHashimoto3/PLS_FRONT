@@ -267,11 +267,9 @@ export default {
 
       let code = "";
       code = code + this.headerText + "\n";
-      console.log("main前：" + this.outMainTextArray);
       const connectedOutMain = this.connectOutMain();
       code += connectedOutMain;
       code += "int main(void) {\n";
-      console.log("mainあと：" + this.inMainTextArray);
       const connectedInMain = this.connectInMain();
       code += connectedInMain;
       code += "    return 0;\n}\n";
@@ -280,6 +278,7 @@ export default {
     connectOutMain: function () {
       let connectedTxt = "";
       const outMainTextLeng = this.outMainTextArray.length;
+      //main関数がoutMainTextArrayの最後に入っており、重複を避けるためにmain関数は結合しない
       for (let i = 0; i < outMainTextLeng - 1; i++) {
         connectedTxt = connectedTxt + this.outMainTextArray[i] + "\n";
       }
@@ -290,7 +289,6 @@ export default {
       let connectedTxt = "";
       const inMainTextLeng = this.inMainTextArray.length;
       for (let i = 0; i < inMainTextLeng; i++) {
-        console.log("処理中：" + this.inMainTextArray[i] + "\n");
         connectedTxt =
           connectedTxt + this.insertTab(this.inMainTextArray[i].split("\n"));
       }
