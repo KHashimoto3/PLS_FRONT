@@ -267,15 +267,14 @@ export default {
 
       let code = "";
       code = code + this.headerText + "\n";
-
       console.log("main前：" + this.outMainTextArray);
       const connectedOutMain = this.connectOutMain();
       code += connectedOutMain;
       code += "int main(void) {\n";
       console.log("mainあと：" + this.inMainTextArray);
-      code += this.inMainTextArray;
+      const connectedInMain = this.connectInMain();
+      code += connectedInMain;
       code += "\n    return 0;\n}\n";
-      console.log(code);
       this.$refs.codeRunner.insertCode(code);
     },
     connectOutMain: function () {
@@ -285,6 +284,25 @@ export default {
         connectedTxt = connectedTxt + this.outMainTextArray[i] + "\n";
       }
       connectedTxt += "\n";
+      return connectedTxt;
+    },
+    connectInMain: function () {
+      let connectedTxt = "";
+      const inMainTextLeng = this.inMainTextArray.length;
+      for (let i = 0; i < inMainTextLeng; i++) {
+        connectedTxt =
+          connectedTxt +
+          this.insertTab(this.inMainTextArray[i].split("\n")) +
+          "\n";
+      }
+      return connectedTxt;
+    },
+    insertTab: function (str) {
+      let connectedTxt = "";
+      const strLeng = str.length;
+      for (let i = 0; i < strLeng; i++) {
+        connectedTxt = connectedTxt + "    " + str[i];
+      }
       return connectedTxt;
     },
   },
