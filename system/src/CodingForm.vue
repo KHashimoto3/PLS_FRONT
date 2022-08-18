@@ -108,7 +108,7 @@
       </div>
       <div class="codeRunButton">
         <button class="css-button-rounded--green" @click="codeRun()">
-          実行
+          連結して実行
         </button>
       </div>
     </div>
