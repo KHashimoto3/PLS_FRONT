@@ -274,7 +274,7 @@ export default {
       console.log("mainあと：" + this.inMainTextArray);
       const connectedInMain = this.connectInMain();
       code += connectedInMain;
-      code += "\n    return 0;\n}\n";
+      code += "    return 0;\n}\n";
       this.$refs.codeRunner.insertCode(code);
     },
     connectOutMain: function () {
