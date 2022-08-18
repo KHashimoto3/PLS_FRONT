@@ -269,8 +269,8 @@ export default {
       code = code + this.headerText + "\n";
 
       console.log("main前：" + this.outMainTextArray);
-      const adjustedOutMain = this.cutMain();
-      code += adjustedOutMain;
+      const connectedOutMain = this.connectOutMain();
+      code += connectedOutMain;
       code += "int main(void) {\n";
       console.log("mainあと：" + this.inMainTextArray);
       code += this.inMainTextArray;
@@ -278,14 +278,14 @@ export default {
       console.log(code);
       this.$refs.codeRunner.insertCode(code);
     },
-    cutMain: function () {
-      let cutTxt = "";
+    connectOutMain: function () {
+      let connectedTxt = "";
       const outMainTextLeng = this.outMainTextArray.length;
       for (let i = 0; i < outMainTextLeng - 1; i++) {
-        cutTxt = cutTxt + this.outMainTextArray[i] + "\n";
+        connectedTxt = connectedTxt + this.outMainTextArray[i] + "\n";
       }
-      cutTxt += "\n";
-      return cutTxt;
+      connectedTxt += "\n";
+      return connectedTxt;
     },
   },
 };
