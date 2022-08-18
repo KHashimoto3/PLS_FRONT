@@ -269,7 +269,9 @@ export default {
       code = code + this.headerText + "\n";
 
       console.log("main前：" + this.outMainTextArray);
-      code += this.outMainTextArray;
+      const adjustedOutMain = this.cutMain();
+      console.log("******：" + adjustedOutMain);
+      code += adjustedOutMain;
       code += "int main(void) {\n";
       console.log("mainあと：" + this.inMainTextArray);
       code += this.inMainTextArray;
@@ -277,17 +279,14 @@ export default {
       console.log(code);
       this.$refs.codeRunner.insertCode(code);
     },
-    codeAdjust: function (type) {
-      //コード結合前に各コードを修正する必要があるときはここに追加する
-      let adjusted;
-      if (type == 1) {
-        const outMainTextLeng = this.outMainTextArray.length;
-        for (let i = 0; i < outMainTextLeng - 1; i++) {
-          adjusted += this.outMainTextArray[i];
-        }
-        return adjusted;
+    cutMain: function () {
+      let cutTxt = "";
+      const outMainTextLeng = this.outMainTextArray.length;
+      for (let i = 0; i < outMainTextLeng - 1; i++) {
+        cutTxt += this.outMainTextArray[i];
       }
-      return;
+      cutTxt += "\n";
+      return cutTxt;
     },
   },
 };
