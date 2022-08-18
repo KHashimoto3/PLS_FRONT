@@ -9,7 +9,7 @@
       <p>＜ソース＞</p>
       <codemirror
         v-model="code"
-        :style="{ width: '80%', height: 'auto', 'font-size': '14pt' }"
+        :style="codemirrorStyle"
         :autofocus="false"
         :indent-with-tab="true"
         :tab-size="4"
@@ -62,6 +62,14 @@ export default {
       input: "",
       outputTxt: "",
       errTxt: "",
+
+      //スタイル
+      codemirrorStyle: {
+        width: "80%",
+        height: "500px",
+        "font-size": "14pt",
+        overflow: scroll,
+      },
     };
   },
   methods: {
