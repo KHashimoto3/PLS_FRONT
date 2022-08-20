@@ -89,9 +89,9 @@ export default {
       if (this.code == "") {
         alert("コードを入力してから押してください！");
       } else {
-        let data_obj;
+        let dataObj;
         if (this.input != "") {
-          data_obj = {
+          dataObj = {
             code: this.code,
             stdin: this.input,
             options: "warning,gnu++1y",
@@ -99,7 +99,7 @@ export default {
             "compiler-option-raw": "-Dx=hogefuga\n-O3",
           };
         } else {
-          data_obj = {
+          dataObj = {
             code: this.code,
             options: "warning,gnu++1y",
             compiler: "gcc-head",
@@ -123,7 +123,7 @@ export default {
         try {
           const response = await fetch(url, {
             method: "POST",
-            body: JSON.stringify(data_obj),
+            body: JSON.stringify(dataObj),
           });
           if (!response.ok) {
             switch (response.status) {
