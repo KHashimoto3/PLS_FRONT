@@ -14,7 +14,7 @@
         :indent-with-tab="true"
         :tab-size="4"
         :extensions="extensions"
-        :disabled="false"
+        :disabled="true"
       />
       <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
     </div>
