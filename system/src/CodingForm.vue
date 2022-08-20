@@ -106,7 +106,13 @@
           </pre>
         </div>
       </div>
+      <div class="codeRunButton">
+        <button class="css-button-rounded--green" @click="codeRun()">
+          連結して実行
+        </button>
+      </div>
     </div>
+    <CodeRun ref="codeRunner" />
   </div>
 </template>
 
@@ -119,11 +125,14 @@ import { indentWithTab } from "@codemirror/commands";
 
 import Toggle from "@vueform/toggle";
 
+import CodeRun from "./components/CodeRun.vue";
+
 export default {
   name: "CodingForm",
   components: {
     Codemirror,
     Toggle,
+    CodeRun,
   },
   data() {
     return {
@@ -249,6 +258,50 @@ export default {
       }
       this.changeDisabled();
     },
+    //コードの実行
+    codeRun: function () {
+      if (this.mainIsShow == false) {
+        alert("実行するには、main関数を定義する必要があります。");
+        return;
+      }
+
+      let code = "";
+      code = code + this.headerText + "\n";
+      const connectedOutMain = this.connectOutMain();
+      code += connectedOutMain;
+      code += "int main(void) {\n";
+      const connectedInMain = this.connectInMain();
+      code += connectedInMain;
+      code += "    return 0;\n}\n";
+      this.$refs.codeRunner.insertCode(code);
+    },
+    connectOutMain: function () {
+      let connectedTxt = "";
+      const outMainTextLeng = this.outMainTextArray.length;
+      //main関数がoutMainTextArrayの最後に入っており、重複を避けるためにmain関数は結合しない
+      for (let i = 0; i < outMainTextLeng - 1; i++) {
+        connectedTxt = connectedTxt + this.outMainTextArray[i] + "\n";
+      }
+      connectedTxt += "\n";
+      return connectedTxt;
+    },
+    connectInMain: function () {
+      let connectedTxt = "";
+      const inMainTextLeng = this.inMainTextArray.length;
+      for (let i = 0; i < inMainTextLeng; i++) {
+        connectedTxt =
+          connectedTxt + this.insertTab(this.inMainTextArray[i].split("\n"));
+      }
+      return connectedTxt;
+    },
+    insertTab: function (str) {
+      let connectedTxt = "";
+      const strLeng = str.length;
+      for (let i = 0; i < strLeng; i++) {
+        connectedTxt = connectedTxt + "    " + str[i] + "\n";
+      }
+      return connectedTxt;
+    },
   },
 };
 </script>
@@ -360,10 +413,15 @@ div.question {
 }
 div.codingForm {
   width: 100%;
-  height: 80%;
+  height: 75%;
   position: relative;
   border: solid 1px #000000;
   overflow: auto;
+}
+div.codeRunButton {
+  text-align: right;
+  width: 100%;
+  height: 5%;
 }
 div.codingFormInner {
   width: 90%;
