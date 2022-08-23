@@ -24,32 +24,11 @@
 
       <button @click="run">実行！</button>
       <button @click="download">ダウンロード</button>
-      <p>＜実行結果＞</p>
-      <p>
-        出力：<br />
-        <textarea cols="30" rows="5" v-model="outputTxt" disabled></textarea
-        ><br />
-      </p>
 
-      <p>
-        エラー：<br />
-        <textarea cols="55" rows="8" v-model="errTxt" disabled></textarea><br />
-      </p>
+      <p>＜実行結果＞</p>
+      <p :style="runResultStyle">{{ runResultTxt }}</p>
+      <textarea cols="30" rows="5" v-model="outputErrTxt" disabled></textarea>
     </div>
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -74,8 +53,8 @@ export default {
 
       code: "",
       input: "",
-      outputTxt: "",
-      errTxt: "",
+      outputErrTxt: "",
+      runResultTxt: "まだ実行していません。",
 
       //スタイル
       codemirrorStyle: {
@@ -83,6 +62,11 @@ export default {
         height: "500px",
         "font-size": "14pt",
         overflow: scroll,
+      },
+      runResultStyle: {
+        width: "200px",
+        color: "#ffffff",
+        background: "#3486eb",
       },
     };
   },
@@ -147,8 +131,15 @@ export default {
             }
           } else {
             const responseData = await response.json();
-            this.outputTxt = responseData.program_output;
-            this.errTxt = responseData.compiler_message;
+            if (responseData.program_output != "") {
+              this.outputErrTxt = responseData.program_output;
+              this.runResultTxt = "実行成功";
+              this.runResultStyle.background = "#42cf1f";
+            } else if (responseData.compiler_message != "") {
+              this.outputErrTxt = responseData.compiler_message;
+              this.runResultTxt = "エラー";
+              this.runResultStyle.background = "#ed1111";
+            }
             console.log(responseData);
           }
         } catch (errMsg) {
