@@ -6,7 +6,7 @@
       入力がある場合は、「入力」テキストエリアに入力し、実行してください。
     </p>
     <div class="source">
-      <p>＜ソース＞</p>
+      <p>＜連結したプログラム＞</p>
       <codemirror
         v-model="code"
         :style="codemirrorStyle"
@@ -19,7 +19,7 @@
       <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
     </div>
     <div class="inputOutput">
-      <p>入力：</p>
+      <p>＜入力＞</p>
       <textarea cols="30" rows="5" v-model="input"> </textarea><br />
 
       <button @click="run">実行！</button>
