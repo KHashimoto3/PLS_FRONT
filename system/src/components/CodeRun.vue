@@ -25,8 +25,7 @@
         <p>＜入力＞</p>
         <textarea cols="40" rows="5" v-model="input"> </textarea><br />
 
-        <button @click="run">実行！</button>
-        <button @click="download">ダウンロード</button>
+        <button class="css-button-rounded--green" @click="run">実行！</button>
 
         <p>＜実行結果＞</p>
         <p :style="runResultStyle">{{ runResultTxt }}</p>
@@ -35,6 +34,9 @@
       <div class="buttonArea">
         <button class="css-button-rounded--sand" @click="backForm()">
           フォームに戻る
+        </button>
+        <button class="css-button-rounded--green" @click="download">
+          ダウンロード
         </button>
       </div>
     </div>
@@ -234,6 +236,30 @@ div.buttonArea {
   height: auto;
 }
 
+button.css-button-rounded--green {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #57cc99;
+  background: #57cc99;
+}
+button.css-button-rounded--green:hover {
+  background: #fff;
+  color: #57cc99;
+}
+button.css-button-rounded--green:disabled {
+  color: #fff;
+  border: 2px solid #a7cfbe;
+  background: #a7cfbe;
+}
 button.css-button-rounded--sand {
   min-width: 130px;
   height: 40px;
