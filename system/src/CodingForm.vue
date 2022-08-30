@@ -1,118 +1,131 @@
 <template>
-  <div class="codingArea">
-    <div class="codingLeft">
-      <div class="unitName">
-        <h1>{{ unitName }}</h1>
+  <div>
+    <div class="notificationArea" v-show="notificationIsShow">
+      <div class="notifiLeft">
+        <p>{{ notificationText }}</p>
       </div>
-      <p>＜スタイルアシスト＞</p>
-      <Toggle
-        v-model="sampleIsShow"
-        offLabel="非表示"
-        onLabel="表示"
-        class="sampleToggle"
-      />
-      <div class="assist">
-        <div class="assistInner">
-          <div class="assistText">
-            <h1>STEP{{ viewStepNo }}</h1>
-            <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
-            <p>{{ assistObj[viewStepNo - 1].body }}</p>
+      <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
+    </div>
+    <div class="codingArea">
+      <div class="codingLeft">
+        <div class="unitName">
+          <h1>{{ unitName }}</h1>
+        </div>
+        <p>＜スタイルアシスト＞</p>
+        <Toggle
+          v-model="sampleIsShow"
+          offLabel="非表示"
+          onLabel="表示"
+          class="sampleToggle"
+        />
+        <div class="assist">
+          <div class="assistInner">
+            <div class="assistText">
+              <h1>STEP{{ viewStepNo }}</h1>
+              <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
+              <p>{{ assistObj[viewStepNo - 1].body }}</p>
+            </div>
+            <div class="assistSample">
+              <div v-show="sampleIsShow">
+                <codemirror
+                  v-model="assistObj[viewStepNo - 1].sample"
+                  placeholder="Code goes here..."
+                  :style="{ height: 'auto', 'font-size': '14pt' }"
+                  :autofocus="false"
+                  :indent-with-tab="false"
+                  :tab-size="4"
+                  :extensions="extensions"
+                  :disabled="true"
+                />
+              </div>
+            </div>
+            <div class="assistSelect">
+              <button
+                class="css-button-rounded--sand"
+                @click="backStep()"
+                :disabled="backIsDisabled"
+              >
+                前へ
+              </button>
+              <button
+                class="css-button-rounded--green"
+                @click="nextStep()"
+                :disabled="nextIsDisabled"
+              >
+                次へ
+              </button>
+            </div>
           </div>
-          <div class="assistSample">
-            <div v-show="sampleIsShow">
+        </div>
+      </div>
+      <div class="codingRight">
+        <div class="question">
+          <h2>サンプル問題</h2>
+          <p>{{ questionDescription }}</p>
+        </div>
+        <div class="codingForm">
+          <div class="codingFormInner">
+            <p>＜ヘッダーコメント＞</p>
+            <codemirror
+              v-model="headerText"
+              placeholder="コメントを書く"
+              :style="{ height: 'auto', 'font-size': '16pt' }"
+              :autofocus="false"
+              :indent-with-tab="false"
+              :tab-size="4"
+              :extensions="extensions"
+              @focus="setNotice(0, 0)"
+            />
+            <p>＜コーディングフォーム＞</p>
+            <div v-for="i of OutMainCnt" :key="i">
               <codemirror
-                v-model="assistObj[viewStepNo - 1].sample"
-                placeholder="Code goes here..."
-                :style="{ height: 'auto', 'font-size': '14pt' }"
-                :autofocus="true"
+                v-model="outMainTextArray[i - 1]"
+                placeholder="コードを書く"
+                :style="{ height: 'auto', 'font-size': '16pt' }"
+                :autofocus="false"
                 :indent-with-tab="false"
                 :tab-size="4"
                 :extensions="extensions"
-                :disabled="true"
+                @focus="setNotice(0, i)"
               />
             </div>
-          </div>
-          <div class="assistSelect">
-            <button
-              class="css-button-rounded--sand"
-              @click="backStep()"
-              :disabled="backIsDisabled"
-            >
-              前へ
-            </button>
-            <button
-              class="css-button-rounded--green"
-              @click="nextStep()"
-              :disabled="nextIsDisabled"
-            >
-              次へ
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="codingRight">
-      <div class="question">
-        <h2>サンプル問題</h2>
-        <p>{{ questionDescription }}</p>
-      </div>
-      <div class="codingForm">
-        <div class="codingFormInner">
-          <p>＜ヘッダーコメント＞</p>
-          <codemirror
-            v-model="headerText"
-            placeholder="コメントを書く"
-            :style="{ height: 'auto', 'font-size': '16pt' }"
-            :autofocus="true"
-            :indent-with-tab="false"
-            :tab-size="4"
-            :extensions="extensions"
-          />
-          <p>＜コーディングフォーム＞</p>
-          <div v-for="i of OutMainCnt" :key="i">
-            <codemirror
-              v-model="outMainTextArray[i - 1]"
-              placeholder="コードを書く"
-              :style="{ height: 'auto', 'font-size': '16pt' }"
-              :autofocus="true"
-              :indent-with-tab="false"
-              :tab-size="4"
-              :extensions="extensions"
-            />
-          </div>
-          <pre v-show="mainIsShow">
+            <pre v-show="mainIsShow">
   int main(void){
-          </pre>
-          <div v-for="i of InMainCnt" :key="i">
-            <codemirror
-              v-model="inMainTextArray[i - 1]"
-              placeholder="コードを書く"
-              :style="{
-                width: '95%',
-                height: 'auto',
-                'font-size': '16pt',
-                margin: '0 auto',
-              }"
-              :autofocus="true"
-              :indent-with-tab="false"
-              :tab-size="4"
-              :extensions="extensions"
-            />
-          </div>
+          </pre
+            >
+            <div v-for="i of InMainCnt" :key="i">
+              <codemirror
+                v-model="inMainTextArray[i - 1]"
+                placeholder="コードを書く"
+                :style="{
+                  width: '95%',
+                  height: 'auto',
+                  'font-size': '16pt',
+                  margin: '0 auto',
+                }"
+                :autofocus="false"
+                :indent-with-tab="false"
+                :tab-size="4"
+                :extensions="extensions"
+                @focus="setNotice(1, i)"
+              />
+            </div>
 
-          <pre v-show="mainIsShow">
+            <pre v-show="mainIsShow">
     return 0;
   }
-          </pre>
+          </pre
+            >
+          </div>
+        </div>
+        <div class="codeRunButton">
+          <button class="css-button-rounded--green" @click="codeRun()">
+            連結して実行
+          </button>
         </div>
       </div>
-      <div class="codeRunButton">
-        <button class="css-button-rounded--green" @click="codeRun()">
-          連結して実行
-        </button>
-      </div>
+      <CodeRun ref="codeRunner" />
     </div>
-    <CodeRun ref="codeRunner" />
   </div>
 </template>
 
@@ -148,11 +161,15 @@ export default {
       backIsDisabled: true,
       nextIsDisabled: false,
       sampleIsShow: true,
+      notificationIsShow: false,
 
       //テキストエリアの文章
       headerText: "",
       outMainTextArray: [],
       inMainTextArray: [],
+
+      //通知バーのテキスト
+      notificationText: "",
 
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
@@ -166,6 +183,7 @@ export default {
           body: "プログラムの説明を書きます",
           sample:
             "/**\n * 問題1: 合計と平均を求めるプログラム\n * 日付: 2021/04/01\n * 学籍番号: 2121000\n * 作成者: 神奈川太郎\n */",
+          notice: "誰がいつどのようなプログラムを作ったのかを書いておきます。",
         },
         {
           id: 2,
@@ -173,6 +191,7 @@ export default {
           title: "プロトタイプ宣言",
           body: "プロトタイプの宣言を書きます",
           sample: "#include <stdio.h>\n#include <string.h>",
+          notice: "ーーーーー",
         },
         {
           id: 3,
@@ -180,6 +199,7 @@ export default {
           title: "main関数",
           body: "main関数を書きます",
           sample: "int main(void) {\n    //処理\n    return 0;\n}",
+          notice: "{の前はスペースを入れ、main関数の中はインデントをつけます。",
         },
         {
           id: 4,
@@ -188,14 +208,16 @@ export default {
           body: "変数や配列の宣言を書きます",
           sample:
             "int    numArray[3] = {10, 20, 30};\nint    sum  = 0;\ndouble ave;",
+          notice:
+            "変数の型と名前の位置は、タブを活用して揃えます。１行には１つの宣言が原則です。",
         },
         {
           id: 5,
           type: 1,
           title: "ループによる値の入力",
-          body:
-            "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
+          body: "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
           sample: 'scanf("%d%d%lf", &a, &b, &c);',
+          notice: "scanf内の,の後ろにはスペースを入れて読みやすくします。",
         },
         {
           id: 5,
@@ -203,14 +225,16 @@ export default {
           title: "ループによる値の処理",
           body: "ループを使って値を処理します。",
           sample: "for (i = 0; i < 5; i++) {\n    //繰り返す処理\n}",
+          notice:
+            "forの後ろ、演算子の前後、；の後ろ、{の前にはスペースを入れて読みやすくします。forの中はインデントします。",
         },
         {
           id: 6,
           type: 1,
           title: "値の出力",
-          body:
-            "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
+          body: "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
           sample: 'printf("合計：%d¥n", sum);',
+          notice: "scanf内の,の後ろにはスペースを入れて読みやすくします。",
         },
       ],
     };
@@ -302,11 +326,91 @@ export default {
       }
       return connectedTxt;
     },
+
+    //各テキストエリアにフォーカスした時の通知
+    notice: function () {
+      this.notificationText = "ここに通知が入ります。";
+      this.notificationIsShow = true;
+    },
+    closeNotice: function () {
+      this.notificationText = "";
+      this.notificationIsShow = false;
+    },
+    setNotice: function (type, id) {
+      //ヘッダーコメント
+      if (type == 0 && this.mainIsShow == false && id == 0) {
+        this.notificationText = this.assistObj[id].notice;
+        this.notificationIsShow = true;
+        return;
+      }
+      //main関数
+      if (type == 0 && this.mainIsShow == false && id == 2) {
+        let place = 0;
+        this.assistObj.forEach((element) => {
+          if (element.type == -1) {
+            console.log("場所：" + place);
+            this.notificationText = this.assistObj[place - 1].notice;
+            this.notificationIsShow = true;
+            return;
+          }
+          place++;
+        });
+      }
+      if (type == 0) {
+        this.notificationText = this.assistObj[id].notice;
+        this.notificationIsShow = true;
+        return;
+      }
+
+      let startPlace = 0;
+      this.assistObj.forEach((element) => {
+        if (element.type == -1) {
+          this.notificationText = this.assistObj[startPlace + id - 1].notice;
+          this.notificationIsShow = true;
+          return;
+        }
+        startPlace++;
+      });
+    },
   },
 };
 </script>
 
 <style>
+/*アテンションのスタイル*/
+div.notificationArea {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  left: 0;
+  top: 9;
+  background: #75a51c;
+  z-index: 9999;
+  margin: 0;
+  color: #ffffff;
+}
+div.notifiLeft {
+  text-align: center;
+  display: table;
+  width: 90%;
+  height: 100%;
+  float: left;
+}
+div.notifiRight {
+  text-align: center;
+  display: table;
+  width: 10%;
+  height: 100%;
+  margin-left: 90%;
+  background: #3f76ec;
+  cursor: pointer;
+}
+div.notifiRight p,
+div.notifiLeft p {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 div.codingArea {
   width: 100%;
   height: 700px;
