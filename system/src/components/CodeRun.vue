@@ -1,40 +1,44 @@
 <template>
   <div class="runArea" v-show="thisIsShow">
-    <h1>ソースコードの実行</h1>
-    <p>
-      完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
-      入力がある場合は、「入力」テキストエリアに入力し、実行してください。
-    </p>
-    <div class="source">
-      <p>＜ソース＞</p>
-      <codemirror
-        v-model="code"
-        :style="codemirrorStyle"
-        :autofocus="false"
-        :indent-with-tab="true"
-        :tab-size="4"
-        :extensions="extensions"
-        :disabled="true"
-      />
-      <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
+    <div class="runAreaLeft">
+      <h1>ソースコードの実行</h1>
+      <p>
+        完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
+        入力がある場合は、「入力」テキストエリアに入力し、実行してください。
+      </p>
+      <div class="source">
+        <p>＜連結したプログラム＞</p>
+        <codemirror
+          v-model="code"
+          :style="codemirrorStyle"
+          :autofocus="false"
+          :indent-with-tab="true"
+          :tab-size="4"
+          :extensions="extensions"
+          :disabled="true"
+        />
+        <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
+      </div>
     </div>
-    <div class="inputOutput">
-      <p>入力：</p>
-      <textarea cols="30" rows="5" v-model="input"> </textarea><br />
+    <div class="runAreaRight">
+      <div class="inputOutput">
+        <p>＜入力＞</p>
+        <textarea cols="40" rows="5" v-model="input"> </textarea><br />
 
-      <button @click="run">実行！</button>
-      <button @click="download">ダウンロード</button>
-      <p>＜実行結果＞</p>
-      <p>
-        出力：<br />
-        <textarea cols="30" rows="5" v-model="outputTxt" disabled></textarea
-        ><br />
-      </p>
+        <button class="css-button-rounded--green" @click="run">実行！</button>
 
-      <p>
-        エラー：<br />
-        <textarea cols="55" rows="8" v-model="errTxt" disabled></textarea><br />
-      </p>
+        <p>＜実行結果＞</p>
+        <p :style="runResultStyle">{{ runResultTxt }}</p>
+        <textarea cols="40" rows="5" v-model="outputErrTxt" disabled></textarea>
+      </div>
+      <div class="buttonArea">
+        <button class="css-button-rounded--sand" @click="backForm()">
+          フォームに戻る
+        </button>
+        <button class="css-button-rounded--green" @click="download">
+          ダウンロード
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -60,8 +64,8 @@ export default {
 
       code: "",
       input: "",
-      outputTxt: "",
-      errTxt: "",
+      outputErrTxt: "",
+      runResultTxt: "まだ実行していません。",
 
       //スタイル
       codemirrorStyle: {
@@ -69,6 +73,11 @@ export default {
         height: "500px",
         "font-size": "14pt",
         overflow: scroll,
+      },
+      runResultStyle: {
+        width: "200px",
+        color: "#ffffff",
+        background: "#3486eb",
       },
     };
   },
@@ -81,6 +90,7 @@ export default {
     },
     */
     insertCode: function (code) {
+      this.code = "";
       this.code = code;
       this.thisIsShow = true;
     },
@@ -133,8 +143,15 @@ export default {
             }
           } else {
             const responseData = await response.json();
-            this.outputTxt = responseData.program_output;
-            this.errTxt = responseData.compiler_message;
+            if (responseData.program_output != "") {
+              this.outputErrTxt = responseData.program_output;
+              this.runResultTxt = "実行成功";
+              this.runResultStyle.background = "#42cf1f";
+            } else if (responseData.compiler_message != "") {
+              this.outputErrTxt = responseData.compiler_message;
+              this.runResultTxt = "エラー";
+              this.runResultStyle.background = "#ed1111";
+            }
             console.log(responseData);
           }
         } catch (errMsg) {
@@ -173,6 +190,14 @@ export default {
         URL.revokeObjectURL(url);
       }
     },*/
+    backForm: function () {
+      //コードと実行結果をリセットする
+      this.thisIsShow = false;
+      this.input = "";
+      this.outputErrTxt = "";
+      this.runResultTxt = "まだ実行していません。";
+      this.runResultStyle.background = "#3486eb";
+    },
   },
 };
 </script>
@@ -180,21 +205,83 @@ export default {
 <style>
 div.runArea {
   width: 100%;
-  height: auto;
+  height: 1000px;
   top: 0;
   left: 0;
   position: fixed;
   background: #ffffff;
   padding: 30px;
 }
-div.source {
+div.runAreaLeft {
   width: 50%;
   height: auto;
   float: left;
 }
-div.inputOutput {
+div.source {
+  width: 90%;
+  height: auto;
+}
+div.runAreaRight {
   width: 50%;
   height: auto;
   margin-left: 50%;
+}
+div.inputOutput {
+  width: 90%;
+  height: auto;
+  margin-top: 100px;
+}
+div.buttonArea {
+  width: 90%;
+  height: auto;
+}
+
+button.css-button-rounded--green {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #57cc99;
+  background: #57cc99;
+}
+button.css-button-rounded--green:hover {
+  background: #fff;
+  color: #57cc99;
+}
+button.css-button-rounded--green:disabled {
+  color: #fff;
+  border: 2px solid #a7cfbe;
+  background: #a7cfbe;
+}
+button.css-button-rounded--sand {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #adb5bd;
+  background: #adb5bd;
+}
+button.css-button-rounded--sand:hover {
+  background: #fff;
+  color: #adb5bd;
+}
+button.css-button-rounded--sand:disabled {
+  color: #fff;
+  border: 2px solid #d6d6d6;
+  background: #d6d6d6;
 }
 </style>
