@@ -88,6 +88,7 @@ export default {
     },
     */
     insertCode: function (code) {
+      this.code = "";
       this.code = code;
       this.thisIsShow = true;
     },
@@ -188,7 +189,12 @@ export default {
       }
     },*/
     backForm: function () {
+      //コードと実行結果をリセットする
       this.thisIsShow = false;
+      this.input = "";
+      this.outputErrTxt = "";
+      this.runResultTxt = "まだ実行していません。";
+      this.runResultStyle.background = "#3486eb";
     },
   },
 };
