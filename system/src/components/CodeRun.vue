@@ -32,7 +32,11 @@
         <p :style="runResultStyle">{{ runResultTxt }}</p>
         <textarea cols="40" rows="5" v-model="outputErrTxt" disabled></textarea>
       </div>
-      <div class="buttonArea"></div>
+      <div class="buttonArea">
+        <button class="css-button-rounded--sand" @click="backForm()">
+          フォームに戻る
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -183,6 +187,9 @@ export default {
         URL.revokeObjectURL(url);
       }
     },*/
+    backForm: function () {
+      this.thisIsShow = false;
+    },
   },
 };
 </script>
@@ -219,5 +226,30 @@ div.inputOutput {
 div.buttonArea {
   width: 90%;
   height: auto;
+}
+
+button.css-button-rounded--sand {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #adb5bd;
+  background: #adb5bd;
+}
+button.css-button-rounded--sand:hover {
+  background: #fff;
+  color: #adb5bd;
+}
+button.css-button-rounded--sand:disabled {
+  color: #fff;
+  border: 2px solid #d6d6d6;
+  background: #d6d6d6;
 }
 </style>
