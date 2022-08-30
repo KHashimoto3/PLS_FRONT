@@ -1,33 +1,38 @@
 <template>
   <div class="runArea" v-show="thisIsShow">
-    <h1>ソースコードの実行</h1>
-    <p>
-      完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
-      入力がある場合は、「入力」テキストエリアに入力し、実行してください。
-    </p>
-    <div class="source">
-      <p>＜連結したプログラム＞</p>
-      <codemirror
-        v-model="code"
-        :style="codemirrorStyle"
-        :autofocus="false"
-        :indent-with-tab="true"
-        :tab-size="4"
-        :extensions="extensions"
-        :disabled="true"
-      />
-      <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
+    <div class="runAreaLeft">
+      <h1>ソースコードの実行</h1>
+      <p>
+        完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
+        入力がある場合は、「入力」テキストエリアに入力し、実行してください。
+      </p>
+      <div class="source">
+        <p>＜連結したプログラム＞</p>
+        <codemirror
+          v-model="code"
+          :style="codemirrorStyle"
+          :autofocus="false"
+          :indent-with-tab="true"
+          :tab-size="4"
+          :extensions="extensions"
+          :disabled="true"
+        />
+        <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
+      </div>
     </div>
-    <div class="inputOutput">
-      <p>＜入力＞</p>
-      <textarea cols="30" rows="5" v-model="input"> </textarea><br />
+    <div class="runAreaRight">
+      <div class="inputOutput">
+        <p>＜入力＞</p>
+        <textarea cols="40" rows="5" v-model="input"> </textarea><br />
 
-      <button @click="run">実行！</button>
-      <button @click="download">ダウンロード</button>
+        <button @click="run">実行！</button>
+        <button @click="download">ダウンロード</button>
 
-      <p>＜実行結果＞</p>
-      <p :style="runResultStyle">{{ runResultTxt }}</p>
-      <textarea cols="30" rows="5" v-model="outputErrTxt" disabled></textarea>
+        <p>＜実行結果＞</p>
+        <p :style="runResultStyle">{{ runResultTxt }}</p>
+        <textarea cols="40" rows="5" v-model="outputErrTxt" disabled></textarea>
+      </div>
+      <div class="buttonArea"></div>
     </div>
   </div>
 </template>
@@ -185,21 +190,34 @@ export default {
 <style>
 div.runArea {
   width: 100%;
-  height: auto;
+  height: 1000px;
   top: 0;
   left: 0;
   position: fixed;
   background: #ffffff;
   padding: 30px;
 }
-div.source {
+div.runAreaLeft {
   width: 50%;
   height: auto;
   float: left;
 }
-div.inputOutput {
+div.source {
+  width: 90%;
+  height: auto;
+}
+div.runAreaRight {
   width: 50%;
   height: auto;
   margin-left: 50%;
+}
+div.inputOutput {
+  width: 90%;
+  height: auto;
+  margin-top: 100px;
+}
+div.buttonArea {
+  width: 90%;
+  height: auto;
 }
 </style>
