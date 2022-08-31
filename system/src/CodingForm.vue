@@ -153,7 +153,8 @@ export default {
   data() {
     return {
       unitName: "繰り返し",
-      questionDescription: "問題文が入ります。",
+      questionDescription:
+        "整数値nが入力されます。1から入力値nまで順番に積を求め（1*2*3*…*n）、さらにその平均値を求めて出力してください。",
       viewStepNo: 1,
       nowStepNo: 1,
       OutMainCnt: 0, //main関数外のtextareaの数
