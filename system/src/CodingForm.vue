@@ -75,6 +75,7 @@
               :tab-size="4"
               :extensions="extensions"
               @focus="setNotice(0, 0)"
+              @blur="closeNotice()"
             />
             <p>＜コーディングフォーム＞</p>
             <div v-for="i of OutMainCnt" :key="i">
@@ -87,6 +88,7 @@
                 :tab-size="4"
                 :extensions="extensions"
                 @focus="setNotice(0, i)"
+                @blur="closeNotice()"
               />
             </div>
             <pre v-show="mainIsShow">
@@ -108,6 +110,7 @@
                 :tab-size="4"
                 :extensions="extensions"
                 @focus="setNotice(1, i)"
+                @blur="closeNotice()"
               />
             </div>
 
