@@ -2,7 +2,7 @@
   <div>
     <h1>コーディングスタイル学習システム</h1>
     <h2>単元を選ぶ</h2>
-    <a href="codingform.html">繰り返し</a>
+    <a href="codingform.html" target="_blank">繰り返し</a>
   </div>
 </template>
 
