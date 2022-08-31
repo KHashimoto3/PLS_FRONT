@@ -127,8 +127,8 @@
           </button>
         </div>
       </div>
-      <CodeRun ref="codeRunner" />
     </div>
+    <CodeRun ref="codeRunner" />
   </div>
 </template>
 
@@ -384,9 +384,9 @@ export default {
 div.notificationArea {
   width: 100%;
   height: 50px;
-  position: fixed;
+  /*position: fixed;
   left: 0;
-  top: 9;
+  top: 9;*/
   background: #75a51c;
   z-index: 9999;
   margin: 0;
