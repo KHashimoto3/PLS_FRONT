@@ -1,4 +1,9 @@
-# system
+# ファイル構成
+srcフォルダ内に、vueのコンポーネントを格納
+App.vue：システムのトップページ
+CodingForm.vue：実際にコーディングを行う「コーディングフォーム」
+
+# 使用方法
 
 ## Project setup
 ```
