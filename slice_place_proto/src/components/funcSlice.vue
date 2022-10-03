@@ -1,6 +1,14 @@
 <template>
   <div class="funcSliceArea">
-    {{ text }}
+    関数
+    <div class="codeArea">
+      <pre>
+                int compare(int a, int b) {
+                    //処理
+                }
+        </pre
+      >
+    </div>
   </div>
 </template>
 
@@ -8,9 +16,13 @@
 export default {
   name: "funcSlice",
   data() {
-    return {
-      text: "hello!!!!",
-    };
+    return {};
   },
 };
 </script>
+
+<style>
+pre {
+  font-size: 18pt;
+}
+</style>
