@@ -1,9 +1,9 @@
 <template>
   <div class="funcSliceArea">
-    関数
+    <h1>関数</h1>
     <div class="codeArea">
       <pre>
-                <input type="text"> compare(int a, int b) {
+                <input type="text" size="10"> <input type="text" size="15">(<input type="text" size="10">, <input type="text" size="10">) {
                     //処理
                 }
         </pre>
