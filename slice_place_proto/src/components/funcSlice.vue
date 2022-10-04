@@ -3,11 +3,10 @@
     関数
     <div class="codeArea">
       <pre>
-                int compare(int a, int b) {
+                <input type="text"> compare(int a, int b) {
                     //処理
                 }
-        </pre
-      >
+        </pre>
     </div>
   </div>
 </template>
@@ -23,6 +22,9 @@ export default {
 
 <style>
 pre {
+  font-size: 18pt;
+}
+input {
   font-size: 18pt;
 }
 </style>
