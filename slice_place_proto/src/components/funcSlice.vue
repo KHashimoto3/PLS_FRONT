@@ -3,7 +3,7 @@
     <h1>関数</h1>
     <div class="codeArea">
       <pre>
-                <input type="text" size="10" @focus="showHint1" @blur="closeHint1"><div class="drag-and-drop" :style="hintStyleObj.hint1">{{hintObj.hint1}}</div> <input type="text" size="15">(<input type="text" size="10" v-show="argIsUsed" @focus="showHint3" @blur="closeHint3"><div class="addArgTextArea" v-for="i of addArgCnt" :key="i">,<input type="text" size="10" @focus="showHint3" @blur="closeHint3"></div><div class="drag-and-drop" :style="hintStyleObj.hint3">{{hintObj.hint3}}</div>) {
+                <input type="text" size="10" @focus="showHint1" @blur="closeHint1"><div class="drag-and-drop" :style="hintStyleObj.hint1">{{hintObj.hint1}}</div> <input type="text" size="15" @focus="showHint2" @blur="closeHint2"><div class="drag-and-drop" :style="hintStyleObj.hint2">{{hintObj.hint2}}</div>(<input type="text" size="10" v-show="argIsUsed" @focus="showHint3" @blur="closeHint3"><div class="addArgTextArea" v-for="i of addArgCnt" :key="i">,<input type="text" size="10" @focus="showHint3" @blur="closeHint3"></div><div class="drag-and-drop" :style="hintStyleObj.hint3">{{hintObj.hint3}}</div>) {
                     //処理
                 }
         </pre>
@@ -16,6 +16,7 @@ export default {
   name: "funcSlice",
   data() {
     return {
+      //コーディングフォームから、引数の有無や引数の数（追加数）が渡される
       addArgCnt: 2,
       argIsUsed: true,
       hintObj: {
