@@ -154,8 +154,8 @@ export default {
     return {
       unitName: "繰り返し",
       questionDescription: "問題文が入ります。",
-      viewStepNo: 1,
-      nowStepNo: 1,
+      viewStepNo: 1, //表示中のステップ
+      nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
       InMainCnt: 0, //main関数内のtextareaの数
 
@@ -191,8 +191,8 @@ export default {
         {
           id: 2,
           type: 0,
-          title: "プロトタイプ宣言",
-          body: "プロトタイプの宣言を書きます",
+          title: "ヘッダファイルの読み込み、マクロ定義",
+          body: "プログラムで使用する標準関数を読み込みます。また、プログラム内で頻繁に使用する値を定数として設定します。",
           sample: "#include <stdio.h>\n#include <string.h>",
           notice: "ーーーーー",
         },
