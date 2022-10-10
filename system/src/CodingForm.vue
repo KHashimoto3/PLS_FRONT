@@ -154,8 +154,8 @@ export default {
     return {
       unitName: "繰り返し",
       questionDescription: "問題文が入ります。",
-      viewStepNo: 1,
-      nowStepNo: 1,
+      viewStepNo: 1, //表示中のステップ
+      nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
       InMainCnt: 0, //main関数内のtextareaの数
 
