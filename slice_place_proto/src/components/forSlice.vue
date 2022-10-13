@@ -3,7 +3,8 @@
     <h1>繰り返し（for）</h1>
     <div class="codeArea">
       <pre>
-                <input type="text" size="10" @focus="showHint1" @blur="closeHint1"><div class="drag-and-drop" :style="hintStyleObj.hint1">{{hintObj.hint1}}</div> <input type="text" size="15" @focus="showHint2" @blur="closeHint2"><div class="drag-and-drop" :style="hintStyleObj.hint2">{{hintObj.hint2}}</div>(<input type="text" size="10" v-show="argIsUsed" @focus="showHint3" @blur="closeHint3"><div class="addArgTextArea" v-for="i of addArgCnt" :key="i">,<input type="text" size="10" @focus="showHint3" @blur="closeHint3"></div><div class="drag-and-drop" :style="hintStyleObj.hint3">{{hintObj.hint3}}</div>) {
+                <input type="text" size="10" @focus="showHint1" @blur="closeHint1"><div class="drag-and-drop" :style="hintStyleObj.hint1">{{hintObj.hint1}}</div>;
+                for (<input type="text" size="10" @focus="showHint2" @blur="closeHint2"><div class="drag-and-drop" :style="hintStyleObj.hint2">{{hintObj.hint2}}</div>; <input type="text" size="10" @focus="showHint3" @blur="closeHint3"><div class="drag-and-drop" :style="hintStyleObj.hint3">{{hintObj.hint3}}</div>; <input type="text" size="10" @focus="showHint4" @blur="closeHint4"><div class="drag-and-drop" :style="hintStyleObj.hint4">{{hintObj.hint4}}</div>) {
                     //処理を書く
                 }
         </pre>
@@ -13,16 +14,19 @@
 
 <script>
 export default {
-  name: "funcSlice",
+  name: "forSlice",
   data() {
     return {
       //コーディングフォームから、引数の有無や引数の数（追加数）が渡される
       addArgCnt: 2,
       argIsUsed: true,
       hintObj: {
-        hint1: "変数の型",
-        hint2: "関数名",
-        hint3: "関数の引数",
+        hint1:
+          "添字の宣言：繰り返すうちの何番目かを表す「添字」用として変数を宣言",
+        hint2:
+          "添字の初期化：繰り返すうちの何番目なのかを表す添字変数を、初期状態にする",
+        hint3: "繰り返す条件（条件式）",
+        hint4: "添字の更新（インクリメント）",
       },
 
       hintStyleObj: {
@@ -56,6 +60,16 @@ export default {
           margin: "-0.8em 0.5em 0 1em",
           display: "none",
         },
+        hint4: {
+          position: "absolute",
+          background: "#6cb913d3",
+          color: "white",
+          "font-size": "0.8em",
+          "border-radius": "0.5em",
+          padding: "10px",
+          margin: "-0.8em 0.5em 0 1em",
+          display: "none",
+        },
       },
     };
   },
@@ -77,6 +91,12 @@ export default {
     },
     closeHint3: function () {
       this.hintStyleObj.hint3.display = "none";
+    },
+    showHint4: function () {
+      this.hintStyleObj.hint4.display = "inline-block";
+    },
+    closeHint4: function () {
+      this.hintStyleObj.hint4.display = "none";
     },
   },
 };
