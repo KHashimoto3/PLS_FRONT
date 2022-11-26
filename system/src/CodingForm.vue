@@ -393,7 +393,8 @@ div.notificationArea {
   position: fixed;
   left: 0;
   top: 9;
-  background: #75a51c;
+  /*background: #75a51c;*/
+  background: #ff8d0a;
   z-index: 9999;
   margin: 0;
   color: #ffffff;
