@@ -14,8 +14,8 @@
         <p>＜スタイルアシスト＞</p>
         <Toggle
           v-model="sampleIsShow"
-          offLabel="非表示"
-          onLabel="表示"
+          offLabel="ヒント非表示"
+          onLabel="ヒント表示"
           class="sampleToggle"
         />
         <div class="assist">
@@ -579,7 +579,7 @@ img.styleSample {
 }
 
 .sampleToggle {
-  --toggle-width: 4rem;
+  --toggle-width: 6rem;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
