@@ -203,6 +203,9 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: sans-serif;
+}
 div.runArea {
   width: 100%;
   height: 1000px;
