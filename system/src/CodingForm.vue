@@ -2,7 +2,7 @@
   <div>
     <div class="notificationArea" v-show="notificationIsShow">
       <div class="notifiLeft">
-        <p>{{ notificationText }}</p>
+        <p class="notificationText">{{ notificationText }}</p>
       </div>
       <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
     </div>
@@ -380,6 +380,12 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: sans-serif;
+}
+p.notificationText {
+  font-size: 20pt;
+}
 /*アテンションのスタイル*/
 div.notificationArea {
   width: 100%;
