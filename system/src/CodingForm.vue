@@ -25,8 +25,15 @@
               <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
               <p>{{ assistObj[viewStepNo - 1].body }}</p>
             </div>
+            <!--サンプルエリア-->
             <div class="assistSample">
               <div v-show="sampleIsShow">
+                <div class="assistSampleExplan">
+                  <h2>＜コード例＞</h2>
+                  <p>
+                    例えば、・・・・・の処理をする場合は以下のようなります。
+                  </p>
+                </div>
                 <codemirror
                   v-model="assistObj[viewStepNo - 1].sample"
                   placeholder="Code goes here..."
@@ -452,11 +459,16 @@ div.assistInner {
 }
 div.assistText {
   width: 100%;
-  height: 60%;
+  height: 40%;
+}
+div.assistSampleExplan {
+  width: 80%;
+  height: auto;
+  background: #d2ffde;
 }
 div.assistSample {
   width: 100%;
-  height: 30%;
+  height: 60%;
 }
 div.assistSelect {
   text-align: center;
