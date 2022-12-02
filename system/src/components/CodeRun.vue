@@ -2,7 +2,18 @@
   <div>
     <div class="downloadModalArea" v-show="downloadModalIsShow">
       <div class="downloadModal">
-        <div class="downloadModalInner">モーダル内</div>
+        <div class="downloadModalInner">
+          <h1>プログラムのダウンロード</h1>
+          問題番号：<input type="text" /><br />
+          学籍番号：<input type="text" /><br />
+          <button
+            class="css-button-rounded--sand"
+            @click="closeDownloadModal()"
+          >
+            戻る
+          </button>
+          <button class="css-button-rounded--green">ダウンロード</button>
+        </div>
       </div>
     </div>
     <div class="runArea" v-show="thisIsShow">
@@ -169,6 +180,9 @@ export default {
     },
     openDownloadModal: function () {
       this.downloadModalIsShow = true;
+    },
+    closeDownloadModal: function () {
+      this.downloadModalIsShow = false;
     },
     //cファイルを作成してダウンロードする関数
     /*download: async function () {
