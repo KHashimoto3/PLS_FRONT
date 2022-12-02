@@ -211,7 +211,7 @@ export default {
           id: 3,
           type: 0,
           title: "main関数",
-          body: "main関数を書きます",
+          body: "main関数を書きます。ここで書く中の処理は、return 0; のみで構いません。",
           sampleExp: "基本のmain関数（処理なし）",
           sample: "int main(void) {\n    //処理\n    return 0;\n}",
           notice: "{の前はスペースを入れ、main関数の中はインデントをつけます。",
