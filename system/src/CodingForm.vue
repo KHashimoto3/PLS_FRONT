@@ -399,6 +399,9 @@ export default {
 body {
   font-family: sans-serif;
 }
+p {
+  font-size: 16pt;
+}
 p.notificationText {
   font-size: 20pt;
 }
