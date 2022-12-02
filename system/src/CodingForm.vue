@@ -11,7 +11,6 @@
         <div class="unitName">
           <h1>{{ unitName }}</h1>
         </div>
-        <p>＜スタイルアシスト＞</p>
         <Toggle
           v-model="sampleIsShow"
           offLabel="ヒント非表示"
@@ -160,7 +159,8 @@ export default {
   data() {
     return {
       unitName: "繰り返し",
-      questionDescription: "問題文が入ります。",
+      questionDescription:
+        "整数値nが入力されます。1から入力値nまで順番に積を求め（1*2*3*…*n）、さらにその平均値を求めて出力してください。",
       viewStepNo: 1, //表示中のステップ
       nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
@@ -204,7 +204,8 @@ export default {
           sampleExp:
             "標準関数（printfやscanf）と、文字列を操作する関数（strcpyやstrcmp）を使用するとき",
           sample: "#include <stdio.h>\n#include <string.h>",
-          notice: "ーーーーー",
+          notice:
+            "最初はstdio.hを読み込み、必要に応じてヘッダファイルを追加で読み込ませます。",
         },
         {
           id: 3,
