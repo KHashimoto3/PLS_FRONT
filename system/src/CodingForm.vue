@@ -304,14 +304,12 @@ export default {
     //コードの実行
     codeRun: function () {
       if (this.mainIsShow == false) {
-        alert("実行するには、main関数を定義する必要があります。");
+        alert("連結と実行するには、main関数を定義する必要があります。");
         return;
       }
-
       let code = "";
-      code = code + this.headerText + "\n";
       const connectedOutMain = this.connectOutMain();
-      code += connectedOutMain;
+      code = code + this.headerText + "\n" + connectedOutMain;
       code += "int main(void) {\n";
       const connectedInMain = this.connectInMain();
       code += connectedInMain;
