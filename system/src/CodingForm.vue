@@ -2,7 +2,7 @@
   <div>
     <div class="notificationArea" v-show="notificationIsShow">
       <div class="notifiLeft">
-        <p>{{ notificationText }}</p>
+        <p class="notificationText">{{ notificationText }}</p>
       </div>
       <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
     </div>
@@ -11,11 +11,10 @@
         <div class="unitName">
           <h1>{{ unitName }}</h1>
         </div>
-        <p>＜スタイルアシスト＞</p>
         <Toggle
           v-model="sampleIsShow"
-          offLabel="非表示"
-          onLabel="表示"
+          offLabel="ヒント非表示"
+          onLabel="ヒント表示"
           class="sampleToggle"
         />
         <div class="assist">
@@ -25,8 +24,15 @@
               <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
               <p>{{ assistObj[viewStepNo - 1].body }}</p>
             </div>
+            <!--サンプルエリア-->
             <div class="assistSample">
               <div v-show="sampleIsShow">
+                <div class="assistSampleExplan">
+                  <h2>＜サンプルコード＞</h2>
+                  <p>
+                    {{ assistObj[viewStepNo - 1].sampleExp }}
+                  </p>
+                </div>
                 <codemirror
                   v-model="assistObj[viewStepNo - 1].sample"
                   placeholder="Code goes here..."
@@ -153,7 +159,8 @@ export default {
   data() {
     return {
       unitName: "繰り返し",
-      questionDescription: "問題文が入ります。",
+      questionDescription:
+        "整数値nが入力されます。1から入力値nまで順番に積を求め（1*2*3*…*n）、さらにその平均値を求めて出力してください。",
       viewStepNo: 1, //表示中のステップ
       nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
@@ -184,6 +191,7 @@ export default {
           type: 0,
           title: "ヘッダーコメントの記述",
           body: "プログラムの説明を書きます",
+          sampleExp: "とある問題を解くときのコードの説明",
           sample:
             "/**\n * 問題1: 合計と平均を求めるプログラム\n * 日付: 2021/04/01\n * 学籍番号: 2121000\n * 作成者: 神奈川太郎\n */",
           notice: "誰がいつどのようなプログラムを作ったのかを書いておきます。",
@@ -193,14 +201,18 @@ export default {
           type: 0,
           title: "ヘッダファイルの読み込み、マクロ定義",
           body: "プログラムで使用する標準関数を読み込みます。また、プログラム内で頻繁に使用する値を定数として設定します。",
+          sampleExp:
+            "標準関数（printfやscanf）と、文字列を操作する関数（strcpyやstrcmp）を使用するとき",
           sample: "#include <stdio.h>\n#include <string.h>",
-          notice: "ーーーーー",
+          notice:
+            "最初はstdio.hを読み込み、必要に応じてヘッダファイルを追加で読み込ませます。",
         },
         {
           id: 3,
           type: 0,
           title: "main関数",
-          body: "main関数を書きます",
+          body: "main関数を書きます。ここで書く中の処理は、return 0; のみで構いません。",
+          sampleExp: "基本のmain関数（処理なし）",
           sample: "int main(void) {\n    //処理\n    return 0;\n}",
           notice: "{の前はスペースを入れ、main関数の中はインデントをつけます。",
         },
@@ -209,6 +221,7 @@ export default {
           type: -1,
           title: "変数・配列の宣言",
           body: "変数や配列の宣言を書きます",
+          sampleExp: "配列と0で初期化された変数sum、変数aveを宣言するとき",
           sample:
             "int    numArray[3] = {10, 20, 30};\nint    sum  = 0;\ndouble ave;",
           notice:
@@ -219,6 +232,7 @@ export default {
           type: 1,
           title: "ループによる値の入力",
           body: "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
+          sampleExp: "すでに宣言された3つの変数へ入力を行うとき",
           sample: 'scanf("%d%d%lf", &a, &b, &c);',
           notice: "scanf内の,の後ろにはスペースを入れて読みやすくします。",
         },
@@ -227,6 +241,7 @@ export default {
           type: 1,
           title: "ループによる値の処理",
           body: "ループを使って値を処理します。",
+          sampleExp: "5回繰り返すように制御するとき",
           sample: "for (i = 0; i < 5; i++) {\n    //繰り返す処理\n}",
           notice:
             "forの後ろ、演算子の前後、；の後ろ、{の前にはスペースを入れて読みやすくします。forの中はインデントします。",
@@ -236,6 +251,7 @@ export default {
           type: 1,
           title: "値の出力",
           body: "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
+          sampleExp: "2つの変数の値を用いて出力するとき",
           sample: 'printf("合計：%d¥n", sum);',
           notice: "scanf内の,の後ろにはスペースを入れて読みやすくします。",
         },
@@ -380,6 +396,15 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: sans-serif;
+}
+p {
+  font-size: 16pt;
+}
+p.notificationText {
+  font-size: 20pt;
+}
 /*アテンションのスタイル*/
 div.notificationArea {
   width: 100%;
@@ -387,7 +412,8 @@ div.notificationArea {
   position: fixed;
   left: 0;
   top: 9;
-  background: #75a51c;
+  /*background: #75a51c;*/
+  background: #ff8d0a;
   z-index: 9999;
   margin: 0;
   color: #ffffff;
@@ -445,11 +471,16 @@ div.assistInner {
 }
 div.assistText {
   width: 100%;
-  height: 60%;
+  height: 40%;
+}
+div.assistSampleExplan {
+  width: 100%;
+  height: auto;
+  background: #d2ffde;
 }
 div.assistSample {
   width: 100%;
-  height: 30%;
+  height: 60%;
 }
 div.assistSelect {
   text-align: center;
@@ -572,7 +603,7 @@ img.styleSample {
 }
 
 .sampleToggle {
-  --toggle-width: 4rem;
+  --toggle-width: 6rem;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>

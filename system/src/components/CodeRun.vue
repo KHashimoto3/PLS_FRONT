@@ -1,9 +1,9 @@
 <template>
   <div class="runArea" v-show="thisIsShow">
     <div class="runAreaLeft">
-      <h1>ソースコードの実行</h1>
+      <h1>プログラムの実行</h1>
       <p>
-        完成したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
+        連結したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
         入力がある場合は、「入力」テキストエリアに入力し、実行してください。
       </p>
       <div class="source">
@@ -203,6 +203,9 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: sans-serif;
+}
 div.runArea {
   width: 100%;
   height: 1000px;
