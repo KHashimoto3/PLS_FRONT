@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="downloadModalArea" v-show="downloadModalIsShow">
-      モーダルが入ります。
+      <div class="downloadModal">
+        <div class="downloadModalInner">モーダル内</div>
+      </div>
     </div>
     <div class="runArea" v-show="thisIsShow">
       <div class="runAreaLeft">
@@ -224,6 +226,19 @@ div.downloadModalArea {
   margin: 0;
   background: #868686;
   z-index: 999;
+}
+div.downloadModal {
+  width: 600px;
+  height: 500px;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+}
+div.downloadModalInner {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
 }
 div.runArea {
   width: 100%;
