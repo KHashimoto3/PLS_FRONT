@@ -1,42 +1,55 @@
 <template>
-  <div class="runArea" v-show="thisIsShow">
-    <div class="runAreaLeft">
-      <h1>プログラムの実行</h1>
-      <p>
-        連結したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
-        入力がある場合は、「入力」テキストエリアに入力し、実行してください。
-      </p>
-      <div class="source">
-        <p>＜連結したプログラム＞</p>
-        <codemirror
-          v-model="code"
-          :style="codemirrorStyle"
-          :autofocus="false"
-          :indent-with-tab="true"
-          :tab-size="4"
-          :extensions="extensions"
-          :disabled="true"
-        />
-      </div>
+  <div>
+    <div class="downloadModalArea" v-show="downloadModalIsShow">
+      モーダルが入ります。
     </div>
-    <div class="runAreaRight">
-      <div class="inputOutput">
-        <p>＜入力＞</p>
-        <textarea cols="40" rows="5" v-model="input"> </textarea><br />
-
-        <button class="css-button-rounded--green" @click="run">実行！</button>
-
-        <p>＜実行結果＞</p>
-        <p :style="runResultStyle">{{ runResultTxt }}</p>
-        <textarea cols="40" rows="5" v-model="outputErrTxt" disabled></textarea>
+    <div class="runArea" v-show="thisIsShow">
+      <div class="runAreaLeft">
+        <h1>プログラムの実行</h1>
+        <p>
+          連結したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
+          入力がある場合は、「入力」テキストエリアに入力し、実行してください。
+        </p>
+        <div class="source">
+          <p>＜連結したプログラム＞</p>
+          <codemirror
+            v-model="code"
+            :style="codemirrorStyle"
+            :autofocus="false"
+            :indent-with-tab="true"
+            :tab-size="4"
+            :extensions="extensions"
+            :disabled="true"
+          />
+        </div>
       </div>
-      <div class="buttonArea">
-        <button class="css-button-rounded--sand" @click="backForm()">
-          フォームに戻る
-        </button>
-        <button class="css-button-rounded--green" @click="download">
-          ダウンロード
-        </button>
+      <div class="runAreaRight">
+        <div class="inputOutput">
+          <p>＜入力＞</p>
+          <textarea cols="40" rows="5" v-model="input"> </textarea><br />
+
+          <button class="css-button-rounded--green" @click="run">実行！</button>
+
+          <p>＜実行結果＞</p>
+          <p :style="runResultStyle">{{ runResultTxt }}</p>
+          <textarea
+            cols="40"
+            rows="5"
+            v-model="outputErrTxt"
+            disabled
+          ></textarea>
+        </div>
+        <div class="buttonArea">
+          <button class="css-button-rounded--sand" @click="backForm()">
+            フォームに戻る
+          </button>
+          <button
+            class="css-button-rounded--green"
+            @click="openDownloadModal()"
+          >
+            ダウンロード
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -57,6 +70,7 @@ export default {
   data() {
     return {
       thisIsShow: false,
+      downloadModalIsShow: false,
 
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
@@ -151,6 +165,9 @@ export default {
         }
       }
     },
+    openDownloadModal: function () {
+      this.downloadModalIsShow = true;
+    },
     //cファイルを作成してダウンロードする関数
     /*download: async function () {
       if (this.code != null) {
@@ -197,6 +214,16 @@ export default {
 <style>
 body {
   font-family: sans-serif;
+}
+div.downloadModalArea {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  background: #868686;
+  z-index: 999;
 }
 div.runArea {
   width: 100%;
