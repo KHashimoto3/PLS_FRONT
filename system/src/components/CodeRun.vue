@@ -4,15 +4,17 @@
       <div class="downloadModal">
         <div class="downloadModalInner">
           <h1>プログラムのダウンロード</h1>
-          問題番号：<input type="text" /><br />
-          学籍番号：<input type="text" /><br />
+          問題名（番号）：<input type="text" v-model="question" /><br />
+          学籍番号 ：<input type="text" v-model="studentId" /><br />
           <button
             class="css-button-rounded--sand"
             @click="closeDownloadModal()"
           >
             戻る
           </button>
-          <button class="css-button-rounded--green">ダウンロード</button>
+          <button class="css-button-rounded--green" @click="download()">
+            ダウンロード
+          </button>
         </div>
       </div>
     </div>
@@ -92,6 +94,10 @@ export default {
       input: "",
       outputErrTxt: "",
       runResultTxt: "まだ実行していません。",
+
+      //ダウンロード情報
+      question: "",
+      studentId: "",
 
       //スタイル
       codemirrorStyle: {
@@ -185,36 +191,33 @@ export default {
       this.downloadModalIsShow = false;
     },
     //cファイルを作成してダウンロードする関数
-    /*download: async function () {
-      if (this.code != null) {
-        const data = this.code;
-        //問題名を取得
-        let url = new URL(window.location.href); //現在のURLを取得
-        //オブジェクトを取得
-        const params = url.searchParams;
-        //getメソッドでジャンルidを取得
-        const form_id = params.get("id");
-        //Blob APIを利用
-        const blob = new Blob([data], { type: "text/plain" });
-        url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        document.body.appendChild(a); //擬似的にリンクを作成
-        let file_name = "cf_" + this.student_id + "_";
-
-        //問題番号に応じてファイル名に追記
-        if (form_id == 0) {
-          file_name = file_name + "a.c";
-        } else if (form_id == 1) {
-          file_name = file_name + "b.c";
-        }
-
-        a.download = file_name;
-        a.href = url;
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
+    download: async function () {
+      if (this.code == "") {
+        alert("コードがありません。");
+        return;
       }
-    },*/
+      if (this.question == "" || this.studentId == "") {
+        alert("問題名または学籍番号が入力されていません。");
+        return;
+      }
+      const data = this.code;
+      const question = this.question;
+      const studentId = this.studentId;
+      //Blob APIを利用
+      const blob = new Blob([data], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      document.body.appendChild(a); //擬似的にリンクを作成
+      let file_name = question + "_" + studentId + ".c";
+
+      a.download = file_name;
+      a.href = url;
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      this.closeDownloadModal();
+    },
     backForm: function () {
       //コードと実行結果をリセットする
       this.thisIsShow = false;
