@@ -17,7 +17,6 @@
           :extensions="extensions"
           :disabled="true"
         />
-        <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
       </div>
     </div>
     <div class="runAreaRight">
@@ -82,13 +81,6 @@ export default {
     };
   },
   methods: {
-    /*
-    insert_code: function (code) {
-      if (code != null) {
-        this.code = code;
-      }
-    },
-    */
     insertCode: function (code) {
       this.code = "";
       this.code = code;
