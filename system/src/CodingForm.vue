@@ -354,6 +354,11 @@ export default {
       this.notificationIsShow = false;
     },
     setNotice: function (type, id) {
+      //すでに表示されていたら消す
+      if (this.notificationIsShow == true) {
+        this.notificationIsShow = false;
+        this.notificationText = "";
+      }
       //ヘッダーコメント
       if (type == 0 && this.mainIsShow == false && id == 0) {
         this.notificationText = this.assistObj[id].notice;
