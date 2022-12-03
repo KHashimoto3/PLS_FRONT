@@ -3,18 +3,22 @@
     <div class="downloadModalArea" v-show="downloadModalIsShow">
       <div class="downloadModal">
         <div class="downloadModalInner">
-          <h1>プログラムのダウンロード</h1>
-          問題名（番号）：<input type="text" v-model="question" /><br />
-          学籍番号 ：<input type="text" v-model="studentId" /><br />
-          <button
-            class="css-button-rounded--sand"
-            @click="closeDownloadModal()"
-          >
-            戻る
-          </button>
-          <button class="css-button-rounded--green" @click="download()">
-            ダウンロード
-          </button>
+          <div class="modalUpperArea">
+            <h1>プログラムのダウンロード</h1>
+            問題名（番号）：<input type="text" v-model="question" /><br />
+            学籍番号 ：<input type="text" v-model="studentId" /><br />
+          </div>
+          <div class="modalButtonArea">
+            <button
+              class="css-button-rounded--sand"
+              @click="closeDownloadModal()"
+            >
+              戻る
+            </button>
+            <button class="css-button-rounded--green" @click="download()">
+              ダウンロード
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -256,6 +260,18 @@ div.downloadModalInner {
   width: 90%;
   height: auto;
   margin: 0 auto;
+}
+div.modalUpperArea {
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.modalButtonArea {
+  width: 90%;
+  height: auto;
+  text-align: center;
 }
 div.runArea {
   width: 100%;
