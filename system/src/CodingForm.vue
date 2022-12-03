@@ -66,7 +66,7 @@
       </div>
       <div class="codingRight">
         <div class="question">
-          <h2>サンプル問題</h2>
+          <h2>{{ questionTitle }}</h2>
           <p>{{ questionDescription }}</p>
         </div>
         <div class="codingForm">
@@ -158,9 +158,9 @@ export default {
   },
   data() {
     return {
-      unitName: "繰り返し",
-      questionDescription:
-        "整数値nが入力されます。1から入力値nまで順番に積を求め（1*2*3*…*n）、さらにその平均値を求めて出力してください。",
+      unitName: "",
+      questionTitle: "",
+      questionDescription: "",
       viewStepNo: 1, //表示中のステップ
       nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
@@ -185,78 +185,45 @@ export default {
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
 
       //アシストの内容を格納するオブジェクト
-      assistObj: [
-        {
-          id: 1,
-          type: 0,
-          title: "ヘッダーコメントの記述",
-          body: "プログラムの説明を書きます",
-          sampleExp: "とある問題を解くときのコードの説明",
-          sample:
-            "/**\n * 問題1: 合計と平均を求めるプログラム\n * 日付: 2021/04/01\n * 学籍番号: 2121000\n * 作成者: 神奈川太郎\n */",
-          notice: "誰がいつどのようなプログラムを作ったのかを書いておきます。",
-        },
-        {
-          id: 2,
-          type: 0,
-          title: "ヘッダファイルの読み込み、マクロ定義",
-          body: "プログラムで使用する標準関数を読み込みます。また、プログラム内で頻繁に使用する値を定数として設定します。",
-          sampleExp:
-            "標準関数（printfやscanf）と、文字列を操作する関数（strcpyやstrcmp）を使用するとき",
-          sample: "#include <stdio.h>\n#include <string.h>",
-          notice:
-            "最初はstdio.hを読み込み、必要に応じてヘッダファイルを追加で読み込ませます。",
-        },
-        {
-          id: 3,
-          type: 0,
-          title: "main関数",
-          body: "main関数を書きます。ここで書く中の処理は、return 0; のみで構いません。",
-          sampleExp: "基本のmain関数（処理なし）",
-          sample: "int main(void) {\n    //処理\n    return 0;\n}",
-          notice: "{の前はスペースを入れ、main関数の中はインデントをつけます。",
-        },
-        {
-          id: 4,
-          type: -1,
-          title: "変数・配列の宣言",
-          body: "変数や配列の宣言を書きます",
-          sampleExp: "配列と0で初期化された変数sum、変数aveを宣言するとき",
-          sample:
-            "int    numArray[3] = {10, 20, 30};\nint    sum  = 0;\ndouble ave;",
-          notice:
-            "変数の型と名前の位置は、タブを活用して揃えます。１行には１つの宣言が原則です。",
-        },
-        {
-          id: 5,
-          type: 1,
-          title: "ループによる値の入力",
-          body: "ループを使って値を入力します。事前に値が配列に入力されている場合は、この処理は不要です。",
-          sampleExp: "すでに宣言された3つの変数へ入力を行うとき",
-          sample: 'scanf("%d%d%lf", &a, &b, &c);',
-          notice: "scanf内の,の後ろにはスペースを入れて読みやすくします。",
-        },
-        {
-          id: 5,
-          type: 1,
-          title: "ループによる値の処理",
-          body: "ループを使って値を処理します。",
-          sampleExp: "5回繰り返すように制御するとき",
-          sample: "for (i = 0; i < 5; i++) {\n    //繰り返す処理\n}",
-          notice:
-            "forの後ろ、演算子の前後、；の後ろ、{の前にはスペースを入れて読みやすくします。forの中はインデントします。",
-        },
-        {
-          id: 6,
-          type: 1,
-          title: "値の出力",
-          body: "値を処理します。配列の要素を出力する場合には、ループを使って処理します。",
-          sampleExp: "2つの変数の値を用いて出力するとき",
-          sample: 'printf("合計：%d¥n", sum);',
-          notice: "scanf内の,の後ろにはスペースを入れて読みやすくします。",
-        },
-      ],
+      assistObj: null,
     };
+  },
+  created: async function () {
+    //クエリから、どの問題リストなのかを取得
+    const nowUrl = new URL(window.location.href); //現在のURLを取得
+    //オブジェクトを取得
+    const params = nowUrl.searchParams;
+    //で問題リスト名を取得
+    const formName = params.get("formName");
+
+    const pullFormUrl = "./data/form/" + formName + ".json";
+    let errMsg;
+    try {
+      const response = await fetch(pullFormUrl, {
+        method: "GET",
+      });
+      if (!response.ok) {
+        switch (response.status) {
+          default:
+            errMsg =
+              "何らかの理由でエラーが発生しました。（E: " +
+              response.status +
+              ")";
+            throw new Error(errMsg);
+        }
+      } else {
+        const responseData = await response.json();
+        this.unitName = responseData.formTitle;
+        this.questionTitle = responseData.questionTitle;
+        this.questionDescription = responseData.questionDescription;
+        this.assistObj = responseData.assistObj;
+        if (this.assistObj == null) {
+          alert("フォームデータがありません。");
+        }
+      }
+    } catch (errMsg) {
+      alert(errMsg);
+    }
   },
   methods: {
     changeDisabled: function () {
