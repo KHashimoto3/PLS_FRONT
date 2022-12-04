@@ -1,43 +1,74 @@
 <template>
-  <div class="runArea" v-show="thisIsShow">
-    <div class="runAreaLeft">
-      <h1>プログラムの実行</h1>
-      <p>
-        連結したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
-        入力がある場合は、「入力」テキストエリアに入力し、実行してください。
-      </p>
-      <div class="source">
-        <p>＜連結したプログラム＞</p>
-        <codemirror
-          v-model="code"
-          :style="codemirrorStyle"
-          :autofocus="false"
-          :indent-with-tab="true"
-          :tab-size="4"
-          :extensions="extensions"
-          :disabled="true"
-        />
-        <!--<textarea cols="52" rows="30" v-model="code"> </textarea><br />-->
+  <div>
+    <div class="downloadModalArea" v-show="downloadModalIsShow">
+      <div class="downloadModal">
+        <div class="downloadModalInner">
+          <div class="modalUpperArea">
+            <h1>プログラムのダウンロード</h1>
+            問題名（番号）：<input type="text" v-model="question" /><br />
+            学籍番号 ：<input type="text" v-model="studentId" /><br />
+          </div>
+          <div class="modalButtonArea">
+            <button
+              class="css-button-rounded--sand"
+              @click="closeDownloadModal()"
+            >
+              戻る
+            </button>
+            <button class="css-button-rounded--green" @click="download()">
+              ダウンロード
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="runAreaRight">
-      <div class="inputOutput">
-        <p>＜入力＞</p>
-        <textarea cols="40" rows="5" v-model="input"> </textarea><br />
-
-        <button class="css-button-rounded--green" @click="run">実行！</button>
-
-        <p>＜実行結果＞</p>
-        <p :style="runResultStyle">{{ runResultTxt }}</p>
-        <textarea cols="40" rows="5" v-model="outputErrTxt" disabled></textarea>
+    <div class="runArea" v-show="thisIsShow">
+      <div class="runAreaLeft">
+        <h1>プログラムの実行</h1>
+        <p>
+          連結したプログラムは下記の通りです。確認したら「実行」をクリックしてください。<br />
+          入力がある場合は、「入力」テキストエリアに入力し、実行してください。
+        </p>
+        <div class="source">
+          <p>＜連結したプログラム＞</p>
+          <codemirror
+            v-model="code"
+            :style="codemirrorStyle"
+            :autofocus="false"
+            :indent-with-tab="true"
+            :tab-size="4"
+            :extensions="extensions"
+            :disabled="true"
+          />
+        </div>
       </div>
-      <div class="buttonArea">
-        <button class="css-button-rounded--sand" @click="backForm()">
-          フォームに戻る
-        </button>
-        <button class="css-button-rounded--green" @click="download">
-          ダウンロード
-        </button>
+      <div class="runAreaRight">
+        <div class="inputOutput">
+          <p>＜入力＞</p>
+          <textarea cols="40" rows="5" v-model="input"> </textarea><br />
+
+          <button class="css-button-rounded--green" @click="run">実行！</button>
+
+          <p>＜実行結果＞</p>
+          <p :style="runResultStyle">{{ runResultTxt }}</p>
+          <textarea
+            cols="40"
+            rows="5"
+            v-model="outputErrTxt"
+            disabled
+          ></textarea>
+        </div>
+        <div class="buttonArea">
+          <button class="css-button-rounded--sand" @click="backForm()">
+            フォームに戻る
+          </button>
+          <button
+            class="css-button-rounded--green"
+            @click="openDownloadModal()"
+          >
+            ダウンロード
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -58,6 +89,7 @@ export default {
   data() {
     return {
       thisIsShow: false,
+      downloadModalIsShow: false,
 
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
@@ -66,6 +98,10 @@ export default {
       input: "",
       outputErrTxt: "",
       runResultTxt: "まだ実行していません。",
+
+      //ダウンロード情報
+      question: "",
+      studentId: "",
 
       //スタイル
       codemirrorStyle: {
@@ -82,13 +118,6 @@ export default {
     };
   },
   methods: {
-    /*
-    insert_code: function (code) {
-      if (code != null) {
-        this.code = code;
-      }
-    },
-    */
     insertCode: function (code) {
       this.code = "";
       this.code = code;
@@ -159,37 +188,40 @@ export default {
         }
       }
     },
+    openDownloadModal: function () {
+      this.downloadModalIsShow = true;
+    },
+    closeDownloadModal: function () {
+      this.downloadModalIsShow = false;
+    },
     //cファイルを作成してダウンロードする関数
-    /*download: async function () {
-      if (this.code != null) {
-        const data = this.code;
-        //問題名を取得
-        let url = new URL(window.location.href); //現在のURLを取得
-        //オブジェクトを取得
-        const params = url.searchParams;
-        //getメソッドでジャンルidを取得
-        const form_id = params.get("id");
-        //Blob APIを利用
-        const blob = new Blob([data], { type: "text/plain" });
-        url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        document.body.appendChild(a); //擬似的にリンクを作成
-        let file_name = "cf_" + this.student_id + "_";
-
-        //問題番号に応じてファイル名に追記
-        if (form_id == 0) {
-          file_name = file_name + "a.c";
-        } else if (form_id == 1) {
-          file_name = file_name + "b.c";
-        }
-
-        a.download = file_name;
-        a.href = url;
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
+    download: async function () {
+      if (this.code == "") {
+        alert("コードがありません。");
+        return;
       }
-    },*/
+      if (this.question == "" || this.studentId == "") {
+        alert("問題名または学籍番号が入力されていません。");
+        return;
+      }
+      const data = this.code;
+      const question = this.question;
+      const studentId = this.studentId;
+      //Blob APIを利用
+      const blob = new Blob([data], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      document.body.appendChild(a); //擬似的にリンクを作成
+      let file_name = question + "_" + studentId + ".c";
+
+      a.download = file_name;
+      a.href = url;
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      this.closeDownloadModal();
+    },
     backForm: function () {
       //コードと実行結果をリセットする
       this.thisIsShow = false;
@@ -205,6 +237,41 @@ export default {
 <style>
 body {
   font-family: sans-serif;
+}
+div.downloadModalArea {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  background: #868686;
+  z-index: 999;
+}
+div.downloadModal {
+  width: 600px;
+  height: 500px;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+}
+div.downloadModalInner {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+div.modalUpperArea {
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.modalButtonArea {
+  width: 90%;
+  height: auto;
+  text-align: center;
 }
 div.runArea {
   width: 100%;
