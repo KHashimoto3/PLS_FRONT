@@ -54,7 +54,7 @@ export default {
     selectForm: function (id) {
       //選択された問題リスト名とともにフォーム画面へ遷移
       const url =
-        "codingform.html?formName=" + this.formListData[id - 1].formLink;
+        "codingform.html?formName=" + this.formListDataObj[id - 1].formLink;
       window.location.href = url;
     },
   },
