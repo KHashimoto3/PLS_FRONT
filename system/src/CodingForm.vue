@@ -261,6 +261,7 @@ export default {
         this.assistObj = responseData.assistObj;
         if (this.assistObj == null) {
           alert("フォームデータがありません。");
+          location.href = "index.html";
         }
       }
     } catch (errMsg) {
