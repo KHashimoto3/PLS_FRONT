@@ -20,7 +20,13 @@
         <div class="assist">
           <div class="assistInner">
             <div class="assistText">
-              <h1>STEP{{ viewStepNo }}</h1>
+              <h1 style="float: left">STEP{{ viewStepNo }}</h1>
+              <button
+                class="css-button-rounded--grammar"
+                @click="changeGrammarForm(this.viewStepNo)"
+              >
+                文法フォームを表示
+              </button>
               <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
               <p>{{ assistObj[viewStepNo - 1].body }}</p>
             </div>
@@ -73,20 +79,20 @@
         <div class="tabGroup">
           <ul class="tabNav">
             <li
-              @click="formSelect(1)"
-              v-bind:class="{ active: formSelected == 1 }"
+              @click="formTabSelect(1)"
+              v-bind:class="{ active: formTabSelected == 1 }"
             >
               コーディング
             </li>
             <li
-              @click="formSelect(2)"
-              v-bind:class="{ active: formSelected == 2 }"
+              @click="formTabSelect(2)"
+              v-bind:class="{ active: formTabSelected == 2 }"
             >
               文法
             </li>
           </ul>
           <div class="tabContent">
-            <div v-if="formSelected == 1" class="codingForm">
+            <div v-if="formTabSelected == 1" class="codingForm">
               <div class="codingFormInner">
                 <p>＜ヘッダーコメント＞</p>
                 <codemirror
@@ -144,13 +150,13 @@
                 >
               </div>
             </div>
-            <div v-if="formSelected == 2" class="grammarForm">
+            <div v-if="formTabSelected == 2" class="grammarForm">
               <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
-              <funcForm v-show="formMode == 1" ref="funcFormRef" />
-              <ifForm v-show="formMode == 2" ref="ifFormRef" />
-              <forForm v-show="formMode == 3" ref="forFormRef" />
-              <whileForm v-show="formMode == 4" ref="whileFormRef" />
-              <nomalEditor v-show="formMode == -1" ref="nomalRef" />
+              <ifForm v-show="formMode == '4a'" ref="ifFormRef" />
+              <forForm v-show="formMode == '4b'" ref="forFormRef" />
+              <whileForm v-show="formMode == '4c'" ref="whileFormRef" />
+              <funcForm v-show="formMode == '6'" ref="funcFormRef" />
+              <nomalEditor v-show="formMode == '-1'" ref="nomalRef" />
             </div>
           </div>
         </div>
@@ -183,6 +189,7 @@ import funcForm from "./components/func_form.vue";
 import ifForm from "./components/if_form.vue";
 import forForm from "./components/for_form.vue";
 import whileForm from "./components/while_form.vue";
+import nomalEditor from "./components/nomal_editor.vue";
 
 export default {
   name: "CodingForm",
@@ -195,6 +202,7 @@ export default {
     ifForm,
     forForm,
     whileForm,
+    nomalEditor,
   },
   data() {
     return {
@@ -213,9 +221,9 @@ export default {
       sampleIsShow: true,
       notificationIsShow: false,
       //フォームのタブの状態
-      formSelected: 1,
+      formTabSelected: 1,
       //関数定義フォーム、制御構造フォームの種類
-      formMode: 3,
+      formMode: "-1",
 
       //テキストエリアの文章
       headerText: "",
@@ -313,11 +321,29 @@ export default {
       }
       this.changeDisabled();
     },
-    formSelect: function (id) {
+    formTabSelect: function (id) {
       if (id == 1) {
-        this.formSelected = 1;
+        this.formTabSelected = 1;
       } else if (id == 2) {
-        this.formSelected = 2;
+        this.formTabSelected = 2;
+      }
+    },
+    changeGrammarForm: function (i) {
+      if (this.assistObj[i - 1].comp == "4a") {
+        this.formMode = this.assistObj[i - 1].comp;
+        this.formTabSelect(2);
+      } else if (this.assistObj[i - 1].comp == "4b") {
+        this.formMode = this.assistObj[i - 1].comp;
+        this.formTabSelect(2);
+      } else if (this.assistObj[i - 1].comp == "4c") {
+        this.formMode = this.assistObj[i - 1].comp;
+        this.formTabSelect(2);
+      } else if (this.assistObj[i - 1].comp == "6") {
+        this.formMode = this.assistObj[i - 1].comp;
+        this.formTabSelect(2);
+      } else if (this.assistObj[i - 1].comp == "-1") {
+        this.formMode = this.assistObj[i - 1].comp;
+        alert("この構成要素のためのフォームはまだ搭載されていません。");
       }
     },
     //コードの実行
@@ -560,6 +586,32 @@ button.css-button-rounded--sand:disabled {
   color: #fff;
   border: 2px solid #d6d6d6;
   background: #d6d6d6;
+}
+
+button.css-button-rounded--grammar {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #57cc99;
+  background: #57cc99;
+  margin-left: 250px;
+}
+button.css-button-rounded--grammar:hover {
+  background: #fff;
+  color: #57cc99;
+}
+button.css-button-rounded--grammar:disabled {
+  color: #fff;
+  border: 2px solid #a7cfbe;
+  background: #a7cfbe;
 }
 
 div.codingRight {
