@@ -166,6 +166,28 @@
         </div>
       </div>
       <CodeRun ref="codeRunner" />
+      <!--文法フォームを選んだときに出す情報モーダル-->
+      <div v-show="grammarFormInfoIsShow" class="grammarFormInfo">
+        <div class="grammarModal">
+          <div class="grammardModalInner">
+            <div class="modalUpperArea">
+              <h1>文法フォームの使い方</h1>
+              <p>
+                文法フォームを使ってコーディングし、要素の構成を理解しましょう。
+              </p>
+            </div>
+            <div class="modalButtonArea">
+              <button
+                class="css-button-rounded--sand"
+                @click="closeGrammarModal()"
+              >
+                戻る
+              </button>
+              <button class="css-button-rounded--green">ダウンロード</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -218,6 +240,7 @@ export default {
       nextIsDisabled: false,
       sampleIsShow: true,
       notificationIsShow: false,
+      grammarFormInfoIsShow: false,
       //フォームのタブの状態
       formTabSelected: 1,
       //関数定義フォーム、制御構造フォームの種類
@@ -330,15 +353,19 @@ export default {
       if (this.assistObj[i - 1].comp == "4a") {
         this.formMode = this.assistObj[i - 1].comp;
         this.formTabSelect(2);
+        this.openGrammarModal();
       } else if (this.assistObj[i - 1].comp == "4b") {
         this.formMode = this.assistObj[i - 1].comp;
         this.formTabSelect(2);
+        this.openGrammarModal();
       } else if (this.assistObj[i - 1].comp == "4c") {
         this.formMode = this.assistObj[i - 1].comp;
         this.formTabSelect(2);
+        this.openGrammarModal();
       } else if (this.assistObj[i - 1].comp == "6") {
         this.formMode = this.assistObj[i - 1].comp;
         this.formTabSelect(2);
+        this.openGrammarModal();
       } else if (this.assistObj[i - 1].comp == "-1") {
         this.formMode = this.assistObj[i - 1].comp;
         alert("この構成要素のためのフォームはまだ搭載されていません。");
@@ -436,6 +463,12 @@ export default {
         }
         startPlace++;
       });
+    },
+    openGrammarModal: function () {
+      this.grammarFormInfoIsShow = true;
+    },
+    closeGrammarModal: function () {
+      this.grammarFormInfoIsShow = false;
     },
   },
 };
@@ -710,6 +743,43 @@ div.tabGroup {
 div.tabContent {
   width: 100%;
   height: 500px;
+}
+
+/*文法フォームモーダルの設定*/
+div.grammarFormInfo {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0;
+  background: #868686;
+  z-index: 999;
+}
+div.grammarModal {
+  width: 600px;
+  height: 500px;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+}
+div.grammarModalInner {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+div.modalUpperArea {
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.modalButtonArea {
+  width: 90%;
+  height: auto;
+  text-align: center;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
