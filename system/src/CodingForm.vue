@@ -23,7 +23,7 @@
               <h1 style="float: left">STEP{{ viewStepNo }}</h1>
               <button
                 class="css-button-rounded--grammar"
-                @click="changeGrammarForm(this.viewStepNo)"
+                @click="showGrammarForm(this.viewStepNo)"
               >
                 文法フォームを表示
               </button>
@@ -330,13 +330,13 @@ export default {
         this.formTabSelected = 2;
       }
     },
-    changeGrammarForm: function (i) {
+    showGrammarForm: function (i) {
       this.formMode = this.assistObj[i - 1].comp;
       if (this.assistObj[i - 1].comp == "4a") {
         this.$refs.ifFormRef.setUpForm(assistObj[i - 1].compData);
       }
       if (this.assistObj[i - 1].comp == "4b") {
-        this.$refs.forFormRef.setUpForm(assistObj[i - 1].compData);
+        //セットアップはなし
       }
       if (this.assistObj[i - 1].comp == "4c") {
         this.$refs.whileFormRef.setUpForm(assistObj[i - 1].compData);
