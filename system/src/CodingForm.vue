@@ -144,7 +144,13 @@
                 >
               </div>
             </div>
-            <div v-if="formSelected == 2" class="grammarForm">タブ2</div>
+            <div v-if="formSelected == 2" class="grammarForm">
+              <funcForm v-show="formMode == 1" ref="funcFormRef" />
+              <ifForm v-show="formMode == 2" ref="ifFormRef" />
+              <forForm v-show="formMode == 3" ref="forFormRef" />
+              <whileForm v-show="formMode == 4" ref="whileFormRef" />
+              <nomalEditor v-show="formMode == -1" ref="nomalRef" />
+            </div>
           </div>
         </div>
 
@@ -170,12 +176,23 @@ import Toggle from "@vueform/toggle";
 
 import CodeRun from "./components/CodeRun.vue";
 
+//関数定義、制御構造フォーム
+import funcForm from "./components/func_form.vue";
+import ifForm from "./components/if_form.vue";
+import forForm from "./components/for_form.vue";
+import whileForm from "./components/while_form.vue";
+
 export default {
   name: "CodingForm",
   components: {
     Codemirror,
     Toggle,
     CodeRun,
+
+    funcForm,
+    ifForm,
+    forForm,
+    whileForm,
   },
   data() {
     return {
@@ -193,7 +210,10 @@ export default {
       nextIsDisabled: false,
       sampleIsShow: true,
       notificationIsShow: false,
+      //フォームのタブの状態
       formSelected: 1,
+      //関数定義フォーム、制御構造フォームの種類
+      formMode: 3,
 
       //テキストエリアの文章
       headerText: "",
@@ -291,7 +311,11 @@ export default {
       this.changeDisabled();
     },
     formSelect: function (id) {
-      this.formSelected = id;
+      if (id == 1) {
+        this.formSelected = 1;
+      } else if (id == 2) {
+        this.formSelected = 2;
+      }
     },
     //コードの実行
     codeRun: function () {
