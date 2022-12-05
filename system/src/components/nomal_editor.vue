@@ -8,7 +8,7 @@
                 v-model="bodyTxt"
                 placeholder="コードを書く"
                 :style="{
-                  width: '1000px',
+                  width: '1200px',
                   height: 'auto',
                   'font-size': '18pt',
                   'margin-left':'140px'
