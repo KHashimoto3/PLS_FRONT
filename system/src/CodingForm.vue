@@ -82,19 +82,18 @@
               @click="formTabSelect(1)"
               v-bind:class="{ active: formTabSelected == 1 }"
             >
-              コーディング
+              コーディングフォーム
             </li>
             <li
               @click="formTabSelect(2)"
               v-bind:class="{ active: formTabSelected == 2 }"
             >
-              文法
+              文法フォーム
             </li>
           </ul>
           <div class="tabContent">
             <div v-if="formTabSelected == 1" class="codingForm">
               <div class="codingFormInner">
-                <p>＜ヘッダーコメント＞</p>
                 <codemirror
                   v-model="headerText"
                   placeholder="コメントを書く"
@@ -106,7 +105,6 @@
                   @focus="setNotice(0, 0)"
                   @blur="closeNotice()"
                 />
-                <p>＜コーディングフォーム＞</p>
                 <div v-for="i of OutMainCnt" :key="i">
                   <codemirror
                     v-model="outMainTextArray[i - 1]"
