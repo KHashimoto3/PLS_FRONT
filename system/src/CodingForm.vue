@@ -331,26 +331,25 @@ export default {
       }
     },
     changeGrammarForm: function (i) {
+      this.formMode = this.assistObj[i - 1].comp;
       if (this.assistObj[i - 1].comp == "4a") {
-        this.formMode = this.assistObj[i - 1].comp;
-        this.formTabSelect(2);
-        this.openGrammarModal();
-      } else if (this.assistObj[i - 1].comp == "4b") {
-        this.formMode = this.assistObj[i - 1].comp;
-        this.formTabSelect(2);
-        this.openGrammarModal();
-      } else if (this.assistObj[i - 1].comp == "4c") {
-        this.formMode = this.assistObj[i - 1].comp;
-        this.formTabSelect(2);
-        this.openGrammarModal();
-      } else if (this.assistObj[i - 1].comp == "6") {
-        this.formMode = this.assistObj[i - 1].comp;
-        this.formTabSelect(2);
-        this.openGrammarModal();
-      } else if (this.assistObj[i - 1].comp == "-1") {
-        this.formMode = this.assistObj[i - 1].comp;
-        alert("この構成要素のためのフォームはまだ搭載されていません。");
+        this.$refs.ifFormRef.setUpForm(assistObj[i - 1].compData);
       }
+      if (this.assistObj[i - 1].comp == "4b") {
+        this.$refs.forFormRef.setUpForm(assistObj[i - 1].compData);
+      }
+      if (this.assistObj[i - 1].comp == "4c") {
+        this.$refs.whileFormRef.setUpForm(assistObj[i - 1].compData);
+      }
+      if (this.assistObj[i - 1].comp == "6") {
+        this.$refs.funcFormRef.setUpForm(assistObj[i - 1].compData);
+      }
+      if (this.assistObj[i - 1].comp == "-1") {
+        alert("この構成要素のためのフォームはまだ搭載されていません。");
+        return;
+      }
+      this.formTabSelect(2);
+      this.openGrammarModal();
     },
     //コードの実行
     codeRun: function () {

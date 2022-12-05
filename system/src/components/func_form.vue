@@ -140,7 +140,9 @@ export default {
   },
   methods: {
     //親コンポーネントからのフォーム設定処理
-    setUpForm: function (mode, cnt) {
+    setUpForm: function (data) {
+      const mode = data.mode;
+      const cnt = data.cnt;
       //例外処理
       if (mode != 1 && mode != 2) return;
       if (cnt < 0) return;
