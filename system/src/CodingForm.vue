@@ -145,6 +145,7 @@
               </div>
             </div>
             <div v-if="formSelected == 2" class="grammarForm">
+              <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
               <funcForm v-show="formMode == 1" ref="funcFormRef" />
               <ifForm v-show="formMode == 2" ref="ifFormRef" />
               <forForm v-show="formMode == 3" ref="forFormRef" />
@@ -177,6 +178,7 @@ import Toggle from "@vueform/toggle";
 import CodeRun from "./components/CodeRun.vue";
 
 //関数定義、制御構造フォーム
+//フォームを追加する場合は、ここにコンポーネントを読み込む
 import funcForm from "./components/func_form.vue";
 import ifForm from "./components/if_form.vue";
 import forForm from "./components/for_form.vue";
