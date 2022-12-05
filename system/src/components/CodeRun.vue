@@ -127,26 +127,24 @@ export default {
     run: async function () {
       if (this.code == "") {
         alert("コードを入力してから押してください！");
-      } else {
-        let dataObj;
-        if (this.input != "") {
-          dataObj = {
-            code: this.code,
-            stdin: this.input,
-            options: "warning,gnu++1y",
-            compiler: "gcc-head",
-            "compiler-option-raw": "-Dx=hogefuga\n-O3",
-          };
-        } else {
-          dataObj = {
-            code: this.code,
-            options: "warning,gnu++1y",
-            compiler: "gcc-head",
-            "compiler-option-raw": "-Dx=hogefuga\n-O3",
-          };
-        }
+        return;
+      }
+      let dataObj;
+      let input;
 
-        /*
+      if (this.input == "") {
+        input = "input";
+      }
+
+      dataObj = {
+        code: this.code,
+        stdin: input,
+        options: "warning,gnu++1y",
+        compiler: "gcc-head",
+        "compiler-option-raw": "-Dx=hogefuga\n-O3",
+      };
+
+      /*
         const data_obj = {
           code:
             '#include <iostream>\nint main() { int x = 0; std::cout << "hoge" << std::endl; }',
@@ -155,37 +153,39 @@ export default {
           "compiler-option-raw": "-Dx=hogefuga\n-O3",
         };*/
 
-        const url = "https://wandbox.org/api/compile.json";
+      const url = "/api/execcode";
 
-        let errMsg;
+      let errMsg;
 
-        try {
-          const response = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(dataObj),
-          });
-          if (!response.ok) {
-            switch (response.status) {
-              default:
-                errMsg = "何らかの理由でエラーが発生しました。";
-                throw new Error(errMsg);
-            }
-          } else {
-            const responseData = await response.json();
-            if (responseData.program_output != "") {
-              this.outputErrTxt = responseData.program_output;
-              this.runResultTxt = "実行成功";
-              this.runResultStyle.background = "#42cf1f";
-            } else if (responseData.compiler_message != "") {
-              this.outputErrTxt = responseData.compiler_message;
-              this.runResultTxt = "エラー";
-              this.runResultStyle.background = "#ed1111";
-            }
-            console.log(responseData);
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataObj),
+        });
+        if (!response.ok) {
+          switch (response.status) {
+            default:
+              errMsg = "何らかの理由でエラーが発生しました。";
+              throw new Error(errMsg);
           }
-        } catch (errMsg) {
-          alert(errMsg);
+        } else {
+          const responseData = await response.json();
+          if (responseData.program_output != "") {
+            this.outputErrTxt = responseData.program_output;
+            this.runResultTxt = "実行成功";
+            this.runResultStyle.background = "#42cf1f";
+          } else if (responseData.compiler_message != "") {
+            this.outputErrTxt = responseData.compiler_message;
+            this.runResultTxt = "エラー";
+            this.runResultStyle.background = "#ed1111";
+          }
+          console.log(responseData);
         }
+      } catch (errMsg) {
+        alert(errMsg);
       }
     },
     openDownloadModal: function () {
