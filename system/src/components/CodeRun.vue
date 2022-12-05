@@ -134,6 +134,8 @@ export default {
 
       if (this.input == "") {
         input = "input";
+      } else {
+        input = this.input;
       }
 
       dataObj = {
