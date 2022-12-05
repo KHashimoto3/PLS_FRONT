@@ -70,17 +70,6 @@
         </pre>
       <button type="button" @click="connectCode()">結合！</button>
     </div>
-    <h1>記述内容-------</h1>
-    {{ commentTxt }}
-    {{ leftVariable }}
-    {{ compareType }}
-    {{ rightVariable }}
-    {{ leftVariableList }}
-    {{ compareTypeList }}
-    {{ rightVariableList }}
-    {{ connectCompareTypeList }}
-    {{ ifBodyTxt }}
-    {{ elseBodyTxt }}
   </div>
 </template>
 
