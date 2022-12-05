@@ -7,12 +7,16 @@
           <p>
             文法フォームを使ってコーディングし、要素の構成を理解しましょう。
           </p>
+          <input type="checkbox" v-model="notShowAgainCheck" name="notAgain" />
+          <label for="notAgain">今後この説明を表示しない。</label>
         </div>
         <div class="modalButtonArea">
-          <button class="css-button-rounded--sand" @click="closeGrammarModal()">
-            戻る
+          <button
+            class="css-button-rounded--green"
+            @click="closeGrammarModal()"
+          >
+            閉じる
           </button>
-          <button class="css-button-rounded--green">ダウンロード</button>
         </div>
       </div>
     </div>
@@ -26,13 +30,19 @@ export default {
     return {
       notShowAgain: false,
       grammarFormInfoIsShow: false,
+      notShowAgainCheck: "",
     };
   },
   methods: {
     openGrammarModal: function () {
-      this.grammarFormInfoIsShow = true;
+      if (!this.notShowAgain) {
+        this.grammarFormInfoIsShow = true;
+      }
     },
     closeGrammarModal: function () {
+      if (this.notShowAgainCheck) {
+        this.notShowAgain = true;
+      }
       this.grammarFormInfoIsShow = false;
     },
   },
