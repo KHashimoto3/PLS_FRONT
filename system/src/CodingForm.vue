@@ -69,64 +69,85 @@
           <h2>{{ questionTitle }}</h2>
           <p>{{ questionDescription }}</p>
         </div>
-        <div class="codingForm">
-          <div class="codingFormInner">
-            <p>＜ヘッダーコメント＞</p>
-            <codemirror
-              v-model="headerText"
-              placeholder="コメントを書く"
-              :style="{ height: 'auto', 'font-size': '16pt' }"
-              :autofocus="false"
-              :indent-with-tab="false"
-              :tab-size="4"
-              :extensions="extensions"
-              @focus="setNotice(0, 0)"
-              @blur="closeNotice()"
-            />
-            <p>＜コーディングフォーム＞</p>
-            <div v-for="i of OutMainCnt" :key="i">
-              <codemirror
-                v-model="outMainTextArray[i - 1]"
-                placeholder="コードを書く"
-                :style="{ height: 'auto', 'font-size': '16pt' }"
-                :autofocus="false"
-                :indent-with-tab="false"
-                :tab-size="4"
-                :extensions="extensions"
-                @focus="setNotice(0, i)"
-                @blur="closeNotice()"
-              />
-            </div>
-            <pre v-show="mainIsShow">
+        <!--フォー上リア-->
+        <div class="tabGroup">
+          <ul class="tabNav">
+            <li
+              @click="formSelect(1)"
+              v-bind:class="{ active: formSelected == 1 }"
+            >
+              コーディング
+            </li>
+            <li
+              @click="formSelect(2)"
+              v-bind:class="{ active: formSelected == 2 }"
+            >
+              文法
+            </li>
+          </ul>
+          <div class="tabContent">
+            <div v-if="formSelected == 1" class="codingForm">
+              <div class="codingFormInner">
+                <p>＜ヘッダーコメント＞</p>
+                <codemirror
+                  v-model="headerText"
+                  placeholder="コメントを書く"
+                  :style="{ height: 'auto', 'font-size': '16pt' }"
+                  :autofocus="false"
+                  :indent-with-tab="false"
+                  :tab-size="4"
+                  :extensions="extensions"
+                  @focus="setNotice(0, 0)"
+                  @blur="closeNotice()"
+                />
+                <p>＜コーディングフォーム＞</p>
+                <div v-for="i of OutMainCnt" :key="i">
+                  <codemirror
+                    v-model="outMainTextArray[i - 1]"
+                    placeholder="コードを書く"
+                    :style="{ height: 'auto', 'font-size': '16pt' }"
+                    :autofocus="false"
+                    :indent-with-tab="false"
+                    :tab-size="4"
+                    :extensions="extensions"
+                    @focus="setNotice(0, i)"
+                    @blur="closeNotice()"
+                  />
+                </div>
+                <pre v-show="mainIsShow">
   int main(void){
           </pre
-            >
-            <div v-for="i of InMainCnt" :key="i">
-              <codemirror
-                v-model="inMainTextArray[i - 1]"
-                placeholder="コードを書く"
-                :style="{
-                  width: '95%',
-                  height: 'auto',
-                  'font-size': '16pt',
-                  margin: '0 auto',
-                }"
-                :autofocus="false"
-                :indent-with-tab="false"
-                :tab-size="4"
-                :extensions="extensions"
-                @focus="setNotice(1, i)"
-                @blur="closeNotice()"
-              />
-            </div>
+                >
+                <div v-for="i of InMainCnt" :key="i">
+                  <codemirror
+                    v-model="inMainTextArray[i - 1]"
+                    placeholder="コードを書く"
+                    :style="{
+                      width: '95%',
+                      height: 'auto',
+                      'font-size': '16pt',
+                      margin: '0 auto',
+                    }"
+                    :autofocus="false"
+                    :indent-with-tab="false"
+                    :tab-size="4"
+                    :extensions="extensions"
+                    @focus="setNotice(1, i)"
+                    @blur="closeNotice()"
+                  />
+                </div>
 
-            <pre v-show="mainIsShow">
+                <pre v-show="mainIsShow">
     return 0;
   }
           </pre
-            >
+                >
+              </div>
+            </div>
+            <div v-if="formSelected == 2" class="grammarForm">タブ2</div>
           </div>
         </div>
+
         <div class="codeRunButton">
           <button class="css-button-rounded--green" @click="codeRun()">
             連結して実行
@@ -172,6 +193,7 @@ export default {
       nextIsDisabled: false,
       sampleIsShow: true,
       notificationIsShow: false,
+      formSelected: 1,
 
       //テキストエリアの文章
       headerText: "",
@@ -267,6 +289,9 @@ export default {
         this.InMainCnt++;
       }
       this.changeDisabled();
+    },
+    formSelect: function (id) {
+      this.formSelected = id;
     },
     //コードの実行
     codeRun: function () {
@@ -521,7 +546,14 @@ div.question {
 }
 div.codingForm {
   width: 100%;
-  height: 75%;
+  height: 100%;
+  position: relative;
+  border: solid 1px #000000;
+  overflow: auto;
+}
+div.grammarForm {
+  width: 100%;
+  height: auto;
   position: relative;
   border: solid 1px #000000;
   overflow: auto;
@@ -574,6 +606,33 @@ img.styleSample {
 
 .sampleToggle {
   --toggle-width: 6rem;
+}
+
+/*タブの設定*/
+div.tabGroup {
+  width: 100%;
+  height: auto;
+}
+.tabNav {
+  margin: auto;
+  display: flex;
+  list-style-type: none;
+}
+.tabNav li {
+  cursor: pointer;
+  width: 50%;
+  background: #ddd;
+  color: #333;
+  padding: 10px;
+  text-decoration: none;
+}
+.tabNav li.active {
+  background: #57cc99;
+  color: #fff;
+}
+div.tabContent {
+  width: 100%;
+  height: 500px;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
