@@ -333,16 +333,16 @@ export default {
     showGrammarForm: function (i) {
       this.formMode = this.assistObj[i - 1].comp;
       if (this.assistObj[i - 1].comp == "4a") {
-        this.$refs.ifFormRef.setUpForm(assistObj[i - 1].compData);
+        this.$refs.ifFormRef.setUpForm(this.assistObj[i - 1].compData);
       }
       if (this.assistObj[i - 1].comp == "4b") {
         //セットアップはなし
       }
       if (this.assistObj[i - 1].comp == "4c") {
-        this.$refs.whileFormRef.setUpForm(assistObj[i - 1].compData);
+        this.$refs.whileFormRef.setUpForm(this.assistObj[i - 1].compData);
       }
       if (this.assistObj[i - 1].comp == "6") {
-        this.$refs.funcFormRef.setUpForm(assistObj[i - 1].compData);
+        this.$refs.funcFormRef.setUpForm(this.assistObj[i - 1].compData);
       }
       if (this.assistObj[i - 1].comp == "-1") {
         alert("この構成要素のためのフォームはまだ搭載されていません。");
