@@ -120,6 +120,16 @@ export default {
     };
   },
   methods: {
+    //親コンポーネントからのフォーム設定処理
+    setUpForm: function (mode, cnt) {
+      //例外処理
+      if (mode < 1 || mode > 3) return;
+      if (cnt < 1) return;
+
+      this.conditionMode = mode;
+      this.conditionCnt = cnt;
+      return;
+    },
     showHint1: function () {
       this.hintStyleObj.hint1.display = "inline-block";
     },
