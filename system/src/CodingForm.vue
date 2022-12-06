@@ -148,7 +148,7 @@
                 >
               </div>
             </div>
-            <div v-if="formTabSelected == 2" class="grammarForm">
+            <div v-show="formTabSelected == 2" class="grammarForm">
               <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
               <ifForm v-show="formMode == '4a'" ref="ifFormRef" />
               <forForm v-show="formMode == '4b'" ref="forFormRef" />
@@ -305,7 +305,7 @@ export default {
         return;
       }
       if (this.assistObj[this.nowStepNo].type == 0) {
-        //main関数記述前
+        //main関数の手前
         this.nowStepNo++;
         this.viewStepNo++;
         this.OutMainCnt++;
@@ -332,23 +332,40 @@ export default {
     },
     showGrammarForm: function (i) {
       this.formMode = this.assistObj[i - 1].comp;
+      this.formTabSelect(2);
       if (this.assistObj[i - 1].comp == "4a") {
-        this.$refs.ifFormRef.setUpForm(this.assistObj[i - 1].compData);
+        if (this.assistObj[i - 1].compData == "") {
+          alert(
+            "フォームの構成データがないため、デフォルトの構成で表示します。"
+          );
+        } else {
+          this.$refs.ifFormRef.setUpForm(this.assistObj[i - 1].compData);
+        }
       }
       if (this.assistObj[i - 1].comp == "4b") {
         //セットアップはなし
       }
       if (this.assistObj[i - 1].comp == "4c") {
-        this.$refs.whileFormRef.setUpForm(this.assistObj[i - 1].compData);
+        if (this.assistObj[i - 1].compData == "") {
+          alert(
+            "フォームの構成データがないため、デフォルトの構成で表示します。"
+          );
+        } else {
+          this.$refs.whileFormRef.setUpForm(this.assistObj[i - 1].compData);
+        }
       }
       if (this.assistObj[i - 1].comp == "6") {
-        this.$refs.funcFormRef.setUpForm(this.assistObj[i - 1].compData);
+        if (this.assistObj[i - 1].compData == "") {
+          alert(
+            "フォームの構成データがないため、デフォルトの構成で表示します。"
+          );
+        } else
+          [this.$refs.funcFormRef.setUpForm(this.assistObj[i - 1].compData)];
       }
       if (this.assistObj[i - 1].comp == "-1") {
         alert("この構成要素のためのフォームはまだ搭載されていません。");
         return;
       }
-      this.formTabSelect(2);
       this.openGrammarModal();
     },
     //コードの実行
