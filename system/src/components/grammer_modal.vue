@@ -5,7 +5,7 @@
         <div class="modalUpperArea">
           <h1>文法フォームの使い方</h1>
           <p>
-            文法フォームを使ってコーディングし、要素の構成を理解しましょう。
+            文法フォームを使って穴埋め式でコーディングし、文法（構成要素）を理解しましょう。
           </p>
           <input type="checkbox" v-model="notShowAgainCheck" name="notAgain" />
           <label for="notAgain">今後この説明を表示しない。</label>
@@ -15,7 +15,7 @@
             class="css-button-rounded--green"
             @click="closeGrammarModal()"
           >
-            閉じる
+            OK
           </button>
         </div>
       </div>
