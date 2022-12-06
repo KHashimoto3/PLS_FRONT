@@ -69,64 +69,90 @@
           <h2>{{ questionTitle }}</h2>
           <p>{{ questionDescription }}</p>
         </div>
-        <div class="codingForm">
-          <div class="codingFormInner">
-            <p>＜ヘッダーコメント＞</p>
-            <codemirror
-              v-model="headerText"
-              placeholder="コメントを書く"
-              :style="{ height: 'auto', 'font-size': '16pt' }"
-              :autofocus="false"
-              :indent-with-tab="false"
-              :tab-size="4"
-              :extensions="extensions"
-              @focus="setNotice(0, 0)"
-              @blur="closeNotice()"
-            />
-            <p>＜コーディングフォーム＞</p>
-            <div v-for="i of OutMainCnt" :key="i">
-              <codemirror
-                v-model="outMainTextArray[i - 1]"
-                placeholder="コードを書く"
-                :style="{ height: 'auto', 'font-size': '16pt' }"
-                :autofocus="false"
-                :indent-with-tab="false"
-                :tab-size="4"
-                :extensions="extensions"
-                @focus="setNotice(0, i)"
-                @blur="closeNotice()"
-              />
-            </div>
-            <pre v-show="mainIsShow">
+        <!--フォー上リア-->
+        <div class="tabGroup">
+          <ul class="tabNav">
+            <li
+              @click="formTabSelect(1)"
+              v-bind:class="{ active: formTabSelected == 1 }"
+            >
+              コーディングフォーム
+            </li>
+            <li
+              @click="formTabSelect(2)"
+              v-bind:class="{ active: formTabSelected == 2 }"
+            >
+              文法フォーム
+            </li>
+          </ul>
+          <div class="tabContent">
+            <div v-if="formTabSelected == 1" class="codingForm">
+              <div class="codingFormInner">
+                <codemirror
+                  v-model="headerText"
+                  placeholder="コメントを書く"
+                  :style="{ height: 'auto', 'font-size': '16pt' }"
+                  :autofocus="false"
+                  :indent-with-tab="false"
+                  :tab-size="4"
+                  :extensions="extensions"
+                  @focus="setNotice(0, 0)"
+                  @blur="closeNotice()"
+                />
+                <div v-for="i of OutMainCnt" :key="i">
+                  <codemirror
+                    v-model="outMainTextArray[i - 1]"
+                    placeholder="コードを書く"
+                    :style="{ height: 'auto', 'font-size': '16pt' }"
+                    :autofocus="false"
+                    :indent-with-tab="false"
+                    :tab-size="4"
+                    :extensions="extensions"
+                    @focus="setNotice(0, i)"
+                    @blur="closeNotice()"
+                  />
+                </div>
+                <pre v-show="mainIsShow">
   int main(void){
           </pre
-            >
-            <div v-for="i of InMainCnt" :key="i">
-              <codemirror
-                v-model="inMainTextArray[i - 1]"
-                placeholder="コードを書く"
-                :style="{
-                  width: '95%',
-                  height: 'auto',
-                  'font-size': '16pt',
-                  margin: '0 auto',
-                }"
-                :autofocus="false"
-                :indent-with-tab="false"
-                :tab-size="4"
-                :extensions="extensions"
-                @focus="setNotice(1, i)"
-                @blur="closeNotice()"
-              />
-            </div>
+                >
+                <div v-for="i of InMainCnt" :key="i">
+                  <codemirror
+                    v-model="inMainTextArray[i - 1]"
+                    placeholder="コードを書く"
+                    :style="{
+                      width: '95%',
+                      height: 'auto',
+                      'font-size': '16pt',
+                      margin: '0 auto',
+                    }"
+                    :autofocus="false"
+                    :indent-with-tab="false"
+                    :tab-size="4"
+                    :extensions="extensions"
+                    @focus="setNotice(1, i)"
+                    @blur="closeNotice()"
+                  />
+                </div>
 
-            <pre v-show="mainIsShow">
+                <pre v-show="mainIsShow">
     return 0;
   }
           </pre
-            >
+                >
+              </div>
+            </div>
+            <div v-show="formTabSelected == 2" class="grammarForm">
+              <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
+              <ifForm v-show="formMode == '4a'" ref="ifFormRef" />
+              <forForm v-show="formMode == '4b'" ref="forFormRef" />
+              <whileForm v-show="formMode == '4c'" ref="whileFormRef" />
+              <funcForm v-show="formMode == '6'" ref="funcFormRef" />
+              <nomalEditor v-show="formMode == '-1'" ref="nomalRef" />
+            </div>
           </div>
         </div>
+
         <div class="codeRunButton">
           <button class="css-button-rounded--green" @click="codeRun()">
             連結して実行
@@ -134,6 +160,8 @@
         </div>
       </div>
       <CodeRun ref="codeRunner" />
+      <!--文法フォームを選んだときに出す情報モーダル-->
+      <GrammarMmodal ref="gModal" />
     </div>
   </div>
 </template>
@@ -148,6 +176,15 @@ import { indentWithTab } from "@codemirror/commands";
 import Toggle from "@vueform/toggle";
 
 import CodeRun from "./components/CodeRun.vue";
+import GrammarMmodal from "./components/grammer_modal.vue";
+
+//関数定義、制御構造フォーム
+//フォームを追加する場合は、ここにコンポーネントを読み込む
+import funcForm from "./components/func_form.vue";
+import ifForm from "./components/if_form.vue";
+import forForm from "./components/for_form.vue";
+import whileForm from "./components/while_form.vue";
+import nomalEditor from "./components/nomal_editor.vue";
 
 export default {
   name: "CodingForm",
@@ -155,6 +192,13 @@ export default {
     Codemirror,
     Toggle,
     CodeRun,
+    GrammarMmodal,
+
+    funcForm,
+    ifForm,
+    forForm,
+    whileForm,
+    nomalEditor,
   },
   data() {
     return {
@@ -172,6 +216,10 @@ export default {
       nextIsDisabled: false,
       sampleIsShow: true,
       notificationIsShow: false,
+      //フォームのタブの状態
+      formTabSelected: 1,
+      //関数定義フォーム、制御構造フォームの種類
+      formMode: "-1",
 
       //テキストエリアの文章
       headerText: "",
@@ -219,6 +267,7 @@ export default {
         this.assistObj = responseData.assistObj;
         if (this.assistObj == null) {
           alert("フォームデータがありません。");
+          location.href = "index.html";
         }
       }
     } catch (errMsg) {
@@ -250,7 +299,7 @@ export default {
         return;
       }
       if (this.assistObj[this.nowStepNo].type == 0) {
-        //main関数記述前
+        //main関数の手前
         this.nowStepNo++;
         this.viewStepNo++;
         this.OutMainCnt++;
@@ -267,6 +316,51 @@ export default {
         this.InMainCnt++;
       }
       this.changeDisabled();
+    },
+    formTabSelect: function (id) {
+      if (id == 1) {
+        this.formTabSelected = 1;
+      } else if (id == 2) {
+        this.formTabSelected = 2;
+        this.showGrammarForm(this.viewStepNo);
+      }
+    },
+    showGrammarForm: function (i) {
+      this.formMode = this.assistObj[i - 1].comp;
+      if (this.assistObj[i - 1].comp == "4a") {
+        if (this.assistObj[i - 1].compData == "") {
+          alert(
+            "フォームの構成データがないため、デフォルトの構成で表示します。"
+          );
+        } else {
+          this.$refs.ifFormRef.setUpForm(this.assistObj[i - 1].compData);
+        }
+      }
+      if (this.assistObj[i - 1].comp == "4b") {
+        //セットアップはなし
+      }
+      if (this.assistObj[i - 1].comp == "4c") {
+        if (this.assistObj[i - 1].compData == "") {
+          alert(
+            "フォームの構成データがないため、デフォルトの構成で表示します。"
+          );
+        } else {
+          this.$refs.whileFormRef.setUpForm(this.assistObj[i - 1].compData);
+        }
+      }
+      if (this.assistObj[i - 1].comp == "6") {
+        if (this.assistObj[i - 1].compData == "") {
+          alert(
+            "フォームの構成データがないため、デフォルトの構成で表示します。"
+          );
+        } else
+          [this.$refs.funcFormRef.setUpForm(this.assistObj[i - 1].compData)];
+      }
+      if (this.assistObj[i - 1].comp == "-1") {
+        alert("この構成要素のためのフォームはまだ搭載されていません。");
+        return;
+      }
+      this.openGrammarModal();
     },
     //コードの実行
     codeRun: function () {
@@ -360,6 +454,9 @@ export default {
         }
         startPlace++;
       });
+    },
+    openGrammarModal: function () {
+      this.$refs.gModal.openGrammarModal();
     },
   },
 };
@@ -521,7 +618,14 @@ div.question {
 }
 div.codingForm {
   width: 100%;
-  height: 75%;
+  height: 100%;
+  position: relative;
+  border: solid 1px #000000;
+  overflow: auto;
+}
+div.grammarForm {
+  width: 100%;
+  height: auto;
   position: relative;
   border: solid 1px #000000;
   overflow: auto;
@@ -574,6 +678,33 @@ img.styleSample {
 
 .sampleToggle {
   --toggle-width: 6rem;
+}
+
+/*タブの設定*/
+div.tabGroup {
+  width: 100%;
+  height: auto;
+}
+.tabNav {
+  margin: auto;
+  display: flex;
+  list-style-type: none;
+}
+.tabNav li {
+  cursor: pointer;
+  width: 50%;
+  background: #ddd;
+  color: #333;
+  padding: 10px;
+  text-decoration: none;
+}
+.tabNav li.active {
+  background: #57cc99;
+  color: #fff;
+}
+div.tabContent {
+  width: 100%;
+  height: 500px;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
