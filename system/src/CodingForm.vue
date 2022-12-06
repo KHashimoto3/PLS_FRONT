@@ -20,13 +20,7 @@
         <div class="assist">
           <div class="assistInner">
             <div class="assistText">
-              <h1 style="float: left">STEP{{ viewStepNo }}</h1>
-              <button
-                class="css-button-rounded--grammar"
-                @click="showGrammarForm(this.viewStepNo)"
-              >
-                文法フォームを表示
-              </button>
+              <h1>STEP{{ viewStepNo }}</h1>
               <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
               <p>{{ assistObj[viewStepNo - 1].body }}</p>
             </div>
@@ -328,11 +322,11 @@ export default {
         this.formTabSelected = 1;
       } else if (id == 2) {
         this.formTabSelected = 2;
+        this.showGrammarForm(this.viewStepNo);
       }
     },
     showGrammarForm: function (i) {
       this.formMode = this.assistObj[i - 1].comp;
-      this.formTabSelect(2);
       if (this.assistObj[i - 1].comp == "4a") {
         if (this.assistObj[i - 1].compData == "") {
           alert(
@@ -611,32 +605,6 @@ button.css-button-rounded--sand:disabled {
   color: #fff;
   border: 2px solid #d6d6d6;
   background: #d6d6d6;
-}
-
-button.css-button-rounded--grammar {
-  min-width: 130px;
-  height: 40px;
-  color: #fff;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  border-radius: 5px;
-  border: 2px solid #57cc99;
-  background: #57cc99;
-  margin-left: 250px;
-}
-button.css-button-rounded--grammar:hover {
-  background: #fff;
-  color: #57cc99;
-}
-button.css-button-rounded--grammar:disabled {
-  color: #fff;
-  border: 2px solid #a7cfbe;
-  background: #a7cfbe;
 }
 
 div.codingRight {
