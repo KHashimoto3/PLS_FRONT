@@ -625,7 +625,7 @@ div.codingForm {
 }
 div.grammarForm {
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
   border: solid 1px #000000;
   overflow: auto;
