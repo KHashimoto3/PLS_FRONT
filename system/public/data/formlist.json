@@ -4,6 +4,11 @@
             "id":1,
             "name":"サンプル問題",
             "formLink":"sample"
+        },
+        {
+            "id":2,
+            "name":"サンプル（関数）",
+            "formLink":"sample_func"
         }
     ]
 }
