@@ -47,7 +47,13 @@
           <p>＜入力＞</p>
           <textarea cols="40" rows="5" v-model="input"> </textarea><br />
 
-          <button class="css-button-rounded--green" @click="run">実行！</button>
+          <button
+            class="css-button-rounded--green"
+            @click="run"
+            :disabled="runButtonIsDisabled"
+          >
+            実行！
+          </button>
 
           <p>＜実行結果＞</p>
           <p :style="runResultStyle">{{ runResultTxt }}</p>
@@ -90,6 +96,7 @@ export default {
     return {
       thisIsShow: false,
       downloadModalIsShow: false,
+      runButtonIsDisabled: false,
 
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
@@ -129,6 +136,12 @@ export default {
         alert("コードを入力してから押してください！");
         return;
       }
+
+      //実行中は実行ボタンを無効化し、実行中であることを知らせる
+      this.runButtonIsDisabled = true;
+      this.runResultTxt = "実行中...";
+      this.runResultStyle.background = "#ff8c00";
+
       let dataObj;
       let input;
 
@@ -156,6 +169,8 @@ export default {
         };*/
 
       const url = "/api/execcode";
+      //テスト用
+      //const url = "https://wandbox.org/api/compile.json";
 
       let errMsg;
 
@@ -176,19 +191,28 @@ export default {
         } else {
           const responseData = await response.json();
           if (responseData.program_output != "") {
+            //3秒待機
+            this.sleep(2000);
             this.outputErrTxt = responseData.program_output;
             this.runResultTxt = "実行成功";
             this.runResultStyle.background = "#42cf1f";
           } else if (responseData.compiler_message != "") {
+            //3秒待機
+            this.sleep(2000);
             this.outputErrTxt = responseData.compiler_message;
             this.runResultTxt = "エラー";
             this.runResultStyle.background = "#ed1111";
           }
-          console.log(responseData);
+          this.runButtonIsDisabled = false;
         }
       } catch (errMsg) {
         alert(errMsg);
       }
+    },
+    sleep: function (waitMsec) {
+      let startMsec = new Date();
+      //指定されたミリ秒ループ
+      while (new Date() - startMsec < waitMsec);
     },
     openDownloadModal: function () {
       this.downloadModalIsShow = true;
