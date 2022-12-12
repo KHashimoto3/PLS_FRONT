@@ -307,6 +307,7 @@ export default {
         //main関数記述後
         this.nowStepNo++;
         this.viewStepNo++;
+        this.outMainTextArray[this.OutMainCnt - 1] = "";
         this.OutMainCnt--; //main関数記述前へ戻す
         this.mainIsShow = true; //main関数を表示
         this.InMainCnt++; //main関数内のtextareaを表示する
@@ -380,8 +381,7 @@ export default {
     connectOutMain: function () {
       let connectedTxt = "";
       const outMainTextLeng = this.outMainTextArray.length;
-      //main関数がoutMainTextArrayの最後に入っており、重複を避けるためにmain関数は結合しない
-      for (let i = 0; i < outMainTextLeng - 1; i++) {
+      for (let i = 0; i < outMainTextLeng; i++) {
         connectedTxt = connectedTxt + this.outMainTextArray[i] + "\n";
       }
       connectedTxt += "\n";
