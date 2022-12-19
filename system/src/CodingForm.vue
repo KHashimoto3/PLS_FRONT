@@ -130,7 +130,7 @@
                     :indent-with-tab="false"
                     :tab-size="4"
                     :extensions="extensions"
-                    @focus="setNotice(1, i)"
+                    @focus="setNotice(1, i - 1)"
                     @blur="closeNotice()"
                   />
                 </div>
@@ -304,6 +304,13 @@ export default {
         this.viewStepNo++;
         this.OutMainCnt++;
       } else if (this.assistObj[this.nowStepNo].type == -1) {
+        this.nowStepNo++;
+        this.viewStepNo++;
+        this.OutMainCnt++;
+      } else if (
+        this.assistObj[this.nowStepNo].type == 1 &&
+        this.assistObj[this.nowStepNo - 1].type == -1
+      ) {
         //main関数記述後
         this.nowStepNo++;
         this.viewStepNo++;
@@ -311,7 +318,10 @@ export default {
         this.OutMainCnt--; //main関数記述前へ戻す
         this.mainIsShow = true; //main関数を表示
         this.InMainCnt++; //main関数内のtextareaを表示する
-      } else if (this.assistObj[this.nowStepNo].type == 1) {
+      } else if (
+        this.assistObj[this.nowStepNo].type == 1 &&
+        this.assistObj[this.nowStepNo - 1].type != -1
+      ) {
         this.nowStepNo++;
         this.viewStepNo++;
         this.InMainCnt++;
@@ -415,45 +425,106 @@ export default {
       this.notificationIsShow = false;
     },
     setNotice: function (type, id) {
+      console.log("typeが" + type + "の" + id + "番目の説明をセットします。");
       //すでに表示されていたら消す
       if (this.notificationIsShow == true) {
         this.notificationIsShow = false;
         this.notificationText = "";
       }
-      //ヘッダーコメント
-      if (type == 0 && this.mainIsShow == false && id == 0) {
+      //main関数表示前
+      if (this.mainIsShow == false) {
+        //main関数表示前ということは、必ずtype==0またはtype==-1になるため、type判定は不要
         this.notificationText = this.assistObj[id].notice;
+        this.viewStepNo = this.assistObj[id].id;
+        this.notificationIsShow = true;
+        this.changeDisabled();
+        return;
+      }
+      //main関数表示後
+      //各タイプの何番目かを調べる
+      let count = 0;
+      for (let i = 0; i < this.assistObj.length; i++) {
+        if (this.assistObj[i].type == type) {
+          if (count == id) {
+            console.log("typeが" + type + "の：" + count);
+            this.notificationText = this.assistObj[i].notice;
+            this.viewStepNo = this.assistObj[i].id;
+            console.log(this.viewStepNo);
+            this.notificationIsShow = true;
+            this.changeDisabled();
+            return;
+          }
+          count++;
+        }
+      }
+      /*this.assistObj.forEach((element) => {
+        if (element.type == type) {
+          if (place == id) {
+            console.log("typeが" + type + "の：" + place);
+            this.notificationText = element.notice;
+            this.viewStepNo = element.id;
+            console.log(this.viewStepNo);
+            this.notificationIsShow = true;
+            return;
+          }
+          place++;
+        }
+      });*/
+
+      //ヘッダーコメント
+      /*if (type == 0 && this.mainIsShow == false && id == 0) {
+        this.notificationText = this.assistObj[id].notice;
+        this.viewStepNo = this.assistObj[id].id;
+        console.log("ヘッダーコメントを出す地点：" + this.viewStepNo);
         this.notificationIsShow = true;
         return;
       }
-      //main関数
+      //main関数表示前
       if (type == 0 && this.mainIsShow == false && id == 2) {
         let place = 0;
         this.assistObj.forEach((element) => {
           if (element.type == -1) {
-            console.log("場所：" + place);
+            console.log("type0で、表示前、id==2の地点：" + place);
             this.notificationText = this.assistObj[place - 1].notice;
+            this.viewStepNo = this.assistObj[place - 1].id;
+            console.log(this.viewStepNo);
             this.notificationIsShow = true;
             return;
           }
           place++;
         });
       }
+      //type == 0  main関数表示済み の場合
       if (type == 0) {
-        this.notificationText = this.assistObj[id].notice;
-        this.notificationIsShow = true;
-        return;
+        let outmaincnt = 0;
+        //同じ個数目のtype == 0のアシストを使う
+        this.assistObj.forEach((element) => {
+          if (element.type == 0) {
+            if (outmaincnt == id) {
+              this.notificationText = this.assistObj[element.id - 1].notice;
+              this.viewStepNo = this.assistObj[element.id - 1].id;
+              console.log("type==0の地点：" + this.viewStepNo);
+              this.notificationIsShow = true;
+              return;
+            }
+            outmaincnt++;
+          }
+        });
       }
 
+      //type == 1 の場合
       let startPlace = 0;
       this.assistObj.forEach((element) => {
         if (element.type == -1) {
           this.notificationText = this.assistObj[startPlace + id - 1].notice;
+          this.viewStepNo = this.assistObj[startPlace + id - 1].id;
+          console.log("type==1の地点" + this.viewStepNo);
           this.notificationIsShow = true;
           return;
         }
         startPlace++;
       });
+      */
     },
     openGrammarModal: function () {
       this.$refs.gModal.openGrammarModal();
