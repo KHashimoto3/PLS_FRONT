@@ -3,12 +3,12 @@
         {
             "id":1,
             "name":"サンプル問題",
-            "formLink":"sample"
+            "link":"sample"
         },
         {
             "id":2,
             "name":"サンプル（関数）",
-            "formLink":"sample_func"
+            "link":"sample_func"
         }
     ]
 }

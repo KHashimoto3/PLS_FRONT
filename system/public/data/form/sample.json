@@ -30,7 +30,7 @@
     },
     {
       "id": 3,
-      "type": 0,
+      "type": -1,
       "comp":"-1",
       "compData":"",
       "title": "main関数",
@@ -41,7 +41,7 @@
     },
     {
       "id": 4,
-      "type": -1,
+      "type": 1,
       "comp":"-1",
       "compData":"",
       "title": "変数・配列の宣言",

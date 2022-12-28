@@ -130,7 +130,7 @@
                     :indent-with-tab="false"
                     :tab-size="4"
                     :extensions="extensions"
-                    @focus="setNotice(1, i)"
+                    @focus="setNotice(1, i - 1)"
                     @blur="closeNotice()"
                   />
                 </div>
@@ -304,13 +304,24 @@ export default {
         this.viewStepNo++;
         this.OutMainCnt++;
       } else if (this.assistObj[this.nowStepNo].type == -1) {
+        this.nowStepNo++;
+        this.viewStepNo++;
+        this.OutMainCnt++;
+      } else if (
+        this.assistObj[this.nowStepNo].type == 1 &&
+        this.assistObj[this.nowStepNo - 1].type == -1
+      ) {
         //main関数記述後
         this.nowStepNo++;
         this.viewStepNo++;
+        this.outMainTextArray[this.OutMainCnt - 1] = "";
         this.OutMainCnt--; //main関数記述前へ戻す
         this.mainIsShow = true; //main関数を表示
         this.InMainCnt++; //main関数内のtextareaを表示する
-      } else if (this.assistObj[this.nowStepNo].type == 1) {
+      } else if (
+        this.assistObj[this.nowStepNo].type == 1 &&
+        this.assistObj[this.nowStepNo - 1].type != -1
+      ) {
         this.nowStepNo++;
         this.viewStepNo++;
         this.InMainCnt++;
@@ -380,8 +391,7 @@ export default {
     connectOutMain: function () {
       let connectedTxt = "";
       const outMainTextLeng = this.outMainTextArray.length;
-      //main関数がoutMainTextArrayの最後に入っており、重複を避けるためにmain関数は結合しない
-      for (let i = 0; i < outMainTextLeng - 1; i++) {
+      for (let i = 0; i < outMainTextLeng; i++) {
         connectedTxt = connectedTxt + this.outMainTextArray[i] + "\n";
       }
       connectedTxt += "\n";
@@ -415,45 +425,38 @@ export default {
       this.notificationIsShow = false;
     },
     setNotice: function (type, id) {
+      console.log("typeが" + type + "の" + id + "番目の説明をセットします。");
       //すでに表示されていたら消す
       if (this.notificationIsShow == true) {
         this.notificationIsShow = false;
         this.notificationText = "";
       }
-      //ヘッダーコメント
-      if (type == 0 && this.mainIsShow == false && id == 0) {
+      //main関数表示前
+      if (this.mainIsShow == false) {
+        //main関数表示前ということは、必ずtype==0またはtype==-1になるため、type判定は不要
         this.notificationText = this.assistObj[id].notice;
+        this.viewStepNo = this.assistObj[id].id;
         this.notificationIsShow = true;
+        this.changeDisabled();
         return;
       }
-      //main関数
-      if (type == 0 && this.mainIsShow == false && id == 2) {
-        let place = 0;
-        this.assistObj.forEach((element) => {
-          if (element.type == -1) {
-            console.log("場所：" + place);
-            this.notificationText = this.assistObj[place - 1].notice;
+      //main関数表示後
+      //各タイプの何番目かを調べる
+      let count = 0;
+      for (let i = 0; i < this.assistObj.length; i++) {
+        if (this.assistObj[i].type == type) {
+          if (count == id) {
+            console.log("typeが" + type + "の：" + count);
+            this.notificationText = this.assistObj[i].notice;
+            this.viewStepNo = this.assistObj[i].id;
+            console.log(this.viewStepNo);
             this.notificationIsShow = true;
+            this.changeDisabled();
             return;
           }
-          place++;
-        });
-      }
-      if (type == 0) {
-        this.notificationText = this.assistObj[id].notice;
-        this.notificationIsShow = true;
-        return;
-      }
-
-      let startPlace = 0;
-      this.assistObj.forEach((element) => {
-        if (element.type == -1) {
-          this.notificationText = this.assistObj[startPlace + id - 1].notice;
-          this.notificationIsShow = true;
-          return;
+          count++;
         }
-        startPlace++;
-      });
+      }
     },
     openGrammarModal: function () {
       this.$refs.gModal.openGrammarModal();
@@ -625,7 +628,7 @@ div.codingForm {
 }
 div.grammarForm {
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
   border: solid 1px #000000;
   overflow: auto;
