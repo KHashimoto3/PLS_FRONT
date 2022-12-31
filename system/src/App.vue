@@ -24,7 +24,8 @@ export default {
     };
   },
   created: async function () {
-    const pullFormUrl = "./data/formlist.json";
+    //const pullFormUrl = "./data/formlist.json";
+    const pullFormUrl = "/api/getformlist";
     let errMsg;
     try {
       const response = await fetch(pullFormUrl, {
@@ -41,7 +42,8 @@ export default {
         }
       } else {
         const responseData = await response.json();
-        this.formListDataObj = responseData.formList;
+        //this.formListDataObj = responseData.formlist;
+        this.formListDataObj = responseData;
         if (this.formListDataObj == null) {
           alert("フォームリストデータがありません。");
         }
