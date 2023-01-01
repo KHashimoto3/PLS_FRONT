@@ -1,5 +1,6 @@
 <template>
   <div>
+    <headerComp />
     <h1>コーディングスタイル学習システム</h1>
     <h2>単元を選ぶ</h2>
     <div v-for="i of formListDataObj" :key="i">
@@ -12,20 +13,21 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
+import headerComp from "./components/header_comp.vue";
 
 export default {
   name: "App",
-  /*components: {
-    HelloWorld
-  }*/
+  components: {
+    headerComp,
+  },
   data() {
     return {
       formListDataObj: null,
     };
   },
   created: async function () {
-    //const pullFormUrl = "./data/formlist.json";
-    const pullFormUrl = "/api/getformlist";
+    const pullFormUrl = "./data/formlist.json";
+    //const pullFormUrl = "/api/getformlist";
     let errMsg;
     try {
       const response = await fetch(pullFormUrl, {
@@ -42,8 +44,8 @@ export default {
         }
       } else {
         const responseData = await response.json();
-        //this.formListDataObj = responseData.formlist;
-        this.formListDataObj = responseData;
+        this.formListDataObj = responseData.formlist;
+        //this.formListDataObj = responseData;
         if (this.formListDataObj == null) {
           alert("フォームリストデータがありません。");
         }
