@@ -1,10 +1,14 @@
 <template>
   <div class="header">
     <div class="headerLeft">
-      {{ title }}
+      <div class="headerLeftInner">
+        {{ title }}
+      </div>
     </div>
     <div class="headerRight">
-      {{ loginUserName }}
+      <div class="headerRightInner">
+        {{ loginUserName }}
+      </div>
     </div>
   </div>
 </template>
@@ -27,17 +31,33 @@ div.header {
   width: 100%;
   height: 60px;
   margin: 0;
+  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.5);
+  font-size: 20pt;
 }
 div.headerLeft {
-  width: 70%;
+  width: 80%;
   height: 100%;
   float: left;
-  background: #56ea00;
+  background: #ffffff;
+  display: flex;
+  text-align: left;
 }
 div.headerRight {
-  width: 30%;
+  width: 20%;
   height: 100%;
-  margin-left: 70%;
-  background: #ea6900;
+  margin-left: 20%;
+  background: #57cc99;
+  display: flex;
+  text-align: center;
+}
+div.headerLeftInner {
+  width: 90%;
+  height: 70%;
+  margin: auto;
+}
+div.headerRightInner {
+  width: 90%;
+  height: 70%;
+  margin: auto;
 }
 </style>
