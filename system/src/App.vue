@@ -44,7 +44,7 @@ export default {
         }
       } else {
         const responseData = await response.json();
-        this.formListDataObj = responseData.formlist;
+        this.formListDataObj = responseData.formList;
         //this.formListDataObj = responseData;
         if (this.formListDataObj == null) {
           alert("フォームリストデータがありません。");
