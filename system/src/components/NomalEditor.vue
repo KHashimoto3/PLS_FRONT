@@ -31,7 +31,7 @@ import { keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
 
 export default {
-  name: "nomal_editor.vue",
+  name: "NomalEditor.vue",
   components: {
     Codemirror,
   },

@@ -39,7 +39,7 @@ import { keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
 
 export default {
-  name: "for_form.vue",
+  name: "ForForm.vue",
   components: {
     Codemirror,
   },

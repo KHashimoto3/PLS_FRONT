@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import InnerElement from "./components/inner_element_list.vue";
+import InnerElement from "./components/InnerElementList.vue";
 
 export default {
   name: "App",

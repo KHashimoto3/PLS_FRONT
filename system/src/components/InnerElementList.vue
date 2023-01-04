@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "inner_element_list",
+  name: "InnerElementList",
   data() {
     return {
       stepNo: 1,
