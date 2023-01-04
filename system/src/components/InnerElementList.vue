@@ -1,7 +1,7 @@
 <template>
   <div class="inner_element">
     <h1>STEP{{ stepNo }}</h1>
-    <p>{{ elemetName }}のSTEPは以下の要素で構成されます。</p>
+    <p>{{ stepName }}のSTEPは以下の要素で構成されます。</p>
     <div class="elementTableArea">
       <table>
         <tr>
@@ -10,7 +10,7 @@
           <th>文法</th>
         </tr>
         <tr v-for="i of count" :key="i">
-          <td>{{ i + 1 }}</td>
+          <td>{{ i }}</td>
           <td>あああ</td>
           <td>あああ</td>
         </tr>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       stepNo: 1,
+      stepName: "関数定義",
       count: 3,
     };
   },
