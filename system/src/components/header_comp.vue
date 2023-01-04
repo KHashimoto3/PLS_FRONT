@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="headerRight">
-      <div class="headerRightInner">
+      <div class="headerRightInner" @click="gotoLoginPage()">
         {{ loginUserName }}
       </div>
     </div>
@@ -22,7 +22,12 @@ export default {
       loginUserName: "ログイン",
     };
   },
-  methods: {},
+  methods: {
+    gotoLoginPage: function () {
+      const url = "login.html";
+      window.location.href = url;
+    },
+  },
 };
 </script>
 
@@ -49,6 +54,9 @@ div.headerRight {
   background: #57cc99;
   display: flex;
   text-align: center;
+}
+div.headerRight:hover {
+  cursor: pointer;
 }
 div.headerLeftInner {
   width: 90%;
