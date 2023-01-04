@@ -14,6 +14,12 @@ module.exports = {
       filename: "codingform.html",
       title: "コーディングフォーム",
     },
+    element: {
+      entry: "src/innerElement.js",
+      template: "public/innerElementTest.html",
+      filename: "innerElement.html",
+      title: "詳細表示テスト",
+    },
   },
 };
 /*module.exports = defineConfig({
