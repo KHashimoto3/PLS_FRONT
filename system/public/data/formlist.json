@@ -9,6 +9,11 @@
             "id":2,
             "name":"サンプル（関数）",
             "link":"sample_func"
+        },
+        {
+            "id":3,
+            "name":"実験用（構造体）",
+            "link":"exp_struct"
         }
     ]
 }
