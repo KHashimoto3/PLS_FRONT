@@ -11,7 +11,7 @@
         <div class="unitName">
           <h1>{{ unitName }}</h1>
         </div>
-        <Toggle
+        <toggle
           v-model="sampleIsShow"
           offLabel="ヒント非表示"
           onLabel="ヒント表示"
@@ -144,11 +144,11 @@
             </div>
             <div v-show="formTabSelected == 2" class="grammarForm">
               <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
-              <ifForm v-show="formMode == '4a'" ref="ifFormRef" />
-              <forForm v-show="formMode == '4b'" ref="forFormRef" />
-              <whileForm v-show="formMode == '4c'" ref="whileFormRef" />
-              <funcForm v-show="formMode == '6'" ref="funcFormRef" />
-              <nomalEditor v-show="formMode == '-1'" ref="nomalRef" />
+              <if-form v-show="formMode == '4a'" ref="ifFormRef" />
+              <for-form v-show="formMode == '4b'" ref="forFormRef" />
+              <while-form v-show="formMode == '4c'" ref="whileFormRef" />
+              <func-form v-show="formMode == '6'" ref="funcFormRef" />
+              <nomal-editor v-show="formMode == '-1'" ref="nomalRef" />
             </div>
           </div>
         </div>
@@ -159,9 +159,9 @@
           </button>
         </div>
       </div>
-      <CodeRun ref="codeRunner" />
+      <code-run ref="codeRunner" />
       <!--文法フォームを選んだときに出す情報モーダル-->
-      <GrammarMmodal ref="gModal" />
+      <grammar-mmodal ref="gModal" />
     </div>
   </div>
 </template>
@@ -176,15 +176,15 @@ import { indentWithTab } from "@codemirror/commands";
 import Toggle from "@vueform/toggle";
 
 import CodeRun from "./components/CodeRun.vue";
-import GrammarMmodal from "./components/grammer_modal.vue";
+import GrammarMmodal from "./components/GrammerModal.vue";
 
 //関数定義、制御構造フォーム
 //フォームを追加する場合は、ここにコンポーネントを読み込む
-import funcForm from "./components/func_form.vue";
-import ifForm from "./components/if_form.vue";
-import forForm from "./components/for_form.vue";
-import whileForm from "./components/while_form.vue";
-import nomalEditor from "./components/nomal_editor.vue";
+import FuncForm from "./components/FuncForm.vue";
+import IfForm from "./components/IfForm.vue";
+import ForForm from "./components/ForForm.vue";
+import WhileForm from "./components/WhileForm.vue";
+import NomalEditor from "./components/NomalEditor.vue";
 
 export default {
   name: "CodingForm",
@@ -194,11 +194,11 @@ export default {
     CodeRun,
     GrammarMmodal,
 
-    funcForm,
-    ifForm,
-    forForm,
-    whileForm,
-    nomalEditor,
+    FuncForm,
+    IfForm,
+    ForForm,
+    WhileForm,
+    NomalEditor,
   },
   data() {
     return {

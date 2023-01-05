@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "condition_select.vue",
+  name: "ConditionSelect.vue",
   data() {
     return {};
   },
