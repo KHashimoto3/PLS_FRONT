@@ -9,10 +9,16 @@ module.exports = {
       title: "ホーム",
     },
     coding: {
-      entry: "src/codingform.js",
-      template: "public/codingform.html",
-      filename: "codingform.html",
+      entry: "src/coding_form.js",
+      template: "public/coding_form.html",
+      filename: "coding_form.html",
       title: "コーディングフォーム",
+    },
+    element: {
+      entry: "src/inner_element.js",
+      template: "public/inner_element_test.html",
+      filename: "inner_element.html",
+      title: "詳細表示テスト",
     },
   },
 };

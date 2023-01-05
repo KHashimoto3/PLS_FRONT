@@ -11,21 +11,16 @@
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: "App",
-  /*components: {
-    HelloWorld
-  }*/
   data() {
     return {
       formListDataObj: null,
     };
   },
   created: async function () {
-    //const pullFormUrl = "./data/formlist.json";
-    const pullFormUrl = "/api/getformlist";
+    const pullFormUrl = "./data/formlist.json";
+    //const pullFormUrl = "/api/getformlist";
     let errMsg;
     try {
       const response = await fetch(pullFormUrl, {
@@ -42,8 +37,8 @@ export default {
         }
       } else {
         const responseData = await response.json();
-        //this.formListDataObj = responseData.formlist;
-        this.formListDataObj = responseData;
+        this.formListDataObj = responseData.formList;
+        //this.formListDataObj = responseData;
         if (this.formListDataObj == null) {
           alert("フォームリストデータがありません。");
         }

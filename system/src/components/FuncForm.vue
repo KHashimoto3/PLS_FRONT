@@ -48,7 +48,7 @@ import { keymap } from "@codemirror/view";
 import { indentWithTab } from "@codemirror/commands";
 
 export default {
-  name: "func_form.vue",
+  name: "FuncForm.vue",
   components: {
     Codemirror,
   },

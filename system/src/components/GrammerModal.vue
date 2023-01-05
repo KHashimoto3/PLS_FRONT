@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "grammarModal",
+  name: "GrammarModal",
   data() {
     return {
       notShowAgain: false,
