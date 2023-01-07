@@ -1,16 +1,20 @@
 <template>
   <div>
-    <h1>ログイン</h1>
+    <header-comp />
   </div>
 </template>
 
 <script>
+import HeaderComp from "./components/HeaderComp.vue";
+
 export default {
   name: "LoginPage",
+  components: {
+    HeaderComp,
+  },
   data() {
     return {};
   },
-
   methods: {},
 };
 </script>
