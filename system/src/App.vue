@@ -1,6 +1,6 @@
 <template>
   <div>
-    <headerComp />
+    <header-comp />
     <h1>コーディングスタイル学習システム</h1>
     <h2>単元を選ぶ</h2>
     <div v-for="i of formListDataObj" :key="i">
@@ -13,12 +13,12 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import headerComp from "./components/header_comp.vue";
+import HeaderComp from "./components/HeaderComp.vue";
 
 export default {
   name: "App",
   components: {
-    headerComp,
+    HeaderComp,
   },
   data() {
     return {
