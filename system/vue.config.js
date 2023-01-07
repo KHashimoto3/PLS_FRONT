@@ -9,10 +9,10 @@ module.exports = {
       title: "ホーム",
     },
     login: {
-      entry: "src/login.js",
-      template: "public/login.html",
-      filename: "login.html",
-      title: "ログイン",
+      entry: "src/account.js",
+      template: "public/account.html",
+      filename: "account.html",
+      title: "アカウント",
     },
     coding: {
       entry: "src/coding_form.js",

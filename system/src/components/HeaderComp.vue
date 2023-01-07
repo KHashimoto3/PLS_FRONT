@@ -46,7 +46,7 @@ export default {
       window.location.href = url;
     },
     gotoLoginPage: function () {
-      const url = "login.html";
+      const url = "account.html";
       window.location.href = url;
     },
   },
