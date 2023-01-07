@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="headerLeft">
-      <div class="headerLeftInner">
+      <div class="headerLeftInner" @click="backPage()">
         <p>{{ backButtonTxt }}</p>
       </div>
     </div>
@@ -24,20 +24,26 @@ export default {
   data() {
     return {
       backButtonTxt: "ホーム",
+      backButtonURL: "index.html",
       title: "ヘッダタイトル",
       loginUserName: "ログイン",
     };
   },
   methods: {
     //ヘッダのセットアップ
-    setUpHeader: function (buttonTxt, title, userName) {
+    setUpHeader: function (buttonTxt, backURL, title, userName) {
       //buttonTxtつまりbackButtonTxtは、トップページだと存在しないためエラーチェックは不要
       if (title == "" || userName == "") {
         return;
       }
       this.backButtonTxt = buttonTxt;
+      this.backButtonURL = backURL;
       this.title = title;
       this.loginUserName = userName;
+    },
+    backPage: function () {
+      const url = this.backButtonURL;
+      window.location.href = url;
     },
     gotoLoginPage: function () {
       const url = "login.html";
@@ -66,6 +72,9 @@ div.headerLeft {
   display: flex;
   text-align: left;
   float: left;
+}
+div.headerLeft:hover {
+  cursor: pointer;
 }
 div.headerMiddle {
   width: 60%;
