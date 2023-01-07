@@ -29,6 +29,16 @@ export default {
     };
   },
   methods: {
+    //ヘッダのセットアップ
+    setUpHeader: function (buttonTxt, title, userName) {
+      //buttonTxtつまりbackButtonTxtは、トップページだと存在しないためエラーチェックは不要
+      if (title == "" || userName == "") {
+        return;
+      }
+      this.backButtonTxt = buttonTxt;
+      this.title = title;
+      this.loginUserName = userName;
+    },
     gotoLoginPage: function () {
       const url = "login.html";
       window.location.href = url;
