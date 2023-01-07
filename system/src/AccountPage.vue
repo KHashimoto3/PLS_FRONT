@@ -6,7 +6,7 @@
         <img class="userIcon" src="@/assets/user.png" alt="user_icon" />
       </div>
       <div class="nameArea">
-        <h1>ゲストユーザ</h1>
+        <h1>{{ userName }}</h1>
       </div>
       <div class="buttonArea">
         <button class="css-button-rounded--login">ログイン</button>
@@ -24,7 +24,9 @@ export default {
     HeaderComp,
   },
   data() {
-    return {};
+    return {
+      userName: "ゲストユーザー",
+    };
   },
   methods: {},
 };
