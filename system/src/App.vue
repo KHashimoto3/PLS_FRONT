@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-comp />
+    <header-comp ref="hdComp" />
     <h1>コーディングスタイル学習システム</h1>
     <h2>単元を選ぶ</h2>
     <div v-for="i of formListDataObj" :key="i">
@@ -52,6 +52,9 @@ export default {
     } catch (errMsg) {
       alert(errMsg);
     }
+  },
+  mounted() {
+    this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
   },
   methods: {
     selectForm: function (id) {

@@ -6,7 +6,7 @@
       </div>
       <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
     </div>
-    <header-comp />
+    <header-comp ref="hdComp" />
     <div class="codingArea">
       <div class="codingLeft">
         <div class="unitName">
@@ -276,6 +276,14 @@ export default {
     } catch (errMsg) {
       alert(errMsg);
     }
+  },
+  mounted() {
+    this.$refs.hdComp.setUpHeader(
+      "ホーム",
+      "index.html",
+      this.unitName,
+      "ログイン"
+    );
   },
   methods: {
     changeDisabled: function () {

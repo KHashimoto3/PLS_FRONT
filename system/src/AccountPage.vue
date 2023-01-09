@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-comp />
+    <header-comp ref="hdComp" />
     <div class="accountInfoArea">
       <div class="iconArea">
         <img class="userIcon" src="@/assets/user.png" alt="user_icon" />
@@ -27,6 +27,14 @@ export default {
     return {
       userName: "ゲストユーザー",
     };
+  },
+  mounted() {
+    this.$refs.hdComp.setUpHeader(
+      "ホーム",
+      "index.html",
+      "アカウント管理",
+      "ログイン"
+    );
   },
   methods: {},
 };
