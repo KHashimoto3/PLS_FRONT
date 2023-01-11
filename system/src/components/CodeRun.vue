@@ -191,13 +191,13 @@ export default {
         } else {
           const responseData = await response.json();
           if (responseData.program_output != "") {
-            //3秒待機
+            //2秒待機
             this.sleep(2000);
             this.outputErrTxt = responseData.program_output;
             this.runResultTxt = "実行成功";
             this.runResultStyle.background = "#42cf1f";
           } else if (responseData.compiler_message != "") {
-            //3秒待機
+            //2秒待機
             this.sleep(2000);
             this.outputErrTxt = responseData.compiler_message;
             this.runResultTxt = "エラー";

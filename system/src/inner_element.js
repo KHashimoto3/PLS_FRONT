@@ -1,4 +1,4 @@
 import { createApp } from "vue";
-import CodingForm from "./InnerElement.vue";
+import InnerElement from "./InnerElement.vue";
 
-createApp(CodingForm).mount("#app");
+createApp(InnerElement).mount("#app");

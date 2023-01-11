@@ -8,6 +8,12 @@ module.exports = {
       filename: "index.html",
       title: "ホーム",
     },
+    login: {
+      entry: "src/account.js",
+      template: "public/account.html",
+      filename: "account.html",
+      title: "アカウント",
+    },
     coding: {
       entry: "src/coding_form.js",
       template: "public/coding_form.html",

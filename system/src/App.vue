@@ -1,5 +1,6 @@
 <template>
   <div>
+    <header-comp ref="hdComp" />
     <h1>コーディングスタイル学習システム</h1>
     <h2>単元を選ぶ</h2>
     <div v-for="i of formListDataObj" :key="i">
@@ -11,8 +12,13 @@
 </template>
 
 <script>
+import HeaderComp from "./components/HeaderComp.vue";
+
 export default {
   name: "App",
+  components: {
+    HeaderComp,
+  },
   data() {
     return {
       formListDataObj: null,
@@ -46,6 +52,9 @@ export default {
     } catch (errMsg) {
       alert(errMsg);
     }
+  },
+  mounted() {
+    this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
   },
   methods: {
     selectForm: function (id) {

@@ -6,6 +6,7 @@
       </div>
       <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
     </div>
+    <header-comp ref="hdComp" />
     <div class="codingArea">
       <div class="codingLeft">
         <div class="unitName">
@@ -175,6 +176,7 @@ import { indentWithTab } from "@codemirror/commands";
 
 import Toggle from "@vueform/toggle";
 
+import HeaderComp from "./components/HeaderComp.vue";
 import CodeRun from "./components/CodeRun.vue";
 import GrammarMmodal from "./components/GrammerModal.vue";
 
@@ -191,6 +193,7 @@ export default {
   components: {
     Codemirror,
     Toggle,
+    HeaderComp,
     CodeRun,
     GrammarMmodal,
 
@@ -273,6 +276,14 @@ export default {
     } catch (errMsg) {
       alert(errMsg);
     }
+  },
+  mounted() {
+    this.$refs.hdComp.setUpHeader(
+      "ホーム",
+      "index.html",
+      this.unitName,
+      "ログイン"
+    );
   },
   methods: {
     changeDisabled: function () {
