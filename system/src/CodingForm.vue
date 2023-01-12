@@ -9,9 +9,6 @@
     <header-comp ref="hdComp" />
     <div class="codingArea">
       <div class="codingLeft">
-        <div class="unitName">
-          <h1>{{ unitName }}</h1>
-        </div>
         <toggle
           v-model="sampleIsShow"
           offLabel="ヒント非表示"
@@ -530,10 +527,6 @@ div.codingLeft {
   width: 40%;
   height: 100%;
   float: left;
-}
-div.unitName {
-  width: 100%;
-  height: 8%;
 }
 div.assist {
   width: 95%;
