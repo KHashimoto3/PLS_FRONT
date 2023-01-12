@@ -1,160 +1,165 @@
 <template>
   <div>
-    <div class="notificationArea" v-show="notificationIsShow">
-      <div class="notifiLeft">
-        <p class="notificationText">{{ notificationText }}</p>
-      </div>
-      <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
+    <div class="loading" v-show="loadingIsShow">
+      <h1>Now loading...</h1>
     </div>
-    <header-comp ref="hdComp" />
-    <div class="codingArea">
-      <div class="codingLeft">
-        <toggle
-          v-model="sampleIsShow"
-          offLabel="ヒント非表示"
-          onLabel="ヒント表示"
-          class="sampleToggle"
-        />
-        <div class="assist">
-          <div class="assistInner">
-            <div class="assistText">
-              <h1>STEP{{ viewStepNo }}</h1>
-              <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
-              <p>{{ assistObj[viewStepNo - 1].body }}</p>
-            </div>
-            <!--サンプルエリア-->
-            <div class="assistSample">
-              <div v-show="sampleIsShow">
-                <div class="assistSampleExplan">
-                  <h2>＜サンプルコード＞</h2>
-                  <p>
-                    {{ assistObj[viewStepNo - 1].sampleExp }}
-                  </p>
-                </div>
-                <codemirror
-                  v-model="assistObj[viewStepNo - 1].sample"
-                  placeholder="Code goes here..."
-                  :style="{ height: 'auto', 'font-size': '14pt' }"
-                  :autofocus="false"
-                  :indent-with-tab="false"
-                  :tab-size="4"
-                  :extensions="extensions"
-                  :disabled="true"
-                />
+    <div v-show="bodyIsShow">
+      <div class="notificationArea" v-show="notificationIsShow">
+        <div class="notifiLeft">
+          <p class="notificationText">{{ notificationText }}</p>
+        </div>
+        <div class="notifiRight" @click="closeNotice()"><p>閉じる</p></div>
+      </div>
+      <header-comp ref="hdComp" />
+      <div class="codingArea">
+        <div class="codingLeft">
+          <toggle
+            v-model="sampleIsShow"
+            offLabel="ヒント非表示"
+            onLabel="ヒント表示"
+            class="sampleToggle"
+          />
+          <div class="assist">
+            <div class="assistInner">
+              <div class="assistText">
+                <h1>STEP{{ viewStepNo }}</h1>
+                <h2>{{ assistObj[viewStepNo - 1].title }}</h2>
+                <p>{{ assistObj[viewStepNo - 1].body }}</p>
               </div>
-            </div>
-            <div class="assistSelect">
-              <button
-                class="css-button-rounded--sand"
-                @click="backStep()"
-                :disabled="backIsDisabled"
-              >
-                前へ
-              </button>
-              <button
-                class="css-button-rounded--green"
-                @click="nextStep()"
-                :disabled="nextIsDisabled"
-              >
-                次へ
-              </button>
+              <!--サンプルエリア-->
+              <div class="assistSample">
+                <div v-show="sampleIsShow">
+                  <div class="assistSampleExplan">
+                    <h2>＜サンプルコード＞</h2>
+                    <p>
+                      {{ assistObj[viewStepNo - 1].sampleExp }}
+                    </p>
+                  </div>
+                  <codemirror
+                    v-model="assistObj[viewStepNo - 1].sample"
+                    placeholder="Code goes here..."
+                    :style="{ height: 'auto', 'font-size': '14pt' }"
+                    :autofocus="false"
+                    :indent-with-tab="false"
+                    :tab-size="4"
+                    :extensions="extensions"
+                    :disabled="true"
+                  />
+                </div>
+              </div>
+              <div class="assistSelect">
+                <button
+                  class="css-button-rounded--sand"
+                  @click="backStep()"
+                  :disabled="backIsDisabled"
+                >
+                  前へ
+                </button>
+                <button
+                  class="css-button-rounded--green"
+                  @click="nextStep()"
+                  :disabled="nextIsDisabled"
+                >
+                  次へ
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="codingRight">
-        <div class="question">
-          <h2>{{ questionTitle }}</h2>
-          <p>{{ questionDescription }}</p>
-        </div>
-        <!--フォー上リア-->
-        <div class="tabGroup">
-          <ul class="tabNav">
-            <li
-              @click="formTabSelect(1)"
-              v-bind:class="{ active: formTabSelected == 1 }"
-            >
-              コーディングフォーム
-            </li>
-            <li
-              @click="formTabSelect(2)"
-              v-bind:class="{ active: formTabSelected == 2 }"
-            >
-              文法フォーム
-            </li>
-          </ul>
-          <div class="tabContent">
-            <div v-if="formTabSelected == 1" class="codingForm">
-              <div class="codingFormInner">
-                <codemirror
-                  v-model="headerText"
-                  placeholder="コメントを書く"
-                  :style="codeMirrorStyle"
-                  :autofocus="false"
-                  :indent-with-tab="false"
-                  :tab-size="4"
-                  :extensions="extensions"
-                  @focus="setNotice(0, 0)"
-                  @blur="closeNotice()"
-                />
-                <div v-for="i of OutMainCnt" :key="i">
+        <div class="codingRight">
+          <div class="question">
+            <h2>{{ questionTitle }}</h2>
+            <p>{{ questionDescription }}</p>
+          </div>
+          <!--フォー上リア-->
+          <div class="tabGroup">
+            <ul class="tabNav">
+              <li
+                @click="formTabSelect(1)"
+                v-bind:class="{ active: formTabSelected == 1 }"
+              >
+                コーディングフォーム
+              </li>
+              <li
+                @click="formTabSelect(2)"
+                v-bind:class="{ active: formTabSelected == 2 }"
+              >
+                文法フォーム
+              </li>
+            </ul>
+            <div class="tabContent">
+              <div v-if="formTabSelected == 1" class="codingForm">
+                <div class="codingFormInner">
                   <codemirror
-                    v-model="outMainTextArray[i - 1]"
-                    placeholder="コードを書く"
+                    v-model="headerText"
+                    placeholder="コメントを書く"
                     :style="codeMirrorStyle"
                     :autofocus="false"
                     :indent-with-tab="false"
                     :tab-size="4"
                     :extensions="extensions"
-                    @focus="setNotice(0, i)"
+                    @focus="setNotice(0, 0)"
                     @blur="closeNotice()"
                   />
-                </div>
-                <pre v-show="mainIsShow">
+                  <div v-for="i of OutMainCnt" :key="i">
+                    <codemirror
+                      v-model="outMainTextArray[i - 1]"
+                      placeholder="コードを書く"
+                      :style="codeMirrorStyle"
+                      :autofocus="false"
+                      :indent-with-tab="false"
+                      :tab-size="4"
+                      :extensions="extensions"
+                      @focus="setNotice(0, i)"
+                      @blur="closeNotice()"
+                    />
+                  </div>
+                  <pre v-show="mainIsShow">
   int main(void){
           </pre
-                >
-                <div v-for="i of InMainCnt" :key="i">
-                  <codemirror
-                    v-model="inMainTextArray[i - 1]"
-                    placeholder="コードを書く"
-                    :style="codeMirrorStyle"
-                    :autofocus="false"
-                    :indent-with-tab="false"
-                    :tab-size="4"
-                    :extensions="extensions"
-                    @focus="setNotice(1, i - 1)"
-                    @blur="closeNotice()"
-                  />
-                </div>
+                  >
+                  <div v-for="i of InMainCnt" :key="i">
+                    <codemirror
+                      v-model="inMainTextArray[i - 1]"
+                      placeholder="コードを書く"
+                      :style="codeMirrorStyle"
+                      :autofocus="false"
+                      :indent-with-tab="false"
+                      :tab-size="4"
+                      :extensions="extensions"
+                      @focus="setNotice(1, i - 1)"
+                      @blur="closeNotice()"
+                    />
+                  </div>
 
-                <pre v-show="mainIsShow">
+                  <pre v-show="mainIsShow">
     return 0;
   }
           </pre
-                >
+                  >
+                </div>
+              </div>
+              <div v-show="formTabSelected == 2" class="grammarForm">
+                <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
+                <if-form v-show="formMode == '4a'" ref="ifFormRef" />
+                <for-form v-show="formMode == '4b'" ref="forFormRef" />
+                <while-form v-show="formMode == '4c'" ref="whileFormRef" />
+                <func-form v-show="formMode == '6'" ref="funcFormRef" />
+                <nomal-editor v-show="formMode == '-1'" ref="nomalRef" />
               </div>
             </div>
-            <div v-show="formTabSelected == 2" class="grammarForm">
-              <!--フォームを追加する場合は、ここにコンポーネントを読み込む-->
-              <if-form v-show="formMode == '4a'" ref="ifFormRef" />
-              <for-form v-show="formMode == '4b'" ref="forFormRef" />
-              <while-form v-show="formMode == '4c'" ref="whileFormRef" />
-              <func-form v-show="formMode == '6'" ref="funcFormRef" />
-              <nomal-editor v-show="formMode == '-1'" ref="nomalRef" />
-            </div>
+          </div>
+
+          <div class="codeRunButton">
+            <button class="css-button-rounded--green" @click="codeRun()">
+              連結して実行
+            </button>
           </div>
         </div>
-
-        <div class="codeRunButton">
-          <button class="css-button-rounded--green" @click="codeRun()">
-            連結して実行
-          </button>
-        </div>
+        <code-run ref="codeRunner" />
+        <!--文法フォームを選んだときに出す情報モーダル-->
+        <grammar-mmodal ref="gModal" />
       </div>
-      <code-run ref="codeRunner" />
-      <!--文法フォームを選んだときに出す情報モーダル-->
-      <grammar-mmodal ref="gModal" />
     </div>
   </div>
 </template>
@@ -206,6 +211,8 @@ export default {
       InMainCnt: 0, //main関数内のtextareaの数
 
       //表示の制御
+      loadingIsShow: false,
+      bodyIsShow: false,
       mainIsShow: false,
       backIsDisabled: true,
       nextIsDisabled: false,
@@ -238,6 +245,8 @@ export default {
     };
   },
   created: async function () {
+    this.loadingIsShow = true;
+    this.bodyIsShow = false;
     //クエリから、どの問題リストなのかを取得
     const nowUrl = new URL(window.location.href); //現在のURLを取得
     //オブジェクトを取得
@@ -282,6 +291,8 @@ export default {
       this.formTitle,
       "ログイン"
     );
+    this.loadingIsShow = false;
+    this.bodyIsShow = true;
   },
   methods: {
     changeDisabled: function () {
@@ -483,6 +494,13 @@ p {
 }
 p.notificationText {
   font-size: 20pt;
+}
+
+div.loading {
+  width: 100%;
+  height: 100%;
+  background: #d2ffde;
+  position: fixed;
 }
 /*アテンションのスタイル*/
 div.notificationArea {
