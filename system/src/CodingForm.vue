@@ -92,7 +92,7 @@
                 <codemirror
                   v-model="headerText"
                   placeholder="コメントを書く"
-                  :style="{ height: 'auto', 'font-size': '16pt' }"
+                  :style="codeMirrorStyle"
                   :autofocus="false"
                   :indent-with-tab="false"
                   :tab-size="4"
@@ -104,7 +104,7 @@
                   <codemirror
                     v-model="outMainTextArray[i - 1]"
                     placeholder="コードを書く"
-                    :style="{ height: 'auto', 'font-size': '16pt' }"
+                    :style="codeMirrorStyle"
                     :autofocus="false"
                     :indent-with-tab="false"
                     :tab-size="4"
@@ -121,12 +121,7 @@
                   <codemirror
                     v-model="inMainTextArray[i - 1]"
                     placeholder="コードを書く"
-                    :style="{
-                      width: '95%',
-                      height: 'auto',
-                      'font-size': '16pt',
-                      margin: '0 auto',
-                    }"
+                    :style="codeMirrorStyle"
                     :autofocus="false"
                     :indent-with-tab="false"
                     :tab-size="4"
@@ -237,6 +232,12 @@ export default {
 
       //アシストの内容を格納するオブジェクト
       assistObj: null,
+
+      codeMirrorStyle: {
+        height: "auto",
+        "font-size": "16pt",
+        "margin-bottom": "5px",
+      },
     };
   },
   created: async function () {
