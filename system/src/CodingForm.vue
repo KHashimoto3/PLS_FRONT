@@ -197,7 +197,7 @@ export default {
   },
   data() {
     return {
-      unitName: "",
+      formTitle: "",
       questionTitle: "",
       questionDescription: "",
       viewStepNo: 1, //表示中のステップ
@@ -262,7 +262,7 @@ export default {
         }
       } else {
         const responseData = await response.json();
-        this.unitName = responseData.formTitle;
+        this.formTitle = responseData.formTitle;
         this.questionTitle = responseData.questionTitle;
         this.questionDescription = responseData.questionDescription;
         this.assistObj = responseData.assistObj;
@@ -279,7 +279,7 @@ export default {
     this.$refs.hdComp.setUpHeader(
       "ホーム",
       "index.html",
-      this.unitName,
+      this.formTitle,
       "ログイン"
     );
   },
