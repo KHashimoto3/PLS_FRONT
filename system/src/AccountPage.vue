@@ -10,7 +10,9 @@
           <h1>{{ userName }}</h1>
         </div>
         <div class="menuArea">
-          <a class="menuButton">ダッシュボード</a><br />
+          <a class="menuButton"
+            ><font-awesome-icon icon="fa-solid fa-list" />ダッシュボード</a
+          ><br />
           <a class="menuButton">取り組み履歴</a><br />
           <a class="menuButton">設定</a><br />
         </div>
