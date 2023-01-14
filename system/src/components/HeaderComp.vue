@@ -90,8 +90,7 @@ div.headerRight {
   width: 20%;
   height: 100%;
   margin-left: 60%;
-  color: #ffffff;
-  background: #57cc99;
+  background: #ffffff;
   display: flex;
   text-align: center;
 }
