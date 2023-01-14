@@ -1,12 +1,20 @@
 <template>
   <div>
     <header-comp ref="hdComp" />
-    <h1>コーディングスタイル学習システム</h1>
-    <h2>単元を選ぶ</h2>
-    <div v-for="i of formListDataObj" :key="i">
-      <p>
-        <a @click="selectForm(i.id)">{{ i.name }}</a>
-      </p>
+    <div class="contentsArea">
+      <div class="mainTextArea">
+        <h1>コーディングスタイル学習システム</h1>
+      </div>
+      <div class="formListArea">
+        <div class="formListAreaInner">
+          <h2>単元を選ぶ</h2>
+          <div v-for="i of formListDataObj" :key="i">
+            <p>
+              <a @click="selectForm(i.id)">{{ i.name }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -70,5 +78,25 @@ export default {
 <style scoped>
 a {
   cursor: pointer;
+}
+div.contentsArea {
+  width: 100%;
+  height: auto;
+}
+div.mainTextArea {
+  width: 100%;
+  height: 400px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(89, 173, 241, 1),
+    rgba(207, 253, 157, 1)
+  );
+}
+div.mainTextArea h1 {
+  text-align: center;
+  color: #ffffff;
+  padding: 150px;
+  font-size: 40pt;
+  font-family: sans-serif;
 }
 </style>
