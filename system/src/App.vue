@@ -3,7 +3,7 @@
     <header-comp ref="hdComp" />
     <div class="contentsArea">
       <div class="mainTextArea">
-        <h1>コーディングスタイル学習システム</h1>
+        <h1>コーディングフォームを用いたプログラミング学習</h1>
       </div>
       <div class="formListArea">
         <div class="formListAreaInner">
@@ -99,11 +99,12 @@ div.contentsArea {
 div.mainTextArea {
   width: 100%;
   height: 200px;
-  background-image: linear-gradient(
+  /*background-image: linear-gradient(
     90deg,
     rgba(89, 173, 241, 1),
     rgba(207, 253, 157, 1)
-  );
+  );*/
+  background: #57cc99;
 }
 div.mainTextArea h1 {
   text-align: center;
