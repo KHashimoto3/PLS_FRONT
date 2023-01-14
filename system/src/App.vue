@@ -7,11 +7,14 @@
       </div>
       <div class="formListArea">
         <div class="formListAreaInner">
-          <h2>単元を選ぶ</h2>
-          <div v-for="i of formListDataObj" :key="i">
-            <p>
-              <a @click="selectForm(i.id)">{{ i.name }}</a>
-            </p>
+          <h1>すべてのフォーム</h1>
+          <div class="formCard" v-for="i of formListDataObj" :key="i">
+            <div class="formCardImg"></div>
+            <div class="formCardTitle">
+              <p>
+                <a @click="selectForm(i.id)">{{ i.name }}</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -79,6 +82,10 @@ export default {
 a {
   cursor: pointer;
 }
+h1,
+p {
+  font-family: sans-serif;
+}
 div.contentsArea {
   width: 100%;
   height: auto;
@@ -97,6 +104,37 @@ div.mainTextArea h1 {
   color: #ffffff;
   padding: 150px;
   font-size: 40pt;
-  font-family: sans-serif;
+}
+
+div.formListArea {
+  width: 100%;
+  height: auto;
+}
+div.formListAreaInner {
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+}
+div.formCard {
+  width: 400px;
+  height: 400px;
+  background: #ffffff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px; /* ボックスの四つ角を丸くする */
+  margin: 60px;
+  float: left;
+}
+div.formCardImg {
+  width: 100%;
+  height: 40%;
+  background-image: linear-gradient(
+    90deg,
+    rgba(57, 210, 248, 1),
+    rgba(48, 97, 96, 1)
+  );
+}
+div.formCardTitle {
+  width: 100%;
+  height: 60%;
 }
 </style>
