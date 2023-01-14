@@ -1,15 +1,27 @@
 <template>
   <div>
     <header-comp ref="hdComp" />
-    <div class="accountInfoArea">
-      <div class="iconArea">
-        <img class="userIcon" src="@/assets/user.png" alt="user_icon" />
+    <div class="manageArea">
+      <div class="accountInfoArea">
+        <div class="iconArea">
+          <img class="userIcon" src="@/assets/user.png" alt="user_icon" />
+        </div>
+        <div class="nameArea">
+          <h1>{{ userName }}</h1>
+        </div>
+        <div class="menuArea">
+          <a class="menuButton">ダッシュボード</a><br />
+          <a class="menuButton">取り組み履歴</a><br />
+          <a class="menuButton">設定</a><br />
+        </div>
+        <div class="buttonArea">
+          <button class="css-button-rounded--login">ログイン</button>
+        </div>
       </div>
-      <div class="nameArea">
-        <h1>{{ userName }}</h1>
-      </div>
-      <div class="buttonArea">
-        <button class="css-button-rounded--login">ログイン</button>
+      <div class="contentArea">
+        <div class="contentAreaInner">
+          <h1>コンテンツがここにきます！</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -41,30 +53,61 @@ export default {
 </script>
 
 <style scoped>
+div.manageArea {
+  width: 90%;
+  height: auto;
+  margin: 100px auto 0 auto;
+}
 div.accountInfoArea {
   font-family: sans-serif;
-  width: 80%;
-  height: 400px;
-  margin: 80px auto 10px auto;
-}
-div.iconArea {
-  text-align: center;
-  width: 20%;
-  height: 100%;
-  float: left;
-}
-div.nameArea {
-  width: 50%;
-  height: 100%;
-  padding: 10px;
-  float: left;
-}
-div.buttonArea {
   width: 30%;
-  height: 100%;
-  margin-left: 70%;
-  padding-top: 30px;
+  height: 700px;
+  float: left;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px; /* ボックスの四つ角を丸くする */
+}
+div.iconArea,
+div.nameArea,
+div.buttonArea {
+  width: 70%;
+  height: auto;
+  margin: 30px auto;
   text-align: center;
+}
+
+div.menuArea {
+  width: 70%;
+  height: auto;
+  margin: 30px auto;
+  text-align: left;
+  font-size: 20pt;
+}
+
+div.contentArea {
+  width: 70%;
+  margin-left: 30%;
+  height: 1000px;
+}
+div.contentAreaInner {
+  width: 80%;
+  height: auto;
+  margin: 20px;
+}
+
+.menuButton,
+a.menuButton {
+  color: #000000;
+  background-color: #ffffff;
+  display: inline-block;
+  width: 300px;
+  height: 45px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+.menuButton:hover,
+a.menuButton:hover {
+  color: #fff;
+  background: #57cc99;
 }
 
 button.css-button-rounded--login {
