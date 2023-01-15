@@ -55,12 +55,16 @@ export default {
 
 <style scoped>
 div.header {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 60px;
   margin: 0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   font-size: 20pt;
+  position: fixed;
+  z-index: 9000;
 }
 div.header p {
   font-family: sans-serif;

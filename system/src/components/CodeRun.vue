@@ -302,7 +302,7 @@ div.modalButtonArea {
 div.runArea {
   width: 100%;
   height: 1000px;
-  top: 0;
+  top: 80px;
   left: 0;
   position: fixed;
   background: #ffffff;

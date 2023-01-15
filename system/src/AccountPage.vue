@@ -58,7 +58,7 @@ export default {
 div.manageArea {
   width: 90%;
   height: auto;
-  margin: 100px auto 0 auto;
+  margin: 150px auto 0 auto;
 }
 div.accountInfoArea {
   font-family: sans-serif;

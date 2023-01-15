@@ -3,7 +3,7 @@
     <div class="loading" v-show="loadingIsShow">
       <h1>Now loading...</h1>
     </div>
-    <div v-show="bodyIsShow">
+    <div class="body" v-show="bodyIsShow">
       <div class="notificationArea" v-show="notificationIsShow">
         <div class="notifiLeft">
           <p class="notificationText">{{ notificationText }}</p>
@@ -501,6 +501,9 @@ div.loading {
   height: 100%;
   background: #d2ffde;
   position: fixed;
+}
+div.body {
+  margin-top: 100px;
 }
 /*アテンションのスタイル*/
 div.notificationArea {
