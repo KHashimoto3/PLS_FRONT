@@ -129,7 +129,7 @@ div.formCard {
 div.formCardImg {
   width: 100%;
   height: 40%;
-  background-image: linear-gradient(135deg, #79f1a4 10%, #0e5cad 100%);
+  background-image: linear-gradient(135deg, #90f7ec 10%, #32ccbc 100%);
 }
 div.formCardTitle {
   width: 100%;
