@@ -99,12 +99,7 @@ div.contentsArea {
 div.mainTextArea {
   width: 100%;
   height: 200px;
-  /*background-image: linear-gradient(
-    90deg,
-    rgba(89, 173, 241, 1),
-    rgba(207, 253, 157, 1)
-  );*/
-  background: #57cc99;
+  background-image: linear-gradient(135deg, #79f1a4 10%, #0e5cad 100%);
 }
 div.mainTextArea h1 {
   text-align: center;
