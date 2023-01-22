@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="loading" v-show="loadingIsShow">
-      <h1>Now loading...</h1>
-    </div>
     <div class="body" v-show="bodyIsShow">
       <div class="notificationArea" v-show="notificationIsShow">
         <div class="notifiLeft">
@@ -212,7 +209,7 @@ export default {
 
       //表示の制御
       loadingIsShow: false,
-      bodyIsShow: false,
+      bodyIsShow: true,
       mainIsShow: false,
       backIsDisabled: true,
       nextIsDisabled: false,
@@ -245,8 +242,6 @@ export default {
     };
   },
   created: async function () {
-    this.loadingIsShow = true;
-    this.bodyIsShow = false;
     //クエリから、どの問題リストなのかを取得
     const nowUrl = new URL(window.location.href); //現在のURLを取得
     //オブジェクトを取得
@@ -291,8 +286,6 @@ export default {
       this.formTitle,
       "ログイン"
     );
-    this.loadingIsShow = false;
-    this.bodyIsShow = true;
   },
   methods: {
     changeDisabled: function () {
