@@ -504,6 +504,7 @@ div.loading {
 }
 div.body {
   margin-top: 100px;
+  height: auto;
 }
 /*アテンションのスタイル*/
 div.notificationArea {
