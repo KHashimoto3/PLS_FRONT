@@ -5,8 +5,13 @@
         <div class="downloadModalInner">
           <div class="modalUpperArea">
             <h1>プログラムのダウンロード</h1>
-            問題名（番号）：<input type="text" v-model="question" /><br />
-            学籍番号 ：<input type="text" v-model="studentId" /><br />
+            <p>
+              問題名と学籍番号を入力して、「ダウンロード」をクリックしてください。
+            </p>
+            <label for="question">問題名（番号）: </label
+            ><input type="text" id="question" v-model="question" /><br />
+            <label for="studentId">学籍番号 : </label
+            ><input type="text" id="studentId" v-model="studentId" /><br />
           </div>
           <div class="modalButtonArea">
             <button
@@ -260,7 +265,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: sans-serif;
 }
@@ -270,29 +275,37 @@ div.downloadModalArea {
   width: 100%;
   height: 100%;
   position: fixed;
+  display: flex;
   margin: 0;
   background: #868686;
   z-index: 999;
 }
 div.downloadModal {
   width: 600px;
-  height: 500px;
-  margin-top: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  height: 300px;
+  margin: auto;
   background: #ffffff;
 }
 div.downloadModalInner {
-  width: 90%;
+  width: 80%;
   height: auto;
   margin: 0 auto;
 }
 div.modalUpperArea {
   width: 100%;
   height: auto;
-  margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+}
+div.modalUpperArea input {
+  font-size: 18pt;
+  width: 200px;
+  height: 30px;
+}
+div.modalUpperArea label {
+  font-size: 18pt;
+}
+div.modalUpperArea h1 {
+  text-align: center;
 }
 div.modalButtonArea {
   width: 90%;
@@ -302,7 +315,7 @@ div.modalButtonArea {
 div.runArea {
   width: 100%;
   height: 1000px;
-  top: 0;
+  top: 80px;
   left: 0;
   position: fixed;
   background: #ffffff;

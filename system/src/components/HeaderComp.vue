@@ -55,11 +55,16 @@ export default {
 
 <style scoped>
 div.header {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 60px;
   margin: 0;
-  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   font-size: 20pt;
+  position: fixed;
+  z-index: 9000;
 }
 div.header p {
   font-family: sans-serif;
@@ -89,8 +94,7 @@ div.headerRight {
   width: 20%;
   height: 100%;
   margin-left: 60%;
-  color: #ffffff;
-  background: #57cc99;
+  background: #ffffff;
   display: flex;
   text-align: center;
 }

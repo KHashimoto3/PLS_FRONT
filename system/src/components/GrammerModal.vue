@@ -56,29 +56,29 @@ div.grammarFormInfo {
   width: 100%;
   height: 100%;
   position: fixed;
+  display: flex;
   margin: 0;
   background: #868686;
   z-index: 999;
 }
 div.grammarModal {
   width: 600px;
-  height: 500px;
-  margin-top: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  height: 250px;
+  margin: auto;
   background: #ffffff;
 }
-div.grammarModalInner {
+div.grammardModalInner {
   width: 90%;
   height: auto;
   margin: 0 auto;
 }
+div.grammardModalInner h1 {
+  text-align: center;
+}
 div.modalUpperArea {
   width: 100%;
   height: auto;
-  margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 div.modalButtonArea {
   width: 90%;
