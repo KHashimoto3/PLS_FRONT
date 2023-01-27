@@ -495,10 +495,7 @@ export default {
 };
 </script>
 
-<style>
-body {
-  font-family: sans-serif;
-}
+<style scoped>
 p {
   font-size: 16pt;
 }
@@ -515,6 +512,7 @@ div.loading {
 div.body {
   margin-top: 100px;
   height: auto;
+  font-family: sans-serif;
 }
 /*アテンションのスタイル*/
 div.notificationArea {
