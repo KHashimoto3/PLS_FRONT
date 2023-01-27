@@ -11,7 +11,7 @@
             <label for="userName">ユーザ名: </label
             ><input type="text" id="userName" v-model="inputUserName" /><br />
             <label for="pass">パスワード : </label
-            ><input type="text" id="pass" v-model="inputPassword" /><br />
+            ><input type="password" id="pass" v-model="inputPassword" /><br />
           </div>
           <div class="modalButtonArea">
             <button class="css-button-rounded--sand" @click="closeLoginModal()">
