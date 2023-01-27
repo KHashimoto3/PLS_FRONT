@@ -77,9 +77,13 @@ export default {
     }
   },
   mounted() {
-    const cookieValue = this.cookies.keys();
-    console.log("cookieは、" + cookieValue + "です。");
-    this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
+    //ログイン状態を確認
+    if (!this.cookies.isKey("user")) {
+      this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
+      return;
+    }
+    const userName = this.cookies.get("user");
+    this.$refs.hdComp.setUpHeader("", "", "ホーム", userName);
   },
   methods: {
     selectForm: function (id) {
