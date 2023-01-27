@@ -41,8 +41,19 @@
           <a class="menuButton">設定</a><br />
         </div>
         <div class="buttonArea">
-          <button class="css-button-rounded--login" @click="openLoginModal()">
+          <button
+            v-show="!loginNow"
+            class="css-button-rounded--login"
+            @click="openLoginModal()"
+          >
             ログイン
+          </button>
+          <button
+            v-show="loginNow"
+            class="css-button-rounded--logout"
+            @click="logout()"
+          >
+            ログアウト
           </button>
         </div>
       </div>
@@ -71,6 +82,7 @@ export default {
   },
   data() {
     return {
+      loginNow: false,
       loginModalIsShow: false,
 
       userName: "ゲストユーザー",
@@ -88,6 +100,7 @@ export default {
         "アカウント管理",
         "ログイン"
       );
+      this.loginNow = false;
       return;
     }
     const userName = this.cookies.get("user");
@@ -97,11 +110,15 @@ export default {
       "アカウント管理",
       userName
     );
+    this.loginNow = true;
   },
   methods: {
     login: function () {
       console.log("ログインします！");
       this.closeLoginModal();
+    },
+    logout: function () {
+      console.log("ログアウトします");
     },
     openLoginModal: function () {
       this.loginModalIsShow = true;
@@ -241,6 +258,33 @@ button.css-button-rounded--login:disabled {
   border: 2px solid #a7cfbe;
   background: #a7cfbe;
 }
+
+button.css-button-rounded--logout {
+  font-size: 18pt;
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #adb5bd;
+  background: #adb5bd;
+}
+button.css-button-rounded--logout:hover {
+  background: #fff;
+  color: #adb5bd;
+}
+button.css-button-rounded--logout:disabled {
+  color: #fff;
+  border: 2px solid #d6d6d6;
+  background: #d6d6d6;
+}
+
 img.userIcon {
   width: 100px;
   height: auto;
