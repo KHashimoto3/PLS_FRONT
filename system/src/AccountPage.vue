@@ -247,6 +247,7 @@ img.userIcon {
 }
 
 button.css-button-rounded--green {
+  font-size: 16pt;
   min-width: 130px;
   height: 40px;
   color: #fff;
@@ -271,6 +272,7 @@ button.css-button-rounded--green:disabled {
   background: #a7cfbe;
 }
 button.css-button-rounded--sand {
+  font-size: 16pt;
   min-width: 130px;
   height: 40px;
   color: #fff;
