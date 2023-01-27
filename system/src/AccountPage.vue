@@ -1,5 +1,29 @@
 <template>
   <div>
+    <div class="loginModalArea" v-show="loginModalIsShow">
+      <div class="loginModal">
+        <div class="loginModalInner">
+          <div class="modalUpperArea">
+            <h1>ログイン</h1>
+            <p>
+              ユーザ名とパスワードを入力して、ログインをクリックしてください。
+            </p>
+            <label for="userName">ユーザ名: </label
+            ><input type="text" id="userName" v-model="inputUserName" /><br />
+            <label for="pass">パスワード : </label
+            ><input type="text" id="pass" v-model="inputPassword" /><br />
+          </div>
+          <div class="modalButtonArea">
+            <button class="css-button-rounded--sand" @click="closeLoginModal()">
+              戻る
+            </button>
+            <button class="css-button-rounded--green" @click="login()">
+              ログイン
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <header-comp ref="hdComp" />
     <div class="manageArea">
       <div class="accountInfoArea">
@@ -17,7 +41,9 @@
           <a class="menuButton">設定</a><br />
         </div>
         <div class="buttonArea">
-          <button class="css-button-rounded--login">ログイン</button>
+          <button class="css-button-rounded--login" @click="openLoginModal()">
+            ログイン
+          </button>
         </div>
       </div>
       <div class="contentArea">
@@ -45,7 +71,12 @@ export default {
   },
   data() {
     return {
+      loginModalIsShow: false,
+
       userName: "ゲストユーザー",
+
+      inputUserName: "",
+      inputPassword: "",
     };
   },
   mounted() {
@@ -67,11 +98,67 @@ export default {
       userName
     );
   },
-  methods: {},
+  methods: {
+    login: function () {
+      console.log("ログインします！");
+      this.closeLoginModal();
+    },
+    openLoginModal: function () {
+      this.loginModalIsShow = true;
+    },
+    closeLoginModal: function () {
+      this.loginModalIsShow = false;
+    },
+  },
 };
 </script>
 
 <style scoped>
+div.loginModalArea {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  margin: 0;
+  background: #868686;
+  z-index: 999;
+  font-family: sans-serif;
+}
+div.loginModal {
+  width: 600px;
+  height: 300px;
+  margin: auto;
+  background: #ffffff;
+}
+div.loginModalInner {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+}
+div.modalUpperArea {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+div.modalUpperArea input {
+  font-size: 18pt;
+  width: 200px;
+  height: 30px;
+}
+div.modalUpperArea label {
+  font-size: 18pt;
+}
+div.modalUpperArea h1 {
+  text-align: center;
+}
+div.modalButtonArea {
+  width: 90%;
+  height: auto;
+  text-align: center;
+}
+
 div.manageArea {
   width: 90%;
   height: auto;
@@ -157,5 +244,54 @@ button.css-button-rounded--login:disabled {
 img.userIcon {
   width: 100px;
   height: auto;
+}
+
+button.css-button-rounded--green {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #57cc99;
+  background: #57cc99;
+}
+button.css-button-rounded--green:hover {
+  background: #fff;
+  color: #57cc99;
+}
+button.css-button-rounded--green:disabled {
+  color: #fff;
+  border: 2px solid #a7cfbe;
+  background: #a7cfbe;
+}
+button.css-button-rounded--sand {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid #adb5bd;
+  background: #adb5bd;
+}
+button.css-button-rounded--sand:hover {
+  background: #fff;
+  color: #adb5bd;
+}
+button.css-button-rounded--sand:disabled {
+  color: #fff;
+  border: 2px solid #d6d6d6;
+  background: #d6d6d6;
 }
 </style>
