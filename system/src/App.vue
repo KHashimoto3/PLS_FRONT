@@ -31,10 +31,16 @@
 <script>
 import HeaderComp from "./components/HeaderComp.vue";
 
+import { useCookies } from "vue3-cookies";
+
 export default {
   name: "App",
   components: {
     HeaderComp,
+  },
+  setup() {
+    const { cookies } = useCookies();
+    return { cookies };
   },
   data() {
     return {
@@ -71,6 +77,8 @@ export default {
     }
   },
   mounted() {
+    const cookieValue = this.cookies.keys();
+    console.log("cookieは、" + cookieValue + "です。");
     this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
   },
   methods: {
