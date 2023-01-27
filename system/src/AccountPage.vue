@@ -32,10 +32,16 @@
 <script>
 import HeaderComp from "./components/HeaderComp.vue";
 
+import { useCookies } from "vue3-cookies";
+
 export default {
   name: "LoginPage",
   components: {
     HeaderComp,
+  },
+  setup() {
+    const { cookies } = useCookies();
+    return { cookies };
   },
   data() {
     return {
@@ -43,11 +49,22 @@ export default {
     };
   },
   mounted() {
+    //ログイン状態を確認
+    if (!this.cookies.isKey("user")) {
+      this.$refs.hdComp.setUpHeader(
+        "ホーム",
+        "index.html",
+        "アカウント管理",
+        "ログイン"
+      );
+      return;
+    }
+    const userName = this.cookies.get("user");
     this.$refs.hdComp.setUpHeader(
       "ホーム",
       "index.html",
       "アカウント管理",
-      "ログイン"
+      userName
     );
   },
   methods: {},
