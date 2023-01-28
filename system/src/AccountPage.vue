@@ -160,6 +160,10 @@ export default {
     },
     logout: function () {
       console.log("ログアウトします");
+      //cookieを削除
+      this.cookies.remove("user");
+      //リロード
+      window.location.reload();
     },
     openLoginModal: function () {
       this.loginModalIsShow = true;
