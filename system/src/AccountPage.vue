@@ -126,8 +126,8 @@ export default {
       }
       this.loginButtonIsDisabled = true;
       //ログイン処理
-      const url = "http://localhost:8080/api/login";
-      //const url = "/api/login";
+      //const url = "http://localhost:8080/api/login";
+      const url = "/api/login";
       const dataObj = {
         name: this.inputUserName,
         pass: this.inputPassword,
