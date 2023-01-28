@@ -124,7 +124,6 @@ export default {
         alert("ユーザ名とパスワードを両方入力してください。");
         return;
       }
-      console.log("ログインします！");
       this.loginButtonIsDisabled = true;
       //ログイン処理
       const url = "http://localhost:8080/api/login";
@@ -168,7 +167,6 @@ export default {
       }
     },
     logout: function () {
-      console.log("ログアウトします");
       //cookieを削除
       this.cookies.remove("user");
       //リロード
