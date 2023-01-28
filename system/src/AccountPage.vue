@@ -110,6 +110,7 @@ export default {
       "アカウント管理",
       userName
     );
+    this.userName = userName;
     this.loginNow = true;
   },
   methods: {
