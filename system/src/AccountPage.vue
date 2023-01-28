@@ -17,7 +17,11 @@
             <button class="css-button-rounded--sand" @click="closeLoginModal()">
               戻る
             </button>
-            <button class="css-button-rounded--green" @click="login()">
+            <button
+              class="css-button-rounded--green"
+              @click="login()"
+              :disabled="loginButtonIsDisabled"
+            >
               ログイン
             </button>
           </div>
@@ -84,6 +88,7 @@ export default {
     return {
       loginNow: false,
       loginModalIsShow: false,
+      loginButtonIsDisabled: false,
 
       userName: "ゲストユーザー",
 
@@ -120,6 +125,7 @@ export default {
         return;
       }
       console.log("ログインします！");
+      this.loginButtonIsDisabled = true;
       //ログイン処理
       const url = "http://localhost:8080/api/login";
       //const url = "/api/login";
@@ -148,10 +154,12 @@ export default {
           const responseData = await response.json();
           if (responseData.result == "NG") {
             alert("ユーザ名またはパスワードが間違っています。");
+            this.loginButtonIsDisabled = false;
             return;
           }
           //cookieに登録（有効期限：1ヶ月）
           this.cookies.set("user", this.inputUserName, 60 * 60 * 24 * 30);
+          this.loginButtonIsDisabled = false;
           //リロード
           window.location.reload();
         }
