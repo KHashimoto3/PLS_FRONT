@@ -113,9 +113,50 @@ export default {
     this.loginNow = true;
   },
   methods: {
-    login: function () {
+    login: async function () {
+      if (this.inputUserName == "" || this.inputPassword == "") {
+        alert("ユーザ名とパスワードを両方入力してください。");
+        return;
+      }
       console.log("ログインします！");
-      this.closeLoginModal();
+      //ログイン処理
+      const url = "localhost:8080/api/login";
+      //const url = "/api/login";
+      const dataObj = {
+        name: this.inputUserName,
+        pass: this.inputPassword,
+      };
+
+      let errMsg;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataObj),
+        });
+        if (!response.ok) {
+          switch (response.status) {
+            default:
+              errMsg = "何らかの理由でエラーが発生しました。";
+              throw new Error(errMsg);
+          }
+        } else {
+          const responseData = await response.json();
+          if (responseData.result == "NG") {
+            alert("ユーザ名またはパスワードが間違っています。");
+            return;
+          }
+          //cookieに登録（有効期限：1ヶ月）
+          this.cookies.set("user", this.inputUserName, 60 * 60 * 24 * 30);
+          //リロード
+          window.location.reload();
+        }
+      } catch (errMsg) {
+        alert(errMsg);
+      }
     },
     logout: function () {
       console.log("ログアウトします");
