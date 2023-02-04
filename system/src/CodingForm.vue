@@ -162,6 +162,8 @@
 </template>
 
 <script>
+import { useCookies } from "vue3-cookies";
+
 import { Codemirror } from "vue-codemirror";
 import { cpp } from "@codemirror/lang-cpp";
 import { oneDark } from "@codemirror/theme-one-dark";
@@ -196,6 +198,10 @@ export default {
     ForForm,
     WhileForm,
     NomalEditor,
+  },
+  setup() {
+    const { cookies } = useCookies();
+    return { cookies };
   },
   data() {
     return {
@@ -280,11 +286,22 @@ export default {
     }
   },
   mounted() {
+    //ログイン状態を確認
+    if (!this.cookies.isKey("user")) {
+      this.$refs.hdComp.setUpHeader(
+        "ホーム",
+        "index.html",
+        this.formTitle,
+        "ログイン"
+      );
+      return;
+    }
+    const userName = this.cookies.get("user");
     this.$refs.hdComp.setUpHeader(
       "ホーム",
       "index.html",
       this.formTitle,
-      "ログイン"
+      userName
     );
   },
   methods: {
@@ -478,10 +495,7 @@ export default {
 };
 </script>
 
-<style>
-body {
-  font-family: sans-serif;
-}
+<style scoped>
 p {
   font-size: 16pt;
 }
@@ -498,6 +512,7 @@ div.loading {
 div.body {
   margin-top: 100px;
   height: auto;
+  font-family: sans-serif;
 }
 /*アテンションのスタイル*/
 div.notificationArea {

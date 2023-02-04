@@ -31,10 +31,16 @@
 <script>
 import HeaderComp from "./components/HeaderComp.vue";
 
+import { useCookies } from "vue3-cookies";
+
 export default {
   name: "App",
   components: {
     HeaderComp,
+  },
+  setup() {
+    const { cookies } = useCookies();
+    return { cookies };
   },
   data() {
     return {
@@ -71,7 +77,13 @@ export default {
     }
   },
   mounted() {
-    this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
+    //ログイン状態を確認
+    if (!this.cookies.isKey("user")) {
+      this.$refs.hdComp.setUpHeader("", "", "ホーム", "ログイン");
+      return;
+    }
+    const userName = this.cookies.get("user");
+    this.$refs.hdComp.setUpHeader("", "", "ホーム", userName);
   },
   methods: {
     selectForm: function (id) {
