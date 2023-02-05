@@ -65,8 +65,7 @@
         </div>
         <div class="codingRight">
           <div class="question">
-            <h2>{{ questionTitle }}</h2>
-            <p>{{ questionDescription }}</p>
+            <question-area />
           </div>
           <!--フォー上リア-->
           <div class="tabGroup">
@@ -173,6 +172,7 @@ import { indentWithTab } from "@codemirror/commands";
 import Toggle from "@vueform/toggle";
 
 import HeaderComp from "./components/HeaderComp.vue";
+import QuestionArea from "./components/QuestionArea.vue";
 import CodeRun from "./components/CodeRun.vue";
 import GrammarMmodal from "./components/GrammerModal.vue";
 
@@ -190,6 +190,7 @@ export default {
     Codemirror,
     Toggle,
     HeaderComp,
+    QuestionArea,
     CodeRun,
     GrammarMmodal,
 
