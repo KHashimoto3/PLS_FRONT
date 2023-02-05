@@ -654,6 +654,8 @@ div.codingRight {
 div.question {
   width: 100%;
   height: 20%;
+  position: relative;
+  overflow: auto;
 }
 div.codingForm {
   width: 100%;
