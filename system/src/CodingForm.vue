@@ -653,7 +653,7 @@ div.codingRight {
 }
 div.question {
   width: 100%;
-  height: 20%;
+  height: 30%;
   position: relative;
   overflow: auto;
 }
@@ -745,7 +745,7 @@ div.tabGroup {
 }
 div.tabContent {
   width: 100%;
-  height: 500px;
+  height: 450px;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
