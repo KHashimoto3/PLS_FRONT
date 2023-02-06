@@ -653,7 +653,7 @@ div.codingRight {
 }
 div.question {
   width: 100%;
-  height: 30%;
+  height: 200px;
   position: relative;
   overflow: auto;
 }
@@ -726,6 +726,10 @@ div.tabGroup {
   width: 100%;
   height: auto;
 }
+div.tabContent {
+  width: 100%;
+  height: 450px;
+}
 .tabNav {
   margin: auto;
   display: flex;
@@ -742,10 +746,6 @@ div.tabGroup {
 .tabNav li.active {
   background: #57cc99;
   color: #fff;
-}
-div.tabContent {
-  width: 100%;
-  height: 450px;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
