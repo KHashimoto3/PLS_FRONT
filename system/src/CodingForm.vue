@@ -65,7 +65,8 @@
         </div>
         <div class="codingRight">
           <div class="question">
-            <question-area />
+            <!--問題表示エリア-->
+            <question-area ref="QuestionAreaRef" />
           </div>
           <!--フォー上リア-->
           <div class="tabGroup">
@@ -207,8 +208,6 @@ export default {
   data() {
     return {
       formTitle: "",
-      questionTitle: "",
-      questionDescription: "",
       viewStepNo: 1, //表示中のステップ
       nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
@@ -238,6 +237,8 @@ export default {
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
 
+      //問題の内容を格納するオブジェクト
+      questionObj: null,
       //アシストの内容を格納するオブジェクト
       assistObj: null,
 
@@ -274,8 +275,11 @@ export default {
       } else {
         const responseData = await response.json();
         this.formTitle = responseData.formTitle;
-        this.questionTitle = responseData.questionTitle;
-        this.questionDescription = responseData.questionDescription;
+        this.questionObj = responseData.questionObj;
+        if (this.questionObj == null) {
+          alert("問題データがありません。");
+          location.href = "index.html";
+        }
         this.assistObj = responseData.assistObj;
         if (this.assistObj == null) {
           alert("フォームデータがありません。");
@@ -287,6 +291,8 @@ export default {
     }
   },
   mounted() {
+    //問題表示エリアを設定
+    this.$refs.QuestionAreaRef.setUp(this.questionObj);
     //ログイン状態を確認
     if (!this.cookies.isKey("user")) {
       this.$refs.hdComp.setUpHeader(
