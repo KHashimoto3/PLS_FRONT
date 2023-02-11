@@ -4,12 +4,12 @@
     <p class="questionDesc">{{ description }}</p>
     <div class="exampleArea">
       <div class="exInput">
-        ＜入力例＞<br />
-        {{ input }}
+        ＜入力例＞
+        <textarea cols="40" rows="10" v-model="input" disabled></textarea>
       </div>
       <div class="exOutput">
-        ＜出力例＞<br />
-        {{ output }}
+        ＜出力例＞
+        <textarea cols="40" rows="10" v-model="output" disabled></textarea>
       </div>
     </div>
   </div>
@@ -55,22 +55,22 @@ p.questionDesc {
   font-size: 16pt;
 }
 div.exampleArea {
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: 0 auto 100px auto;
 }
 div.exInput {
   width: 300px;
-  height: 150px;
-  margin-right: 30px;
-  background: #f2ffc7;
+  height: 200px;
+  margin-right: 100px;
   float: left;
 }
 div.exOutput {
   width: 300px;
-  height: 150px;
-  margin-right: 100px;
-  margin-left: 330px;
-  background: #efefef;
+  height: 200px;
+  margin-left: 410px;
+}
+textarea {
+  font-size: 14pt;
 }
 </style>
