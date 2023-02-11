@@ -1,7 +1,11 @@
 {
 "formTitle":"繰り返し",
-"questionTitle":"サンプル問題",
-"questionDescription":"整数値nが入力されます。1から入力値nまで順番に積を求め（1*2*3*…*n）、さらにその平均値を求めて出力してください。",
+"questionObj":{
+  "title":"サンプル問題",
+  "description":"整数値nが入力されます。1から入力値nまで順番に積を求め（1*2*3*…*n）、さらにその平均値を求めて出力してください。",
+  "input":"",
+  "output":""
+},
 "assistObj": [
     {
       "id": 1,
