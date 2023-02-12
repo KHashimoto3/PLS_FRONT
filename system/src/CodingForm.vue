@@ -65,8 +65,8 @@
         </div>
         <div class="codingRight">
           <div class="question">
-            <h2>{{ questionTitle }}</h2>
-            <p>{{ questionDescription }}</p>
+            <!--問題表示エリア-->
+            <question-area ref="QuestionAreaRef" />
           </div>
           <!--フォー上リア-->
           <div class="tabGroup">
@@ -173,6 +173,7 @@ import { indentWithTab } from "@codemirror/commands";
 import Toggle from "@vueform/toggle";
 
 import HeaderComp from "./components/HeaderComp.vue";
+import QuestionArea from "./components/QuestionArea.vue";
 import CodeRun from "./components/CodeRun.vue";
 import GrammarMmodal from "./components/GrammerModal.vue";
 
@@ -190,6 +191,7 @@ export default {
     Codemirror,
     Toggle,
     HeaderComp,
+    QuestionArea,
     CodeRun,
     GrammarMmodal,
 
@@ -206,8 +208,6 @@ export default {
   data() {
     return {
       formTitle: "",
-      questionTitle: "",
-      questionDescription: "",
       viewStepNo: 1, //表示中のステップ
       nowStepNo: 1, //これまでに進んだステップ
       OutMainCnt: 0, //main関数外のtextareaの数
@@ -237,6 +237,8 @@ export default {
       //codemirrorの設定
       extensions: [cpp(), oneDark, keymap.of([indentWithTab])],
 
+      //問題の内容を格納するオブジェクト
+      questionObj: null,
       //アシストの内容を格納するオブジェクト
       assistObj: null,
 
@@ -273,8 +275,11 @@ export default {
       } else {
         const responseData = await response.json();
         this.formTitle = responseData.formTitle;
-        this.questionTitle = responseData.questionTitle;
-        this.questionDescription = responseData.questionDescription;
+        this.questionObj = responseData.questionObj;
+        if (this.questionObj == null) {
+          alert("問題データがありません。");
+          location.href = "index.html";
+        }
         this.assistObj = responseData.assistObj;
         if (this.assistObj == null) {
           alert("フォームデータがありません。");
@@ -286,6 +291,8 @@ export default {
     }
   },
   mounted() {
+    //問題表示エリアを設定
+    this.$refs.QuestionAreaRef.setUp(this.questionObj);
     //ログイン状態を確認
     if (!this.cookies.isKey("user")) {
       this.$refs.hdComp.setUpHeader(
@@ -652,7 +659,9 @@ div.codingRight {
 }
 div.question {
   width: 100%;
-  height: 20%;
+  height: 200px;
+  position: relative;
+  overflow: auto;
 }
 div.codingForm {
   width: 100%;
@@ -723,6 +732,10 @@ div.tabGroup {
   width: 100%;
   height: auto;
 }
+div.tabContent {
+  width: 100%;
+  height: 450px;
+}
 .tabNav {
   margin: auto;
   display: flex;
@@ -739,10 +752,6 @@ div.tabGroup {
 .tabNav li.active {
   background: #57cc99;
   color: #fff;
-}
-div.tabContent {
-  width: 100%;
-  height: 500px;
 }
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
