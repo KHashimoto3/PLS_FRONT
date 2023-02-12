@@ -5,11 +5,11 @@
     <div class="exampleArea">
       <div class="exInput">
         ＜入力例＞
-        <textarea cols="40" rows="10" v-model="input" disabled></textarea>
+        <textarea cols="36" rows="10" v-model="input" disabled></textarea>
       </div>
       <div class="exOutput">
         ＜出力例＞
-        <textarea cols="40" rows="10" v-model="output" disabled></textarea>
+        <textarea cols="36" rows="10" v-model="output" disabled></textarea>
       </div>
     </div>
   </div>
@@ -71,6 +71,6 @@ div.exOutput {
   margin-left: 410px;
 }
 textarea {
-  font-size: 14pt;
+  font-size: 16pt;
 }
 </style>
