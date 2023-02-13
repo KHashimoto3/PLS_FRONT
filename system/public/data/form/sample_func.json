@@ -71,11 +71,11 @@
       "id": 6,
       "type": 0,
       "comp":"6",
-      "compData":{"mode":2,"cnt":3},
+      "compData":{"mode":2,"cnt":2},
       "title": "関数の定義",
       "body": "ある処理の塊を関数として定義します。どのような処理を定義しているのかを、コメントで残すことも重要です。",
-      "sampleExp": "合計を求める関数を定義するとき",
-      "sample": "scanf(\"%d%d%lf\", &a, &b, &c);",
+      "sampleExp": "2つの値の積を求める関数を定義するとき",
+      "sample": "int multiplication(int a, int b) {\n    //処理を書く\n}",
       "notice": "他の人が見てもわかりやすい関数名としてください。"
     },
     {
@@ -85,8 +85,8 @@
       "compData":"",
       "title": "関数の呼び出し",
       "body": "定義した関数を呼び出します。返し値がある場合は、それを変数に格納するようにします。",
-      "sampleExp": "合計を求める関数を呼び出すとき。",
-      "sample": "for (i = 0; i < 5; i++) {\n    //繰り返す処理\n}",
+      "sampleExp": "席を求める関数を呼び出すとき。",
+      "sample": "int ans = multiplication(a, b);",
       "notice":
         "代入の際の=の前後にはスペースを入れます。"
     },
