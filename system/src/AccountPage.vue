@@ -59,6 +59,26 @@
         </div>
       </div>
     </div>
+    <div class="completedModalArea" v-show="completedModalIsShow">
+      <div class="completedModal">
+        <div class="completedModalInner">
+          <div class="modalUpperArea">
+            <h1>登録完了</h1>
+            <p>
+              ようこそ！アカウント新規登録が完了しました。完了をクリックして、学習を始めましょう。
+            </p>
+          </div>
+          <div class="modalButtonArea">
+            <button
+              class="css-button-rounded--green"
+              @click="closeCompletedModal()"
+            >
+              完了
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <header-comp ref="hdComp" />
     <div class="manageArea">
       <div class="accountInfoArea">
@@ -129,6 +149,7 @@ export default {
       loginModalIsShow: false,
       addAccountModalIsShow: false,
       loginButtonIsDisabled: false,
+      completedModalIsShow: false,
       addAccountButtonIsDisabled: false,
 
       userName: "ゲストユーザー",
@@ -228,13 +249,17 @@ export default {
     closeAddAccountModal: function () {
       this.addAccountModalIsShow = false;
     },
+    closeCompletedModal: function () {
+      this.completedModalIsShow = false;
+    },
   },
 };
 </script>
 
 <style scoped>
 div.loginModalArea,
-div.addAccountModalArea {
+div.addAccountModalArea,
+div.completedModalArea {
   top: 0;
   left: 0;
   width: 100%;
@@ -253,8 +278,15 @@ div.addAccountModal {
   margin: auto;
   background: #ffffff;
 }
+div.completedModal {
+  width: 600px;
+  height: 250px;
+  margin: auto;
+  background: #ffffff;
+}
 div.loginModalInner,
-div.addAccountModalInner {
+div.addAccountModalInner,
+div.completedModalInner {
   width: 80%;
   height: auto;
   margin: 0 auto;
