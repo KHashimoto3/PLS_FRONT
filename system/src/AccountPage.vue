@@ -28,6 +28,37 @@
         </div>
       </div>
     </div>
+    <div class="addAccountModalArea" v-show="addAccountModalIsShow">
+      <div class="addAccountModal">
+        <div class="addAccountModalInner">
+          <div class="modalUpperArea">
+            <h1>アカウントの作成</h1>
+            <p>
+              ユーザ名とパスワードを入力して、登録するをクリックしてください。
+            </p>
+            <label for="userName">ユーザ名: </label
+            ><input type="text" id="userName" v-model="inputUserName" /><br />
+            <label for="pass">パスワード : </label
+            ><input type="password" id="pass" v-model="inputPassword" /><br />
+          </div>
+          <div class="modalButtonArea">
+            <button
+              class="css-button-rounded--sand"
+              @click="closeAddAccountModal()"
+            >
+              戻る
+            </button>
+            <button
+              class="css-button-rounded--green"
+              @click="addAccount()"
+              :disabled="addAccountButtonIsDisabled"
+            >
+              登録する
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <header-comp ref="hdComp" />
     <div class="manageArea">
       <div class="accountInfoArea">
@@ -51,6 +82,14 @@
             @click="openLoginModal()"
           >
             ログイン
+          </button>
+          <br />
+          <button
+            v-show="!loginNow"
+            class="css-button-rounded--login"
+            @click="openAddAccountModal()"
+          >
+            新規登録
           </button>
           <button
             v-show="loginNow"
@@ -88,7 +127,9 @@ export default {
     return {
       loginNow: false,
       loginModalIsShow: false,
+      addAccountModalIsShow: false,
       loginButtonIsDisabled: false,
+      addAccountButtonIsDisabled: false,
 
       userName: "ゲストユーザー",
 
@@ -172,18 +213,28 @@ export default {
       //リロード
       window.location.reload();
     },
+    addAccount: function () {
+      return;
+    },
     openLoginModal: function () {
       this.loginModalIsShow = true;
     },
     closeLoginModal: function () {
       this.loginModalIsShow = false;
     },
+    openAddAccountModal: function () {
+      this.addAccountModalIsShow = true;
+    },
+    closeAddAccountModal: function () {
+      this.addAccountModalIsShow = false;
+    },
   },
 };
 </script>
 
 <style scoped>
-div.loginModalArea {
+div.loginModalArea,
+div.addAccountModalArea {
   top: 0;
   left: 0;
   width: 100%;
@@ -195,13 +246,15 @@ div.loginModalArea {
   z-index: 999;
   font-family: sans-serif;
 }
-div.loginModal {
+div.loginModal,
+div.addAccountModal {
   width: 600px;
   height: 300px;
   margin: auto;
   background: #ffffff;
 }
-div.loginModalInner {
+div.loginModalInner,
+div.addAccountModalInner {
   width: 80%;
   height: auto;
   margin: 0 auto;
