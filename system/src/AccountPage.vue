@@ -28,6 +28,57 @@
         </div>
       </div>
     </div>
+    <div class="addAccountModalArea" v-show="addAccountModalIsShow">
+      <div class="addAccountModal">
+        <div class="addAccountModalInner">
+          <div class="modalUpperArea">
+            <h1>アカウントの作成</h1>
+            <p>
+              ユーザ名とパスワードを入力して、登録するをクリックしてください。
+            </p>
+            <label for="userName">ユーザ名: </label
+            ><input type="text" id="userName" v-model="inputUserName" /><br />
+            <label for="pass">パスワード : </label
+            ><input type="password" id="pass" v-model="inputPassword" /><br />
+          </div>
+          <div class="modalButtonArea">
+            <button
+              class="css-button-rounded--sand"
+              @click="closeAddAccountModal()"
+            >
+              戻る
+            </button>
+            <button
+              class="css-button-rounded--green"
+              @click="addAccount()"
+              :disabled="addAccountButtonIsDisabled"
+            >
+              登録する
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="completedModalArea" v-show="completedModalIsShow">
+      <div class="completedModal">
+        <div class="completedModalInner">
+          <div class="modalUpperArea">
+            <h1>登録完了</h1>
+            <p>
+              ようこそ！アカウント新規登録が完了しました。完了をクリックして、学習を始めましょう。
+            </p>
+          </div>
+          <div class="modalButtonArea">
+            <button
+              class="css-button-rounded--green"
+              @click="closeCompletedModal()"
+            >
+              完了
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <header-comp ref="hdComp" />
     <div class="manageArea">
       <div class="accountInfoArea">
@@ -51,6 +102,14 @@
             @click="openLoginModal()"
           >
             ログイン
+          </button>
+          <br />
+          <button
+            v-show="!loginNow"
+            class="css-button-rounded--login"
+            @click="openAddAccountModal()"
+          >
+            新規登録
           </button>
           <button
             v-show="loginNow"
@@ -88,7 +147,10 @@ export default {
     return {
       loginNow: false,
       loginModalIsShow: false,
+      addAccountModalIsShow: false,
       loginButtonIsDisabled: false,
+      completedModalIsShow: false,
+      addAccountButtonIsDisabled: false,
 
       userName: "ゲストユーザー",
 
@@ -172,18 +234,82 @@ export default {
       //リロード
       window.location.reload();
     },
+    addAccount: async function () {
+      if (this.inputUserName == "" || this.inputPassword == "") {
+        alert("ユーザ名とパスワードを両方入力してください。");
+        return;
+      }
+      this.addAccountButtonIsDisabled = true;
+      //新規登録処理
+      //const url = "http://localhost:8080/api/addac";
+      const url = "/api/addac";
+      const dataObj = {
+        name: this.inputUserName,
+        pass: this.inputPassword,
+      };
+
+      let errMsg;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataObj),
+        });
+        if (!response.ok) {
+          switch (response.status) {
+            default:
+              errMsg = "何らかの理由でエラーが発生しました。";
+              throw new Error(errMsg);
+          }
+        } else {
+          const responseData = await response.json();
+          if (responseData.result == "Already") {
+            alert("すでにこのユーザ名でアカウントが登録されています。");
+            this.addAccountButtonIsDisabled = false;
+            return;
+          }
+          //cookieに登録（有効期限：1ヶ月）
+          this.cookies.set("user", this.inputUserName, 60 * 60 * 24 * 30);
+          this.loginButtonIsDisabled = false;
+          //登録完了モーダルを出す
+          this.closeAddAccountModal = false;
+          this.openCompletedModal();
+        }
+      } catch (errMsg) {
+        alert(errMsg);
+      }
+    },
     openLoginModal: function () {
       this.loginModalIsShow = true;
     },
     closeLoginModal: function () {
       this.loginModalIsShow = false;
     },
+    openAddAccountModal: function () {
+      this.addAccountModalIsShow = true;
+    },
+    closeAddAccountModal: function () {
+      this.addAccountModalIsShow = false;
+    },
+    openCompletedModal: function () {
+      this.completedModalIsShow = true;
+    },
+    closeCompletedModal: function () {
+      this.completedModalIsShow = false;
+      //リロード
+      window.location.reload();
+    },
   },
 };
 </script>
 
 <style scoped>
-div.loginModalArea {
+div.loginModalArea,
+div.addAccountModalArea,
+div.completedModalArea {
   top: 0;
   left: 0;
   width: 100%;
@@ -195,13 +321,22 @@ div.loginModalArea {
   z-index: 999;
   font-family: sans-serif;
 }
-div.loginModal {
+div.loginModal,
+div.addAccountModal {
   width: 600px;
   height: 300px;
   margin: auto;
   background: #ffffff;
 }
-div.loginModalInner {
+div.completedModal {
+  width: 600px;
+  height: 250px;
+  margin: auto;
+  background: #ffffff;
+}
+div.loginModalInner,
+div.addAccountModalInner,
+div.completedModalInner {
   width: 80%;
   height: auto;
   margin: 0 auto;
