@@ -61,7 +61,7 @@ export default {
       argCnt: 引数の個数がコーディングフォームから渡される（引数なしなら0）
       */
       mode: 2,
-      argCnt: 2,
+      argCnt: 3,
 
       hintObj: {
         hint1: "処理後に呼び出し元に返す値の型",
