@@ -241,8 +241,8 @@ export default {
       }
       this.addAccountButtonIsDisabled = true;
       //新規登録処理
-      //const url = "http://localhost:8080/api/addac";
-      const url = "/api/addac";
+      //const url = "http://localhost:8080/api/addAc";
+      const url = "/api/addAc";
       const dataObj = {
         name: this.inputUserName,
         pass: this.inputPassword,

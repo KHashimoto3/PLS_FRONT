@@ -48,8 +48,8 @@ export default {
     };
   },
   created: async function () {
-    //const pullFormUrl = "./data/formlist.json";
-    const pullFormUrl = "/api/getformlist";
+    //const pullFormUrl = "./data/getformlist.json";
+    const pullFormUrl = "/api/getFormList";
     let errMsg;
     try {
       const response = await fetch(pullFormUrl, {
