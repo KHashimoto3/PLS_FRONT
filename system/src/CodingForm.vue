@@ -292,7 +292,7 @@ export default {
   },
   mounted() {
     //問題表示エリアを設定（不具合のためコメントアウト中）
-    //this.$refs.QuestionAreaRef.setUp(this.questionObj);
+    this.$refs.QuestionAreaRef.setUp(this.questionObj);
     //ログイン状態を確認
     if (!this.cookies.isKey("user")) {
       this.$refs.hdComp.setUpHeader(
