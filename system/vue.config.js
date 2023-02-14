@@ -16,8 +16,8 @@ module.exports = {
     },
     coding: {
       entry: "src/coding_form.js",
-      template: "public/coding_form.html",
-      filename: "coding_form.html",
+      template: "public/codingform.html",
+      filename: "codingform.html",
       title: "コーディングフォーム",
     },
     element: {
