@@ -1,19 +1,20 @@
 <template lang="html">
+  <div class="centerx">
   <div>
     <!--ログインモーダル-->
     <vs-prompt
       color="success"
       title="ログイン"
-      @cancel="valMultipe.value1='',valMultipe.value2=''"
-      @accept="acceptAlert"
+      @cancel="inputUserName='',inputPassword=''"
+      @accept="login()"
       accept-text="ログイン"
       cancel-text="キャンセル"
       @close="close"
       v-model:active="loginModalIsShow">
        <div class="con-exemple-prompt">
        ユーザ名とパスワードを入力して、ログインをクリックしてください。
-         <vs-input placeholder="ユーザ名" v-model="valMultipe.value1"/>
-         <vs-input placeholder="パスワード" v-model="valMultipe.value2"/>
+         <vs-input placeholder="ユーザ名"  v-model="inputUserName" />
+         <vs-input placeholder="パスワード" v-model="inputPassword" />
        </div>
      </vs-prompt>
     <!--<div class="loginModalArea">
@@ -144,6 +145,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -162,13 +164,6 @@ export default {
   },
   data() {
     return {
-      //新モーダル
-      val: "",
-      valMultipe: {
-        value1: "",
-        value2: "",
-      },
-
       loginNow: false,
       loginModalIsShow: false,
       addAccountModalIsShow: false,
@@ -210,7 +205,8 @@ export default {
         alert("ユーザ名とパスワードを両方入力してください。");
         return;
       }
-      this.loginButtonIsDisabled = true;
+      //this.loginButtonIsDisabled = true;
+      this.$vs.loading();
       //ログイン処理
       //const url = "http://localhost:8080/api/login";
       const url = "/api/login";
@@ -233,6 +229,7 @@ export default {
           switch (response.status) {
             default:
               errMsg = "何らかの理由でエラーが発生しました。";
+              this.$vs.loading.close();
               throw new Error(errMsg);
           }
         } else {
@@ -244,7 +241,8 @@ export default {
           }
           //cookieに登録（有効期限：1ヶ月）
           this.cookies.set("user", this.inputUserName, 60 * 60 * 24 * 30);
-          this.loginButtonIsDisabled = false;
+          //this.loginButtonIsDisabled = false;
+          this.$vs.loading.close();
           //リロード
           window.location.reload();
         }
