@@ -17,35 +17,7 @@
          <vs-input placeholder="パスワード" v-model="inputPassword" />
        </div>
      </vs-prompt>
-    <!--<div class="loginModalArea">
-      <div class="loginModal">
-        <div class="loginModalInner">
-          <div class="modalUpperArea">
-            <h1>ログイン</h1>
-            <p>
-              ユーザ名とパスワードを入力して、ログインをクリックしてください。
-            </p>
-            <label for="userName">ユーザ名: </label
-            ><input type="text" id="userName" v-model="inputUserName" /><br />
-            <label for="pass">パスワード : </label
-            ><input type="password" id="pass" v-model="inputPassword" /><br />
-          </div>
-          <div class="modalButtonArea">
-            <button class="css-button-rounded--sand" @click="closeLoginModal()">
-              戻る
-            </button>
-            <button
-              class="css-button-rounded--green"
-              @click="login()"
-              :disabled="loginButtonIsDisabled"
-            >
-              ログイン
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
+    <!--新規登録モーダル-->
     <div class="addAccountModalArea" v-show="addAccountModalIsShow">
       <div class="addAccountModal">
         <div class="addAccountModalInner">
