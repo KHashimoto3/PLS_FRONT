@@ -135,7 +135,7 @@ import HeaderComp from "./components/HeaderComp.vue";
 import { useCookies } from "vue3-cookies";
 
 export default {
-  name: "LoginPageSrc",
+  name: "LoginPageSmp",
   components: {
     HeaderComp,
   },
