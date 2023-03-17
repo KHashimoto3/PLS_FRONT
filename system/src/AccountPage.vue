@@ -18,7 +18,22 @@
        </div>
      </vs-prompt>
     <!--新規登録モーダル-->
-    <div class="addAccountModalArea" v-show="addAccountModalIsShow">
+    <vs-prompt
+      color="success"
+      title="新規登録"
+      @cancel="inputUserName='',inputPassword=''"
+      @accept="addAccount()"
+      accept-text="登録する"
+      cancel-text="キャンセル"
+      @close="close"
+      v-model:active="addAccountModalIsShow">
+       <div class="con-exemple-prompt">
+       ユーザ名とパスワードを入力して、登録するをクリックしてください。
+         <vs-input placeholder="ユーザ名"  v-model="inputUserName" />
+         <vs-input placeholder="パスワード" v-model="inputPassword" />
+       </div>
+     </vs-prompt>
+    <!--<div class="addAccountModalArea" v-show="addAccountModalIsShow">
       <div class="addAccountModal">
         <div class="addAccountModalInner">
           <div class="modalUpperArea">
@@ -48,7 +63,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="completedModalArea" v-show="completedModalIsShow">
       <div class="completedModal">
         <div class="completedModalInner">
@@ -233,7 +248,8 @@ export default {
         alert("ユーザ名とパスワードを両方入力してください。");
         return;
       }
-      this.addAccountButtonIsDisabled = true;
+      //this.addAccountButtonIsDisabled = true;
+      this.$vs.loading();
       //新規登録処理
       //const url = "http://localhost:8080/api/addAc";
       const url = "/api/addAc";
@@ -256,18 +272,21 @@ export default {
           switch (response.status) {
             default:
               errMsg = "何らかの理由でエラーが発生しました。";
+              this.$vs.loading.close();
               throw new Error(errMsg);
           }
         } else {
           const responseData = await response.json();
           if (responseData.result == "Already") {
             alert("すでにこのユーザ名でアカウントが登録されています。");
-            this.addAccountButtonIsDisabled = false;
+            //this.addAccountButtonIsDisabled = false;
+            this.$vs.loading.close();
             return;
           }
           //cookieに登録（有効期限：1ヶ月）
           this.cookies.set("user", this.inputUserName, 60 * 60 * 24 * 30);
-          this.loginButtonIsDisabled = false;
+          //this.loginButtonIsDisabled = false;
+          this.$vs.loading.close();
           //登録完了モーダルを出す
           this.closeAddAccountModal = false;
           this.openCompletedModal();
