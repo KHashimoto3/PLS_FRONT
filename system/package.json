@@ -30,11 +30,13 @@
     "primeicons": "^6.0.1",
     "primevue": "^3.25.0",
     "prismjs": "^1.28.0",
+    "stylus-loader": "^7.1.0",
     "terser": "^5.15.0",
     "vue": "^3.2.13",
     "vue-codemirror": "^6.0.1",
     "vue3-cookies": "^1.0.6",
-    "vuesax": "^4.0.1-alpha.25"
+    "vuesax": "^4.0.1-alpha.25",
+    "vuesax3": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
