@@ -118,7 +118,7 @@ export default {
       loginModalIsShow: false,
       addAccountModalIsShow: false,
       loginButtonIsDisabled: false,
-      completedModalIsShow: true,
+      completedModalIsShow: false,
       addAccountButtonIsDisabled: false,
 
       userName: "ゲストユーザー",
