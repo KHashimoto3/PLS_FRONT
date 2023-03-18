@@ -33,58 +33,21 @@
          <vs-input placeholder="パスワード" v-model="inputPassword" />
        </div>
      </vs-prompt>
-    <!--<div class="addAccountModalArea" v-show="addAccountModalIsShow">
-      <div class="addAccountModal">
-        <div class="addAccountModalInner">
-          <div class="modalUpperArea">
-            <h1>アカウントの作成</h1>
-            <p>
-              ユーザ名とパスワードを入力して、登録するをクリックしてください。
-            </p>
-            <label for="userName">ユーザ名: </label
-            ><input type="text" id="userName" v-model="inputUserName" /><br />
-            <label for="pass">パスワード : </label
-            ><input type="password" id="pass" v-model="inputPassword" /><br />
-          </div>
-          <div class="modalButtonArea">
-            <button
-              class="css-button-rounded--sand"
-              @click="closeAddAccountModal()"
-            >
-              戻る
-            </button>
-            <button
-              class="css-button-rounded--green"
-              @click="addAccount()"
-              :disabled="addAccountButtonIsDisabled"
-            >
-              登録する
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>-->
-    <div class="completedModalArea" v-show="completedModalIsShow">
-      <div class="completedModal">
-        <div class="completedModalInner">
-          <div class="modalUpperArea">
-            <h1>登録完了</h1>
-            <p>
-              ようこそ！アカウント新規登録が完了しました。完了をクリックして、学習を始めましょう。
-            </p>
-          </div>
-          <div class="modalButtonArea">
-            <button
-              class="css-button-rounded--green"
-              @click="closeCompletedModal()"
-            >
-              完了
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--登録完了モーダル-->
+     <vs-prompt
+      color="success"
+      title="登録完了"
+      @accept="addAccount()"
+      accept-text="OK"
+      @close="closeCompletedModal()"
+      buttons-hidden="true"
+      v-model:active="completedModalIsShow">
+       <div class="con-exemple-prompt">
+       ようこそ！アカウント新規登録が完了しました。closeをクリックして、学習を始めましょう。
+       </div>
+     </vs-prompt>
     <header-comp ref="hdComp" />
+    <!--メイン画面-->
     <div class="manageArea">
       <div class="accountInfoArea">
         <div class="iconArea">
@@ -155,7 +118,7 @@ export default {
       loginModalIsShow: false,
       addAccountModalIsShow: false,
       loginButtonIsDisabled: false,
-      completedModalIsShow: false,
+      completedModalIsShow: true,
       addAccountButtonIsDisabled: false,
 
       userName: "ゲストユーザー",
